@@ -10,6 +10,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^3.3.2"
+    "astro": "^3.3.2",
+    "astro-icon": "^1.1.0"
+  },
+  "devDependencies": {
+    "@iconify-json/logos": "^1.1.43",
+    "@iconify-json/mdi": "^1.1.67",
+    "@iconify-json/ri": "^1.1.21",
+    "@iconify-json/skill-icons": "^1.1.8"
   }
 }
