@@ -16,9 +16,6 @@ tags:
 ## Project Description
 The UTA Web App is a comprehensive platform that provides students with access to academic resources, course materials, and administrative services. Our project focused on redesigning the home page of the UTA Web App to enhance user experience and improve the platform's visual appeal. This redesign involved a complete overhaul of the user interface, incorporating modern design principles and responsive layouts to create an intuitive and engaging user experience.
 
-### See the project
-[UTA Web App](https://uta-web-project.vercel.app/)
-
 ## Technologies Used
 The project was implemented using the following technologies:
 - **Frontend:** Astro

@@ -1,118 +1,140 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
 import ContactCTA from "../components/ContactCTA.astro";
-import Hero from "../components/Hero.astro";
 ---
 
-<BaseLayout title="About | Jair Mera" description="About Jair Mera">
-  <div class="stack gap-20">
-    <main class="wrapper about">
-      <Hero
-        title="About"
-        tagline="Thanks for stopping by. Read below to learn more about myself and my background."
-      >
-        <img
-          width="1553"
-          height="873"
-          src="/assets/at-work.jpg"
-          alt="Jair Mera at work with a colleague"
-        />
-      </Hero>
-
-      <section>
-        <h2 class="section-title">Background</h2>
-        <div class="content">
-          <p>
-            I've always been a tech apationate person, when I was a child, I
-            used to play on computers everyday, since then, I've been learning
-            about computers and technology. I started my degree as a Software
-            Engineer in 2021 and I'm currently working on my own projects.
+<BaseLayout title="About | Jair Mera" description="Learn more about Jair Mera, Full Stack Engineer specializing in React, TypeScript, and AI-accelerated development.">
+  <!-- Hero Section -->
+  <section class="section-spacing">
+    <div class="container-custom">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Text Content -->
+        <div>
+          <h1 class="text-4xl sm:text-5xl font-bold mb-6">
+            About <span class="text-gradient">Me</span>
+          </h1>
+          <p class="text-lg text-text-secondary mb-6">
+            Thanks for stopping by. I'm Jair Mera, a Full Stack Engineer based in Ecuador with a passion for building scalable web applications and leveraging AI to accelerate development workflows.
           </p>
-          <p>
-            I'm a self-taught person, I've learned a lot of things by myself,
-            I'm always looking for new things to learn and I'm always trying to
-            improve my skills.
+          <p class="text-text-secondary">
+            I've always been passionate about technology. Since childhood, I've been fascinated by computers, which led me to pursue Software Engineering in 2021. Today, I combine my technical expertise with AI-powered tools to deliver high-quality solutions faster.
           </p>
         </div>
-      </section>
-      <section>
-        <h2 class="section-title">Education</h2>
-        <div class="content">
-          <p>Technical University of Ambato (2021 - Now)</p>
-          <p><strong> Software Engineering</strong></p>
-          <br />
-          <p>Bolivar High School</p>
-          <p><strong>Bachelor of Science</strong></p>
-        </div>
-      </section>
-      <section>
-        <h2 class="section-title">Skills</h2>
-        <div class="content">
-          <p><strong>- Work in team</strong></p>
-          <p><strong>- SelfLearning</strong></p>
-        </div>
-      </section>
-    </main>
 
-    <ContactCTA />
-  </div>
+        <!-- Image -->
+        <div class="relative">
+          <img
+            src="/assets/at-work.jpg"
+            alt="Jair Mera at work"
+            class="rounded-2xl border border-surface-border shadow-lg"
+          />
+          <div class="absolute inset-0 rounded-2xl bg-gradient-to-t from-background/50 to-transparent"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Background Section -->
+  <section class="section-spacing bg-surface/30">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-8">Background</h2>
+        
+        <div class="space-y-8">
+          <!-- Education -->
+          <div class="p-6 rounded-xl border border-surface-border bg-surface/50">
+            <h3 class="text-xl font-semibold text-text-primary mb-4 flex items-center gap-3">
+              <svg class="w-5 h-5 text-accent-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+              </svg>
+              Education
+            </h3>
+            <div class="space-y-4">
+              <div>
+                <p class="font-medium text-text-primary">Technical University of Ambato</p>
+                <p class="text-text-secondary">Software Engineering (2021 - Present)</p>
+              </div>
+              <div>
+                <p class="font-medium text-text-primary">Bolivar High School</p>
+                <p class="text-text-secondary">Bachelor of Science</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Achievements -->
+          <div class="p-6 rounded-xl border border-surface-border bg-surface/50">
+            <h3 class="text-xl font-semibold text-text-primary mb-4 flex items-center gap-3">
+              <svg class="w-5 h-5 text-accent-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              </svg>
+              Honors & Awards
+            </h3>
+            <div class="space-y-4">
+              <div>
+                <p class="font-medium text-text-primary">3rd Place - Advanced Programming Contest</p>
+                <p class="text-text-secondary text-sm">Hatary Shunko Innovation (Apr 2025) - Developed a financial solution with AI integration</p>
+              </div>
+              <div>
+                <p class="font-medium text-text-primary">1st Place - Algorithm Challenge</p>
+                <p class="text-text-secondary text-sm">Technical University of Ambato (Apr 2023) - Solved complex algorithmic problems</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Languages -->
+          <div class="p-6 rounded-xl border border-surface-border bg-surface/50">
+            <h3 class="text-xl font-semibold text-text-primary mb-4 flex items-center gap-3">
+              <svg class="w-5 h-5 text-accent-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+              </svg>
+              Languages
+            </h3>
+            <div class="flex flex-wrap gap-4">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-accent-cyan"></span>
+                <span class="text-text-primary">Spanish</span>
+                <span class="text-text-muted text-sm">(Native)</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-accent-purple"></span>
+                <span class="text-text-primary">English</span>
+                <span class="text-text-muted text-sm">(B2)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Soft Skills -->
+  <section class="section-spacing">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-8">What I Bring to the Table</h2>
+        
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="p-5 rounded-xl border border-surface-border bg-surface/50 hover:border-accent-cyan/50 transition-colors">
+            <h3 class="font-semibold text-text-primary mb-2">Team Collaboration</h3>
+            <p class="text-sm text-text-secondary">Experience leading Scrum teams and mentoring junior developers.</p>
+          </div>
+          <div class="p-5 rounded-xl border border-surface-border bg-surface/50 hover:border-accent-cyan/50 transition-colors">
+            <h3 class="font-semibold text-text-primary mb-2">Self-Learning</h3>
+            <p class="text-sm text-text-secondary">Constantly exploring new technologies and staying up-to-date with industry trends.</p>
+          </div>
+          <div class="p-5 rounded-xl border border-surface-border bg-surface/50 hover:border-accent-cyan/50 transition-colors">
+            <h3 class="font-semibold text-text-primary mb-2">Problem Solving</h3>
+            <p class="text-sm text-text-secondary">Award-winning skills in algorithmic thinking and complex problem resolution.</p>
+          </div>
+          <div class="p-5 rounded-xl border border-surface-border bg-surface/50 hover:border-accent-cyan/50 transition-colors">
+            <h3 class="font-semibold text-text-primary mb-2">Remote Ready</h3>
+            <p class="text-sm text-text-secondary">Experienced working with US-based clients in English-first environments.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ContactCTA />
 </BaseLayout>
-
-<style>
-  .about {
-    display: flex;
-    flex-direction: column;
-    gap: 3.5rem;
-  }
-
-  img {
-    margin-top: 1.5rem;
-    border-radius: 1.5rem;
-    box-shadow: var(--shadow-md);
-  }
-
-  section {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    color: var(--gray-200);
-  }
-
-  .section-title {
-    grid-column-start: 1;
-    font-size: var(--text-xl);
-    color: var(--gray-0);
-  }
-
-  .content {
-    grid-column: 2 / 4;
-  }
-
-  .content :global(a) {
-    text-decoration: 1px solid underline transparent;
-    text-underline-offset: 0.25em;
-    transition: text-decoration-color var(--theme-transition);
-  }
-
-  .content :global(a:hover),
-  .content :global(a:focus) {
-    text-decoration-color: currentColor;
-  }
-
-  @media (min-width: 50em) {
-    .about {
-      display: grid;
-      grid-template-columns: 1fr 60% 1fr;
-    }
-
-    .about > :global(:first-child) {
-      grid-column-start: 2;
-    }
-
-    section {
-      display: contents;
-      font-size: var(--text-lg);
-    }
-  }
-</style>
