@@ -7,46 +7,41 @@ interface Props {
 }
 
 const {
-  title = "Jair Mera: Personal Site",
-  description = "The personal site of Jair Mera",
+  title = "Jair Mera | Full Stack Engineer & AI Specialist",
+  description = "Portfolio of Jair Mera, a Full Stack Engineer specializing in React, TypeScript, and AI-accelerated development. View my projects and experience.",
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <meta charset="UTF-8" />
-<meta name="description" property="og:description" content={description} />
-<meta name="viewport" content="width=device-width" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="generator" content={Astro.generator} />
-<title>{title}</title>
 
+<!-- SEO -->
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:site_name" content="Jair Mera Portfolio" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+
+<!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<!-- Preconnect to Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap"
-  rel="stylesheet"
-/>
-<script is:inline>
-// This code is inlined in the head to make dark mode instant & blocking.
-const getThemePreference = () => {
-	if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-		return localStorage.getItem("theme");
-	}
-	return window.matchMedia("(prefers-color-scheme: dark)").matches
-		? "dark"
-		: "light";
-};
-const isDark = getThemePreference() === "dark";
-document.documentElement.classList[isDark ? "add" : "remove"]("theme-dark");
 
-if (typeof localStorage !== "undefined") {
-	// Watch the document element and persist user preference when it changes.
-	const observer = new MutationObserver(() => {
-		const isDark = document.documentElement.classList.contains("theme-dark");
-		localStorage.setItem("theme", isDark ? "dark" : "light");
-	});
-	observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-  }
-</script>
+<!-- Theme color for mobile browsers -->
+<meta name="theme-color" content="#0a0a0a" />
+<meta name="color-scheme" content="dark" />

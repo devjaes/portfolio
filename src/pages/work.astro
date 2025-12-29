@@ -2,11 +2,7 @@
 import { getCollection } from "astro:content";
 
 import BaseLayout from "../layouts/BaseLayout.astro";
-
 import ContactCTA from "../components/ContactCTA.astro";
-import PortfolioPreview from "../components/PortfolioPreview.astro";
-import Hero from "../components/Hero.astro";
-import Grid from "../components/Grid.astro";
 
 const projects = (await getCollection("work")).sort(
   (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
@@ -14,25 +10,86 @@ const projects = (await getCollection("work")).sort(
 ---
 
 <BaseLayout
-  title="My Work | Jair Mera"
+  title="Projects | Jair Mera"
   description="Learn about Jair Mera's most recent projects"
 >
   <div class="stack gap-20">
-    <main class="wrapper stack gap-8">
-      <Hero
-        title="My Work"
-        tagline="See my most recent projects below to get an idea of my past experience."
-        align="start"
-      />
-      <Grid variant="offset">
-        {
-          projects.map((project) => (
-            <li>
-              <PortfolioPreview project={project} />
-            </li>
-          ))
-        }
-      </Grid>
+    <main class="section-spacing">
+      <div class="container-custom">
+        <!-- Header -->
+        <div class="mb-12">
+          <h1 class="text-4xl sm:text-5xl font-bold mb-4">Projects</h1>
+          <p class="text-text-secondary text-lg max-w-2xl">
+            A collection of projects showcasing my journey as a Full Stack
+            Engineer. From enterprise applications to personal experiments.
+          </p>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {
+            projects.map((project) => (
+              <a
+                href={`/work/${project.slug}`}
+                class="group relative rounded-xl border border-surface-border bg-surface/50 overflow-hidden transition-all duration-300 hover:border-accent-cyan/50 hover:bg-surface hover:scale-[1.02]"
+              >
+                {/* Image */}
+                <div class="relative h-48 overflow-hidden">
+                  <img
+                    src={project.data.img}
+                    alt={project.data.img_alt || project.data.title}
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/30 to-transparent" />
+                </div>
+
+                {/* Content */}
+                <div class="p-5">
+                  <div class="flex items-start justify-between gap-3 mb-2">
+                    <h2 class="text-lg font-semibold text-text-primary group-hover:text-accent-cyan transition-colors line-clamp-1">
+                      {project.data.title}
+                    </h2>
+                    <div class="flex-shrink-0 p-1.5 rounded-md border border-surface-border text-text-muted group-hover:text-accent-cyan group-hover:border-accent-cyan/50 transition-all group-hover:translate-x-0.5">
+                      <svg
+                        class="w-3.5 h-3.5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+
+                  <p class="text-text-secondary text-sm mb-4 line-clamp-2">
+                    {project.data.description}
+                  </p>
+
+                  {/* Tags */}
+                  <div class="flex flex-wrap gap-1.5">
+                    {project.data.tags.slice(0, 3).map((tag) => (
+                      <span class="px-2 py-0.5 text-xs font-medium bg-surface-light text-text-muted rounded border border-surface-border">
+                        {tag}
+                      </span>
+                    ))}
+                    {project.data.tags.length > 3 && (
+                      <span class="px-2 py-0.5 text-xs font-medium text-text-muted">
+                        +{project.data.tags.length - 3}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+      </div>
     </main>
     <ContactCTA />
   </div>

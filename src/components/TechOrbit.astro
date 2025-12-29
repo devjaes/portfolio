@@ -1,0 +1,496 @@
+---
+// Tech Stack Orbital Animation Component
+// Core Engineering Foundation - TypeScript at the center
+import {
+  siTypescript,
+  siReact,
+  siNextdotjs,
+  siNodedotjs,
+  siNestjs,
+  siRubyonrails,
+  siPython,
+  siDocker,
+  siPostgresql,
+  siGit,
+} from "simple-icons";
+
+// Custom icons
+const awsIcon = {
+  path: "M6.763 10.036c0 .296.032.535.088.71.064.176.144.368.256.576.04.063.056.127.056.183 0 .08-.048.16-.152.24l-.503.335a.383.383 0 0 1-.208.072c-.08 0-.16-.04-.239-.112a2.47 2.47 0 0 1-.287-.375 6.18 6.18 0 0 1-.248-.471c-.622.734-1.405 1.101-2.347 1.101-.67 0-1.205-.191-1.596-.574-.391-.384-.59-.894-.59-1.533 0-.678.239-1.23.726-1.644.487-.415 1.133-.623 1.955-.623.272 0 .551.024.846.064.296.04.6.104.918.176v-.583c0-.607-.127-1.03-.375-1.277-.255-.248-.686-.367-1.3-.367-.28 0-.568.031-.863.103-.296.072-.583.16-.863.279a2.06 2.06 0 0 1-.263.12.47.47 0 0 1-.135.024c-.12 0-.18-.086-.18-.262v-.391c0-.135.016-.238.056-.303.04-.064.12-.127.239-.191.28-.144.614-.264 1.005-.36a4.84 4.84 0 0 1 1.246-.151c.95 0 1.644.216 2.091.647.439.43.662 1.085.662 1.963v2.586zm-3.24 1.214c.263 0 .534-.048.822-.144.287-.096.543-.271.758-.51.128-.152.224-.32.272-.512.047-.191.08-.423.08-.694v-.335a6.66 6.66 0 0 0-.735-.136 6.02 6.02 0 0 0-.75-.048c-.535 0-.926.104-1.19.32-.263.215-.39.518-.39.917 0 .375.095.655.295.846.191.2.47.296.838.296zm6.41.862c-.144 0-.24-.024-.304-.08-.064-.048-.12-.16-.168-.311L7.586 5.55a1.398 1.398 0 0 1-.072-.343c0-.136.072-.208.216-.208h.783c.152 0 .256.024.32.08.063.048.112.16.16.311l1.342 5.284 1.245-5.284c.04-.16.088-.264.151-.311a.549.549 0 0 1 .32-.08h.638c.152 0 .256.024.32.08.064.048.12.16.152.311l1.261 5.348 1.381-5.348c.048-.16.104-.264.16-.311a.52.52 0 0 1 .32-.08h.743c.144 0 .216.064.216.208 0 .04-.008.08-.016.128a1.137 1.137 0 0 1-.056.216l-1.923 6.17c-.048.16-.104.264-.168.312a.528.528 0 0 1-.303.08h-.687c-.152 0-.256-.024-.32-.08-.063-.048-.12-.16-.152-.32l-1.237-5.14-1.23 5.133c-.04.16-.087.271-.15.32-.064.055-.176.08-.32.08zm10.256.215c-.415 0-.83-.048-1.229-.136-.399-.088-.71-.191-.918-.32-.128-.071-.216-.151-.24-.231a.602.602 0 0 1-.04-.208v-.407c0-.176.064-.263.183-.263.048 0 .096.008.144.024.048.016.12.048.2.08.271.12.566.215.878.279.319.064.63.096.95.096.502 0 .894-.088 1.165-.263a.86.86 0 0 0 .415-.758.777.777 0 0 0-.215-.559c-.144-.151-.416-.287-.807-.414l-1.157-.36c-.583-.183-1.014-.454-1.277-.813a1.902 1.902 0 0 1-.4-1.158c0-.335.073-.63.216-.886.144-.255.336-.479.575-.654.24-.184.51-.32.83-.415.32-.096.655-.136 1.006-.136.175 0 .359.008.535.032.183.024.35.056.518.088.16.04.312.08.455.127.144.048.256.096.336.144a.69.69 0 0 1 .24.2.43.43 0 0 1 .071.263v.375c0 .176-.064.263-.183.263a.822.822 0 0 1-.303-.096 3.652 3.652 0 0 0-1.532-.311c-.455 0-.815.071-1.062.223-.248.152-.375.383-.375.71 0 .224.08.416.24.567.16.152.454.304.87.44l1.134.358c.574.184.99.44 1.237.767.247.327.367.702.367 1.117 0 .343-.072.655-.207.926-.144.272-.336.512-.583.703-.248.2-.543.343-.886.447-.36.111-.742.167-1.142.167zM21.698 16.207c-2.626 1.94-6.442 2.969-9.722 2.969-4.598 0-8.74-1.7-11.87-4.526-.247-.223-.024-.527.27-.351 3.384 1.963 7.559 3.153 11.877 3.153 2.914 0 6.114-.607 9.06-1.852.439-.2.814.287.385.607zM22.792 14.961c-.336-.43-2.22-.207-3.074-.103-.255.032-.295-.192-.063-.36 1.5-1.053 3.967-.75 4.254-.399.287.36-.08 2.826-1.485 4.007-.215.184-.423.088-.327-.151.32-.79 1.03-2.57.695-2.994z",
+  hex: "FF9900",
+};
+
+const cursorIcon = {
+  path: "M13.5 2.5L2 14l3.5 3.5L19 4l-5.5-1.5zm-1 3l4 4m-9 1l2 2",
+  hex: "00D8FF",
+};
+
+const copilotIcon = {
+  path: "M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z",
+  hex: "6E40C9",
+};
+
+// Inner orbit - Languages & Frameworks (Capabilities)
+const innerOrbit = [
+  { name: "React", icon: siReact },
+  { name: "Next.js", icon: siNextdotjs },
+  { name: "Node.js", icon: siNodedotjs },
+  { name: "NestJS", icon: siNestjs },
+  { name: "Rails", icon: siRubyonrails },
+  { name: "Python", icon: siPython },
+];
+
+// Outer orbit - Infrastructure & Tools (Enablers)
+const outerOrbit = [
+  { name: "Docker", icon: siDocker },
+  { name: "AWS", icon: awsIcon },
+  { name: "PostgreSQL", icon: siPostgresql },
+  { name: "Git", icon: siGit },
+  { name: "Cursor", icon: cursorIcon, isAiTool: true },
+  { name: "Copilot", icon: copilotIcon, isAiTool: true },
+];
+---
+
+<section class="section-spacing overflow-hidden">
+  <div class="container-custom">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+        Tech Stack
+      </h2>
+      <p class="text-text-secondary max-w-2xl mx-auto text-lg">
+        Building scalable applications with type-safe, battle-tested
+        technologies.
+      </p>
+    </div>
+
+    <div class="orbit-container" id="orbit-container">
+      <!-- Center Core - TypeScript Foundation -->
+      <div class="orbit-center">
+        <svg role="img" viewBox="0 0 24 24" class="center-icon">
+          <path d={siTypescript.path} fill={`#${siTypescript.hex}`}></path>
+        </svg>
+        <span class="center-label">Core Engineering</span>
+      </div>
+
+      <!-- Inner Orbit - Languages & Frameworks -->
+      <div class="orbit-ring orbit-inner"></div>
+      <div class="orbit-items" data-orbit="inner">
+        {
+          innerOrbit.map((tech, i) => (
+            <div
+              class="orbit-item"
+              data-index={i}
+              data-total={innerOrbit.length}
+              data-orbit-type="inner"
+              style={`--color: #${tech.icon.hex};`}
+            >
+              <div class="tech-badge">
+                <svg
+                  role="img"
+                  viewBox="0 0 24 24"
+                  class="tech-icon"
+                  style={`fill: #${tech.icon.hex};`}
+                >
+                  <path d={tech.icon.path} />
+                </svg>
+                <span class="tech-name">{tech.name}</span>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Outer Orbit - Infrastructure & Tools -->
+      <div class="orbit-ring orbit-outer"></div>
+      <div class="orbit-items" data-orbit="outer">
+        {
+          outerOrbit.map((tech, i) => (
+            <div
+              class={`orbit-item ${tech.isAiTool ? "ai-tool" : ""}`}
+              data-index={i}
+              data-total={outerOrbit.length}
+              data-orbit-type="outer"
+              style={`--color: #${tech.icon.hex};`}
+            >
+              <div class="tech-badge">
+                <svg
+                  role="img"
+                  viewBox="0 0 24 24"
+                  class="tech-icon"
+                  style={`fill: #${tech.icon.hex};`}
+                >
+                  <path d={tech.icon.path} />
+                </svg>
+                <span class="tech-name">{tech.name}</span>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .orbit-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 480px;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 640px) {
+    .orbit-container {
+      height: 560px;
+      max-width: 800px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .orbit-container {
+      height: 640px;
+      max-width: 900px;
+    }
+  }
+
+  /* Center Core - TypeScript Foundation */
+  .orbit-center {
+    position: absolute;
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(
+      135deg,
+      rgba(49, 120, 198, 0.15),
+      rgba(49, 120, 198, 0.05)
+    );
+    border: 2px solid rgba(49, 120, 198, 0.4);
+    backdrop-filter: blur(8px);
+    box-shadow:
+      0 0 40px rgba(49, 120, 198, 0.2),
+      inset 0 0 20px rgba(49, 120, 198, 0.1);
+  }
+
+  @media (min-width: 640px) {
+    .orbit-center {
+      width: 120px;
+      height: 120px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .orbit-center {
+      width: 140px;
+      height: 140px;
+    }
+  }
+
+  .center-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  @media (min-width: 640px) {
+    .center-icon {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .center-icon {
+      width: 56px;
+      height: 56px;
+    }
+  }
+
+  .center-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: #64748b;
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  @media (min-width: 640px) {
+    .center-label {
+      font-size: 11px;
+    }
+  }
+
+  /* Orbit Rings */
+  .orbit-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px dashed rgba(255, 255, 255, 0.08);
+    pointer-events: none;
+  }
+
+  .orbit-inner {
+    width: 240px;
+    height: 240px;
+  }
+
+  .orbit-outer {
+    width: 400px;
+    height: 400px;
+  }
+
+  @media (min-width: 640px) {
+    .orbit-inner {
+      width: 300px;
+      height: 300px;
+    }
+    .orbit-outer {
+      width: 480px;
+      height: 480px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .orbit-inner {
+      width: 340px;
+      height: 340px;
+    }
+    .orbit-outer {
+      width: 560px;
+      height: 560px;
+    }
+  }
+
+  /* Orbit Items Container */
+  .orbit-items {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  /* Individual Orbit Items */
+  .orbit-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    pointer-events: auto;
+    z-index: 20;
+    will-change: transform;
+  }
+
+  /* Tech Badge */
+  .tech-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    white-space: nowrap;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  .tech-badge:hover {
+    border-color: var(--color);
+    background: rgba(15, 15, 15, 0.98);
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.5),
+      0 0 20px color-mix(in srgb, var(--color) 25%, transparent);
+    transform: scale(1.08);
+  }
+
+  .tech-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    transition: filter 0.25s ease;
+  }
+
+  @media (min-width: 640px) {
+    .tech-badge {
+      padding: 10px 16px;
+      gap: 10px;
+    }
+    .tech-icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .tech-badge:hover .tech-icon {
+    filter: drop-shadow(0 0 6px currentColor);
+  }
+
+  .tech-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: #94a3b8;
+    transition: color 0.25s ease;
+  }
+
+  @media (min-width: 640px) {
+    .tech-name {
+      font-size: 13px;
+    }
+  }
+
+  .tech-badge:hover .tech-name {
+    color: #f1f5f9;
+  }
+
+  /* AI Tools styling - same size, subtle indicator */
+  .ai-tool .tech-badge {
+    border-style: dashed;
+  }
+</style>
+
+<script>
+  class OrbitAnimation {
+    private container: HTMLElement | null;
+    private innerItems: HTMLElement[] = [];
+    private outerItems: HTMLElement[] = [];
+    private innerAngle: number = 0;
+    private outerAngle: number = 0;
+    private animationId: number | null = null;
+    private lastTime: number = 0;
+    private isPaused: boolean = false;
+
+    // Orbit configurations
+    private readonly config = {
+      inner: {
+        speed: 0.012, // degrees per ms
+        direction: 1,
+        getRadius: () => {
+          const width = window.innerWidth;
+          if (width >= 1024) return 170;
+          if (width >= 640) return 150;
+          return 120;
+        },
+      },
+      outer: {
+        speed: 0.008,
+        direction: -1,
+        getRadius: () => {
+          const width = window.innerWidth;
+          if (width >= 1024) return 280;
+          if (width >= 640) return 240;
+          return 200;
+        },
+      },
+    };
+
+    constructor() {
+      this.container = document.getElementById("orbit-container");
+      if (!this.container) return;
+
+      this.initItems();
+      this.setupEventListeners();
+      this.startAnimation();
+    }
+
+    private initItems() {
+      const innerContainer = document.querySelector('[data-orbit="inner"]');
+      const outerContainer = document.querySelector('[data-orbit="outer"]');
+
+      if (innerContainer) {
+        this.innerItems = Array.from(
+          innerContainer.querySelectorAll(".orbit-item")
+        );
+      }
+      if (outerContainer) {
+        this.outerItems = Array.from(
+          outerContainer.querySelectorAll(".orbit-item")
+        );
+      }
+
+      // Initial positioning
+      this.updatePositions();
+    }
+
+    private setupEventListeners() {
+      // Pause on hover over any item
+      [...this.innerItems, ...this.outerItems].forEach((item) => {
+        item.addEventListener("mouseenter", () => (this.isPaused = true));
+        item.addEventListener("mouseleave", () => (this.isPaused = false));
+      });
+
+      // Handle resize
+      window.addEventListener("resize", () => this.updatePositions());
+    }
+
+    private updatePositions() {
+      // Update inner orbit items
+      this.innerItems.forEach((item, index) => {
+        const total = this.innerItems.length;
+        const itemAngle = (360 / total) * index + this.innerAngle;
+        const radius = this.config.inner.getRadius();
+        this.positionItem(item, itemAngle, radius);
+      });
+
+      // Update outer orbit items
+      this.outerItems.forEach((item, index) => {
+        const total = this.outerItems.length;
+        const itemAngle = (360 / total) * index + this.outerAngle;
+        const radius = this.config.outer.getRadius();
+        this.positionItem(item, itemAngle, radius);
+      });
+    }
+
+    private positionItem(item: HTMLElement, angle: number, radius: number) {
+      const radians = (angle * Math.PI) / 180;
+      const x = Math.cos(radians) * radius;
+      const y = Math.sin(radians) * radius;
+      item.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+    }
+
+    private startAnimation() {
+      const animate = (currentTime: number) => {
+        const deltaTime = this.lastTime ? currentTime - this.lastTime : 0;
+        this.lastTime = currentTime;
+
+        if (!this.isPaused) {
+          this.innerAngle +=
+            this.config.inner.speed * deltaTime * this.config.inner.direction;
+          this.outerAngle +=
+            this.config.outer.speed * deltaTime * this.config.outer.direction;
+
+          this.innerAngle = this.innerAngle % 360;
+          this.outerAngle = this.outerAngle % 360;
+
+          this.updatePositions();
+        }
+
+        this.animationId = requestAnimationFrame(animate);
+      };
+
+      this.animationId = requestAnimationFrame(animate);
+    }
+
+    public destroy() {
+      if (this.animationId) {
+        cancelAnimationFrame(this.animationId);
+      }
+    }
+  }
+
+  // Initialize
+  const init = () => new OrbitAnimation();
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+</script>
