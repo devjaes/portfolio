@@ -1,12 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
-
 import BaseLayout from '../../layouts/BaseLayout.astro';
-
 import ContactCTA from '../../components/ContactCTA.astro';
-import Hero from '../../components/Hero.astro';
-import Icon from '../../components/Icon.astro';
-import Pill from '../../components/Pill.astro';
 
 interface Props {
 	entry: CollectionEntry<'work'>;
@@ -28,124 +23,215 @@ const { Content } = await entry.render();
 ---
 
 <BaseLayout title={entry.data.title} description={entry.data.description}>
-	<div class="stack gap-20">
-		<div class="stack gap-15">
-			<header>
-				<div class="wrapper stack gap-2">
-					<a class="back-link" href="/work/"><Icon icon="arrow-left" /> Work</a>
-					<Hero title={entry.data.title} align="start">
-						<div class="details">
-							<div class="tags">
-								{entry.data.tags.map((t) => <Pill>{t}</Pill>)}
-							</div>
-							<p class="description">{entry.data.description}</p>
-						</div>
-					</Hero>
+	<!-- Project Header -->
+	<section class="pt-24 pb-12 md:pt-32 md:pb-16">
+		<div class="container-custom">
+			<!-- Back Link -->
+			<a 
+				href="/work/" 
+				class="inline-flex items-center gap-2 text-text-muted hover:text-accent-cyan transition-colors duration-200 mb-8 group"
+			>
+				<svg 
+					class="w-5 h-5 transition-transform group-hover:-translate-x-1" 
+					fill="none" 
+					viewBox="0 0 24 24" 
+					stroke="currentColor" 
+					stroke-width="2"
+				>
+					<path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+				</svg>
+				<span>Back to Projects</span>
+			</a>
+
+			<!-- Project Title & Meta -->
+			<div class="max-w-4xl">
+				<h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-text-primary mb-6 animate-fade-in-up">
+					{entry.data.title}
+				</h1>
+
+				<!-- Tags -->
+				<div class="flex flex-wrap gap-2 mb-6 animate-fade-in-up" style="animation-delay: 100ms;">
+					{entry.data.tags.map((tag: string) => (
+						<span class="px-3 py-1.5 text-sm font-medium rounded-full bg-surface-light border border-surface-border text-text-secondary hover:border-accent-cyan/50 hover:text-accent-cyan transition-colors duration-200">
+							{tag}
+						</span>
+					))}
 				</div>
-			</header>
-			<main class="wrapper">
-				<div class="stack gap-10 content">
-					{entry.data.img && <img src={entry.data.img} alt={entry.data.img_alt || ''} />}
-					<div class="content">
-						<Content />
-					</div>
-				</div>
-			</main>
+
+				<!-- Description -->
+				<p class="text-lg sm:text-xl text-text-secondary max-w-3xl animate-fade-in-up" style="animation-delay: 150ms;">
+					{entry.data.description}
+				</p>
+			</div>
 		</div>
-		<ContactCTA />
-	</div>
+	</section>
+
+	<!-- Project Image -->
+	{entry.data.img && (
+		<section class="pb-12 md:pb-16 animate-fade-in-up" style="animation-delay: 200ms;">
+			<div class="container-custom">
+				<div class="relative rounded-2xl overflow-hidden border border-surface-border bg-surface">
+					<!-- Glow effect behind image -->
+					<div class="absolute inset-0 bg-gradient-to-br from-accent-cyan/10 via-transparent to-accent-purple/10 opacity-50"></div>
+					<img 
+						src={entry.data.img} 
+						alt={entry.data.img_alt || entry.data.title} 
+						class="relative w-full h-auto object-cover"
+					/>
+				</div>
+			</div>
+		</section>
+	)}
+
+	<!-- Project Content -->
+	<section class="pb-20">
+		<div class="container-custom">
+			<article class="prose prose-invert prose-lg max-w-4xl mx-auto">
+				<Content />
+			</article>
+		</div>
+	</section>
+
+	<!-- Contact CTA -->
+	<ContactCTA />
 </BaseLayout>
 
-<style>
-	header {
-		padding-bottom: 2.5rem;
-		border-bottom: 1px solid var(--gray-800);
+<style is:global>
+	/* Animation keyframes */
+	@keyframes fade-in-up {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
 	}
 
-	.back-link {
-		display: none;
+	.animate-fade-in-up {
+		opacity: 0;
+		animation: fade-in-up 0.6s ease-out forwards;
 	}
 
-	.details {
-		display: flex;
-		flex-direction: column;
-		padding: 0.5rem;
-		gap: 1.5rem;
-		justify-content: space-between;
-		align-items: center;
+	/* Prose styles for markdown content */
+	.prose {
+		color: var(--text-secondary);
+		line-height: 1.75;
 	}
 
-	.tags {
-		display: flex;
-		gap: 0.5rem;
-	}
-
-	.description {
-		font-size: var(--text-lg);
-		max-width: 54ch;
-	}
-
-	.content {
-		max-width: 65ch;
-		margin-inline: auto;
-	}
-
-	.content > :global(* + *) {
-		margin-top: 1rem;
-	}
-
-	.content :global(h1),
-	.content :global(h2),
-	.content :global(h3),
-	.content :global(h4),
-	.content :global(h5) {
-		margin: 1.5rem 0;
-	}
-
-	.content :global(img) {
-		border-radius: 1.5rem;
-		box-shadow: var(--shadow-sm);
-		background: var(--gradient-subtle);
-		border: 1px solid var(--gray-800);
-	}
-
-	.content :global(blockquote) {
-		font-size: var(--text-lg);
-		font-family: var(--font-brand);
+	.prose h1,
+	.prose h2,
+	.prose h3,
+	.prose h4,
+	.prose h5,
+	.prose h6 {
+		color: var(--text-primary);
 		font-weight: 600;
-		line-height: 1.1;
-		padding-inline-start: 1.5rem;
-		border-inline-start: 0.25rem solid var(--accent-dark);
-		color: var(--gray-0);
+		line-height: 1.3;
+		margin-top: 2.5rem;
+		margin-bottom: 1rem;
+		letter-spacing: -0.02em;
 	}
 
-	.back-link,
-	.content :global(a) {
-		text-decoration: 1px solid underline transparent;
-		text-underline-offset: 0.25em;
-		transition: text-decoration-color var(--theme-transition);
+	.prose h2 {
+		font-size: 1.75rem;
+		padding-bottom: 0.75rem;
+		border-bottom: 1px solid var(--surface-border);
 	}
 
-	.back-link:hover,
-	.back-link:focus,
-	.content :global(a:hover),
-	.content :global(a:focus) {
-		text-decoration-color: currentColor;
+	.prose h3 {
+		font-size: 1.35rem;
 	}
 
-	@media (min-width: 50em) {
-		.back-link {
-			display: block;
-			align-self: flex-start;
-		}
+	.prose p {
+		margin-bottom: 1.25rem;
+	}
 
-		.details {
-			flex-direction: row;
-			gap: 2.5rem;
-		}
+	.prose ul,
+	.prose ol {
+		margin-bottom: 1.25rem;
+		padding-left: 1.5rem;
+	}
 
-		.content :global(blockquote) {
-			font-size: var(--text-2xl);
-		}
+	.prose li {
+		margin-bottom: 0.75rem;
+		position: relative;
+	}
+
+	.prose ul li::marker {
+		color: var(--accent-cyan);
+	}
+
+	.prose ol li::marker {
+		color: var(--accent-cyan);
+		font-weight: 500;
+	}
+
+	.prose strong {
+		color: var(--text-primary);
+		font-weight: 600;
+	}
+
+	.prose a {
+		color: var(--accent-cyan);
+		text-decoration: underline;
+		text-underline-offset: 2px;
+		transition: opacity 0.15s ease;
+	}
+
+	.prose a:hover {
+		opacity: 0.8;
+	}
+
+	.prose code {
+		background: var(--surface-light);
+		padding: 0.2rem 0.4rem;
+		border-radius: 0.25rem;
+		font-size: 0.875em;
+		color: var(--accent-cyan);
+		border: 1px solid var(--surface-border);
+	}
+
+	.prose pre {
+		background: var(--surface);
+		border: 1px solid var(--surface-border);
+		border-radius: 0.75rem;
+		padding: 1rem 1.25rem;
+		overflow-x: auto;
+		margin-bottom: 1.25rem;
+	}
+
+	.prose pre code {
+		background: transparent;
+		padding: 0;
+		border: none;
+		color: var(--text-secondary);
+	}
+
+	.prose blockquote {
+		border-left: 3px solid var(--accent-cyan);
+		padding-left: 1.25rem;
+		margin: 1.5rem 0;
+		font-style: italic;
+		color: var(--text-muted);
+	}
+
+	.prose img {
+		border-radius: 1rem;
+		border: 1px solid var(--surface-border);
+		margin: 2rem 0;
+	}
+
+	.prose hr {
+		border: none;
+		border-top: 1px solid var(--surface-border);
+		margin: 2.5rem 0;
+	}
+
+	/* First heading shouldn't have top margin */
+	.prose > h2:first-child,
+	.prose > h3:first-child {
+		margin-top: 0;
 	}
 </style>
