@@ -61,14 +61,24 @@ const socialLinks = [
         showImage ? "lg:text-left text-center items-center lg:items-start" : "",
         align === 'center' && !showImage ? "items-center text-center" : "items-start text-left"
       ]}>
+        <!-- Role Badge -->
+        <div class="animate-fade-in-up">
+          <span class="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-medium tracking-wide uppercase rounded-full border border-accent-cyan/30 bg-accent-cyan/10 text-accent-cyan">
+            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+            Full Stack Engineer · React / Node.js / Postgres
+          </span>
+        </div>
+
         <!-- Main Headline -->
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] max-w-3xl animate-fade-in-up">
-          Building <span class="text-gradient">Scalable</span> Web Solutions with <span class="text-gradient">AI-Accelerated</span> Workflows
+          Engineering <span class="text-gradient">End-to-End</span> SaaS Products with <span class="text-gradient">AI-Accelerated</span> Workflows
         </h1>
         
         <!-- Subheadline -->
         <p class="text-lg sm:text-xl text-text-secondary max-w-2xl animate-fade-in-up" style="animation-delay: 100ms;">
-          Full Stack Engineer specialized in <strong class="text-text-primary">React 18+</strong>, <strong class="text-text-primary">TypeScript</strong>, and <strong class="text-text-primary">Cloud Architecture</strong>. Turning complex problems into clean, efficient software for clients like <strong class="text-text-primary">TAPinto</strong> and <strong class="text-text-primary">Senirop</strong>.
+          Full Stack Engineer with a strong focus on <strong class="text-text-primary">React 19</strong>, <strong class="text-text-primary">TypeScript</strong>, and <strong class="text-text-primary">Node.js</strong> ecosystems (NestJS/Express). Experienced in building high-quality SaaS web applications and robust server-side APIs for clients like <strong class="text-text-primary">TAPinto</strong> and <strong class="text-text-primary">Senirop</strong>.
         </p>
 
         {showCTA && (

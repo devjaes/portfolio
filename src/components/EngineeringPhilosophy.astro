@@ -1,0 +1,203 @@
+---
+// Engineering Philosophy Section
+// Showcases work principles that align with Tier-1 SaaS culture (Deel)
+interface PhilosophyCard {
+  title: string;
+  icon: string;
+  description: string;
+  highlight?: boolean;
+}
+
+const principles: PhilosophyCard[] = [
+  {
+    title: "Full Ownership",
+    icon: "layers",
+    description:
+      "I own features end-to-end: from Postgres schema design to React component architecture to CI/CD pipeline. No handovers, no excuses.",
+  },
+  {
+    title: "Testing-First",
+    icon: "shield",
+    highlight: true,
+    description:
+      "Automated testing isn't an afterthought. Jest unit tests, Playwright E2E, and thorough debugging are baked into my workflow from day one.",
+  },
+  {
+    title: "Ship Fast, Ship Right",
+    icon: "rocket",
+    description:
+      "Migrated a full ERP to Clean Architecture in under 2 weeks. Speed without sacrificing quality — measurable through code reviews and test coverage.",
+  },
+];
+---
+
+<section class="section-spacing">
+  <div class="container-custom">
+    <!-- Section Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">How I Work</h2>
+      <p class="text-text-secondary max-w-2xl mx-auto">
+        Principles that drive every line of code I write.
+      </p>
+    </div>
+
+    <!-- Philosophy Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      {
+        principles.map((card, index) => (
+          <div
+            class:list={[
+              "philosophy-card group relative p-6 lg:p-8 rounded-2xl border transition-all duration-300 overflow-hidden",
+              card.highlight
+                ? "bg-gradient-to-br from-surface via-surface to-accent-cyan/5 border-accent-cyan/30 hover:border-accent-cyan/60 hover:shadow-[0_0_40px_rgba(34,211,238,0.1)]"
+                : "bg-surface/50 border-surface-border hover:border-surface-light hover:bg-surface/80",
+            ]}
+            style={`animation-delay: ${index * 100}ms;`}
+          >
+            {/* Gradient overlay on hover */}
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+              <div
+                class:list={[
+                  "absolute inset-0",
+                  card.highlight
+                    ? "bg-gradient-to-br from-accent-cyan/8 via-transparent to-accent-purple/5"
+                    : "bg-gradient-to-br from-surface-light/30 via-transparent to-transparent",
+                ]}
+              />
+            </div>
+
+            <div class="relative z-10">
+              {/* Icon */}
+              <div
+                class:list={[
+                  "inline-flex items-center justify-center w-12 h-12 rounded-xl mb-5 transition-all duration-300",
+                  card.highlight
+                    ? "bg-accent-cyan/15 text-accent-cyan group-hover:bg-accent-cyan/25 group-hover:shadow-[0_0_20px_rgba(34,211,238,0.2)]"
+                    : "bg-surface-light text-text-muted group-hover:text-text-secondary",
+                ]}
+              >
+                {card.icon === "layers" && (
+                  <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0l4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0l-5.571 3-5.571-3"
+                    />
+                  </svg>
+                )}
+                {card.icon === "shield" && (
+                  <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
+                    />
+                  </svg>
+                )}
+                {card.icon === "rocket" && (
+                  <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"
+                    />
+                  </svg>
+                )}
+              </div>
+
+              {/* Title */}
+              <h3
+                class:list={[
+                  "text-lg lg:text-xl font-semibold mb-3 transition-colors duration-300",
+                  card.highlight
+                    ? "text-accent-cyan"
+                    : "text-text-primary group-hover:text-text-primary",
+                ]}
+              >
+                {card.title}
+              </h3>
+
+              {/* Description */}
+              <p class="text-text-secondary text-sm leading-relaxed">
+                {card.description}
+              </p>
+            </div>
+
+            {/* Highlight badge */}
+            {card.highlight && (
+              <div class="absolute top-4 right-4">
+                <span class="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 bg-accent-cyan/15 text-accent-cyan rounded-full border border-accent-cyan/20">
+                  Core
+                </span>
+              </div>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .philosophy-card {
+    animation: fade-in-up 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Subtle animated border for highlighted card */
+  .philosophy-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 40%,
+      rgba(34, 211, 238, 0.15) 50%,
+      transparent 60%,
+      transparent 100%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .philosophy-card:hover::before {
+    opacity: 1;
+  }
+</style>
