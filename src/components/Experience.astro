@@ -1,69 +1,19 @@
 ---
-interface ExperienceItem {
-  title: string;
-  company: string;
-  date: string;
-  badges: string[];
-  points: string[];
-  current?: boolean;
-  relatedProjects?: string; // Link to related projects section
-}
+import { getTranslations, type Locale } from "../i18n";
 
-const experiences: ExperienceItem[] = [
-  {
-    title: "Full Stack Engineer",
-    company: "Senirop (Consultancy)",
-    date: "Nov 2024 - Present",
-    badges: ["React 19", "TypeScript", "Ruby on Rails", "PostgreSQL"],
-    current: true,
-    relatedProjects: "#projects",
-    points: [
-      "Architecting a greenfield CRM platform from scratch using React 19 with TypeScript, defining component patterns, custom hooks, and state management that the team follows.",
-      "Sole frontend owner for TAPinto.net, a high-traffic US news platform (Ruby on Rails + React), delivering CMS features across 12+ content types and ad-serving integrations.",
-      "Led a <2 week architectural migration of a legacy Export ERP (Lideser) from monolith to Clean Architecture (React + Rails API), reducing technical debt by ~60%.",
-      "Built an internal AI Code Quality Validator using AST analysis to audit LLM-generated code against Senior Tech Lead standards."
-    ]
-  },
-  {
-    title: "Cofounder & Back End Developer",
-    company: "Development Dynamics (Contract)",
-    date: "Mar 2024 - Aug 2024",
-    badges: ["NestJS", "TypeScript", "Jest", "Jira"],
-    points: [
-      "Designed and implemented 15+ RESTful API endpoints using NestJS + TypeScript, including data models, DTOs, guards, and business logic from scratch.",
-      "Established the testing culture: wrote 50+ Jest unit/integration tests, achieving >85% coverage on critical API paths.",
-      "Drove sprint planning and backlog grooming in Jira, shipping 2-week sprints consistently while managing technical scope with non-technical co-founders."
-    ]
-  },
-  {
-    title: "Full Stack Developer",
-    company: "Technical University of Ambato",
-    date: "Dec 2023 - Sep 2024",
-    badges: ["Next.js", "NestJS", "BullMQ", "PostgreSQL"],
-    points: [
-      "Led a 4-person Scrum team building Gendocs V3, a Next.js + NestJS document management system handling thousands of academic documents.",
-      "Optimized document generation performance by 70% by implementing BullMQ job queues, reducing report generation from ~30s to ~9s."
-    ]
-  },
-  {
-    title: "Full Stack Developer",
-    company: "Ambivalence Clothing",
-    date: "Mar 2023 - May 2023",
-    badges: ["Next.js 14", "TypeScript"],
-    points: [
-      "Designed and developed a full e-commerce platform using Next.js 14 with TypeScript, implementing product catalog, cart, and checkout flows."
-    ]
-  }
-];
+interface Props { locale?: Locale; }
+const { locale = "en" } = Astro.props;
+const t = getTranslations(locale);
+const experiences = t.experience.entries;
 ---
 
 <section id="experience" class="section-spacing">
   <div class="container-custom">
     <!-- Section Header -->
     <div class="mb-12">
-      <h2 class="text-3xl sm:text-4xl font-bold mb-4">Experience</h2>
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">{t.experience.title}</h2>
       <p class="text-text-secondary max-w-2xl">
-        My professional journey building scalable applications and working with international clients.
+        {t.experience.subtitle}
       </p>
     </div>
 
@@ -115,7 +65,7 @@ const experiences: ExperienceItem[] = [
                           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-cyan opacity-75"></span>
                           <span class="relative inline-flex rounded-full h-2 w-2 bg-accent-cyan"></span>
                         </span>
-                        Current
+                        {t.experience.currentLabel}
                       </span>
                     )}
                     <span class="text-sm text-text-muted whitespace-nowrap">{exp.date}</span>
@@ -153,7 +103,7 @@ const experiences: ExperienceItem[] = [
                       <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                       </svg>
-                      <span>See projects related to this role</span>
+                      <span>{t.experience.relatedProjectsLabel}</span>
                       <svg class="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
