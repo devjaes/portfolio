@@ -1,0 +1,190 @@
+{
+  "/Users/jair/devProjects/portfolio/astro.config.mjs": {
+    "mtime": 1777698849.4833336,
+    "hash": "b670fb2102cebb5871945f9f547a1cb3"
+  },
+  "/Users/jair/devProjects/portfolio/tailwind.config.mjs": {
+    "mtime": 1777698849.5143886,
+    "hash": "78cfcb91f3eb132607abbee2213b4fe0"
+  },
+  "/Users/jair/devProjects/portfolio/src/env.d.ts": {
+    "mtime": 1701286725.380808,
+    "hash": "1dd7153244f921edac1f1d04155b52b1"
+  },
+  "/Users/jair/devProjects/portfolio/src/content/config.ts": {
+    "mtime": 1777698849.5111501,
+    "hash": "82e248c8a0882611e884cfc9ce11ef1e"
+  },
+  "/Users/jair/devProjects/portfolio/src/components/IconPaths.ts": {
+    "mtime": 1701286725.379378,
+    "hash": "6a3e8db5909b9b9ea564de32e0176b65"
+  },
+  "/Users/jair/devProjects/portfolio/README.md": {
+    "mtime": 1777698849.4831,
+    "hash": "1ee14beafec1eed551a4888b03dd68df"
+  },
+  "/Users/jair/devProjects/portfolio/src/content/work/lookpay.md": {
+    "mtime": 1777698849.512132,
+    "hash": "26ed53c8e246a466adc37780f09582a8"
+  },
+  "/Users/jair/devProjects/portfolio/src/content/work/ambivalence.md": {
+    "mtime": 1777698849.5114584,
+    "hash": "44259667737355b2f8c403ec5734ee8c"
+  },
+  "/Users/jair/devProjects/portfolio/src/content/work/lajefecita.md": {
+    "mtime": 1777698849.5120153,
+    "hash": "f6efe73d788f9327011a41824b9d7cfa"
+  },
+  "/Users/jair/devProjects/portfolio/src/content/work/pos-system.md": {
+    "mtime": 1777698849.5124357,
+    "hash": "7191976359932ce8ff5ab733dec8a31d"
+  },
+  "/Users/jair/devProjects/portfolio/src/content/work/uta-web-app.md": {
+    "mtime": 1777698849.5125613,
+    "hash": "f6a4b5dfbdef09b966f6e2dbc82cd5ed"
+  },
+  "/Users/jair/devProjects/portfolio/src/content/work/nested/gendocsv3.md": {
+    "mtime": 1777698849.5123117,
+    "hash": "c7f4d042601e2d2eeb827248a09d4366"
+  },
+  "/Users/jair/devProjects/portfolio/public/cv-jair-mera.pdf": {
+    "mtime": 1777698849.5071812,
+    "hash": "8154f6c8da76ee566efd29da9c733dc1"
+  },
+  "/Users/jair/devProjects/portfolio/public/favicon.svg": {
+    "mtime": 1701286725.3784306,
+    "hash": "8c13f40658976ea1dfb8ba37a8be0e8d"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/ambivalence.jpg": {
+    "mtime": 1777698849.4847133,
+    "hash": "f2b5c1b92703ffd830db914bc70c6e75"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/stock-1.jpg": {
+    "mtime": 1701286725.3773162,
+    "hash": "a677e30cd850e57e242b9590f11340fd"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/stock-2.jpg": {
+    "mtime": 1701286725.3776093,
+    "hash": "a7a567c4e3ce38434d957c242056c281"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/stock-3.jpg": {
+    "mtime": 1701286725.3779483,
+    "hash": "e7f3ab2918346b45e85677febe81237e"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/stock-4.jpg": {
+    "mtime": 1701286725.3783007,
+    "hash": "98a8799b71a3b86af118fcfd93641ddb"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/portrait.jpg": {
+    "mtime": 1777698849.488105,
+    "hash": "da76146be0a9f4b2097d5a21a120ae6f"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/gendocs.jpg": {
+    "mtime": 1777698849.4858723,
+    "hash": "9d47dbe924f0ddcecbd81be0427d79b4"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/code-validator.webp": {
+    "mtime": 1777698849.4850793,
+    "hash": "09d6e9e6eef96ae5dce5a2a857e7d0df"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/possytem.png": {
+    "mtime": 1777698849.4896464,
+    "hash": "0a650fd9e1a0b2fe3f7edca6252e7b42"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/jefecita.jpg": {
+    "mtime": 1777698849.4864755,
+    "hash": "1974495b9470b70a71d2b80d22a24a14"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/at-work.jpg": {
+    "mtime": 1701286725.365628,
+    "hash": "d08bea0515a5d4c8647e7158565402b6"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/lideser.png": {
+    "mtime": 1777698849.4868257,
+    "hash": "b6bc357cbdafb2cd89b5e952897b5c0b"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/uta-web-app.png": {
+    "mtime": 1777698849.5066044,
+    "hash": "577ee1f3cf9f20550bc86448bc6d04ea"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/lookpay.png": {
+    "mtime": 1777698849.487343,
+    "hash": "e5fd3319cf757d72095fdefd3f7165d9"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/backgrounds/bg-main-light-800w.jpg": {
+    "mtime": 1701286725.3681266,
+    "hash": "bc4bbca9483b2d1d28f8c54b8222abca"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/backgrounds/bg-subtle-2-light-800w.jpg": {
+    "mtime": 1701286725.3701148,
+    "hash": "8962fd7bbb717115865ecbdfba1bf72f"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/backgrounds/bg-main-dark.svg": {
+    "mtime": 1701286725.3674746,
+    "hash": "555bc61b23a650a786abb32385e804c0"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/backgrounds/bg-subtle-1-dark-1440w.jpg": {
+    "mtime": 1701286725.3685844,
+    "hash": "55ca61e05ef7aede8463ee4ee5a8e4c8"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/backgrounds/bg-subtle-1-light-800w.jpg": {
+    "mtime": 1701286725.3692546,
+    "hash": "fe7a89189b40562993b362ec7991983b"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/backgrounds/bg-subtle-2-light-1440w.jpg": {
+    "mtime": 1701286725.3699472,
+    "hash": "eb5542404c8964306b25f5d9f5b883d5"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/backgrounds/bg-subtle-2-dark-1440w.jpg": {
+    "mtime": 1701286725.369521,
+    "hash": "3d49a728cdb4b37f1185f719106ffc34"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/backgrounds/bg-main-dark-1440w.jpg": {
+    "mtime": 1701286725.3670657,
+    "hash": "65773cb6b9c50a6661773219cc91f152"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/backgrounds/bg-footer-light-800w.jpg": {
+    "mtime": 1701286725.3665986,
+    "hash": "78dd98ac5f73aea9ad1e8fbc911676bd"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/backgrounds/bg-main-light.svg": {
+    "mtime": 1701286725.3682435,
+    "hash": "a7e778df78ef974cbbc9294e57e23824"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/backgrounds/bg-main-dark-800w.jpg": {
+    "mtime": 1701286725.3673453,
+    "hash": "ad333c56eaec397a3127b53d6f36354d"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/backgrounds/bg-main-light-1440w.jpg": {
+    "mtime": 1701286725.3678424,
+    "hash": "87017eaa361df774cb36541a92828d82"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/backgrounds/noise.png": {
+    "mtime": 1701286725.3703492,
+    "hash": "bf4570ab5e634f0258acd64ae3b18f8b"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/backgrounds/bg-footer-dark-800w.jpg": {
+    "mtime": 1701286725.3662174,
+    "hash": "645580d827e2348c898f8148f9e38e7c"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/backgrounds/bg-subtle-2-dark-800w.jpg": {
+    "mtime": 1701286725.3697076,
+    "hash": "3d92bfe11848111220af0e0582dcaec5"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/backgrounds/bg-subtle-1-light-1440w.jpg": {
+    "mtime": 1701286725.369057,
+    "hash": "c1612b48cab06cff95f5b63c3a94d9ba"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/backgrounds/bg-footer-light-1440w.jpg": {
+    "mtime": 1701286725.3664346,
+    "hash": "c29398efad9ae498b37b925892b80049"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/backgrounds/bg-subtle-1-dark-800w.jpg": {
+    "mtime": 1701286725.3688073,
+    "hash": "35b221e29bc2e86df04bfcae01986e2c"
+  },
+  "/Users/jair/devProjects/portfolio/public/assets/backgrounds/bg-footer-dark-1440w.jpg": {
+    "mtime": 1701286725.3660057,
+    "hash": "f63dd93533cc609179e3d5bac2023482"
+  }
+}
