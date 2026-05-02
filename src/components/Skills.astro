@@ -1,68 +1,19 @@
 ---
-interface SkillCategory {
-  title: string;
-  icon: string;
-  skills: { name: string; color?: string }[];
-  highlight?: boolean;
-}
+import { getTranslations, type Locale } from "../i18n";
 
-const categories: SkillCategory[] = [
-  {
-    title: "Core Stack",
-    icon: "code",
-    skills: [
-      { name: "TypeScript", color: "#3178c6" },
-      { name: "JavaScript", color: "#f7df1e" },
-      { name: "React 18/19", color: "#61dafb" },
-      { name: "Next.js", color: "#ffffff" },
-    ],
-  },
-  {
-    title: "AI Power Tools",
-    icon: "sparkles",
-    highlight: true,
-    skills: [
-      { name: "Claude Code", color: "#f97316" },
-      { name: "Cursor", color: "#22d3ee" },
-      { name: "Windsurf", color: "#a855f7" },
-      { name: "GitHub Copilot", color: "#ffffff" },
-    ],
-  },
-  {
-    title: "Backend & Cloud",
-    icon: "server",
-    skills: [
-      { name: "Node.js", color: "#68a063" },
-      { name: "NestJS", color: "#e0234e" },
-      { name: "Express", color: "#ffffff" },
-      { name: "Ruby on Rails", color: "#cc0000" },
-      { name: "Sinatra", color: "#cc0000" },
-      { name: "PostgreSQL", color: "#336791" },
-      { name: "AWS", color: "#ff9900" },
-    ],
-  },
-  {
-    title: "Testing & DevOps",
-    icon: "terminal",
-    highlight: true,
-    skills: [
-      { name: "Playwright", color: "#2ead33" },
-      { name: "Jest", color: "#c21325" },
-      { name: "Docker", color: "#2496ed" },
-      { name: "Git", color: "#f05032" },
-      { name: "GitHub Actions", color: "#2088ff" },
-    ],
-  },
-];
+interface Props { locale?: Locale; }
+const { locale = "en" } = Astro.props;
+const t = getTranslations(locale);
+const categories = t.skills.categories;
 ---
 
 <section id="skills" class="section-spacing bg-surface/30">
   <div class="container-custom">
     <!-- Section Header -->
     <div class="mb-12 text-center">
-      <h2 class="text-3xl sm:text-4xl font-bold mb-4">Technical Skills</h2>
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">{t.skills.title}</h2>
       <p class="text-text-secondary max-w-2xl mx-auto">
-        Technologies and tools I use daily to build high-quality software.
+        {t.skills.subtitle}
       </p>
     </div>
 
@@ -165,7 +116,7 @@ const categories: SkillCategory[] = [
               </h3>
               {category.highlight && (
                 <span class="ml-auto text-xs font-medium px-2 py-0.5 bg-accent-cyan/20 text-accent-cyan rounded-full">
-                  Daily
+                  {t.skills.dailyLabel}
                 </span>
               )}
             </div>
