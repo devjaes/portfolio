@@ -1,13 +1,15 @@
 ---
+import { getTranslations, type Locale } from "../i18n";
+
+interface Props { locale?: Locale; }
+const { locale = "en" } = Astro.props;
+const t = getTranslations(locale);
+
 const currentYear = new Date().getFullYear();
 
 const socialLinks = [
   { label: "GitHub", href: "https://github.com/devjaes", icon: "github" },
-  {
-    label: "LinkedIn",
-    href: "https://linkedin.com/in/jair-mera-dev",
-    icon: "linkedin",
-  },
+  { label: "LinkedIn", href: "https://linkedin.com/in/jair-mera-dev", icon: "linkedin" },
 ];
 ---
 
@@ -19,11 +21,11 @@ const socialLinks = [
         class="flex flex-col sm:flex-row items-center gap-2 text-center sm:text-left"
       >
         <p class="text-text-muted text-sm">
-          &copy; 2026 Jair Mera.
+          {t.footer.copyright(currentYear)}
         </p>
         <span class="hidden sm:inline text-surface-border">•</span>
         <p class="text-text-muted text-sm">
-          Built with <a
+          {t.footer.builtWith} <a
             href="https://astro.build/"
             target="_blank"
             rel="noopener noreferrer"

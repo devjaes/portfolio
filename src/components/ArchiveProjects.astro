@@ -1,25 +1,37 @@
 ---
 import { getCollection } from "astro:content";
+import { getTranslations, type Locale } from "../i18n";
 
-// Fetch all work projects and sort by date
+interface Props { locale?: Locale; }
+const { locale = "en" } = Astro.props;
+const t = getTranslations(locale);
+
 const allProjects = (await getCollection("work"))
+  // Filter by locale: Spanish entries have IDs ending with `.es.md`; default = English.
+  .filter((entry) => {
+    const isSpanish = entry.id.endsWith(".es.md");
+    return locale === "es" ? isSpanish : !isSpanish;
+  })
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
 
-// Separate main projects from archive projects
-const archiveProjects = allProjects.filter(project => !project.data.isMain);
-const mainProjects = allProjects.filter(project => project.data.isMain);
-
-// Use all projects for the archive section (you can adjust the filter)
+const archiveProjects = allProjects.filter((p) => !p.data.isMain);
+const mainProjects = allProjects.filter((p) => p.data.isMain);
 const projectsToShow = mainProjects;
+
+const workIndexUrl = locale === "es" ? "/es/work/" : "/work/";
+const projectUrl = (entry: typeof allProjects[number]) => {
+  const cleanId = entry.id.replace(/\.es\.md$/, "").replace(/\.md$/, "");
+  return locale === "es" ? `/es/work/${cleanId}/` : `/work/${cleanId}/`;
+};
 ---
 
 <section class="section-spacing bg-surface/30">
   <div class="container-custom">
     <!-- Section Header -->
     <div class="mb-12">
-      <h2 class="text-2xl sm:text-3xl font-bold mb-4 text-text-secondary">The Archive</h2>
+      <h2 class="text-2xl sm:text-3xl font-bold mb-4 text-text-secondary">{t.archive.title}</h2>
       <p class="text-text-muted max-w-2xl">
-        Previous projects showcasing my growth as a developer.
+        {t.archive.subtitle}
       </p>
     </div>
 
@@ -27,7 +39,7 @@ const projectsToShow = mainProjects;
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {projectsToShow.map((project, index) => (
         <a 
-          href={`/work/${project.slug}/`}
+          href={projectUrl(project)}
           class="group block p-5 rounded-xl border border-surface-border bg-surface/30 hover:bg-surface hover:border-surface-light transition-all duration-300"
           style={`animation-delay: ${index * 50}ms;`}
         >
@@ -69,10 +81,10 @@ const projectsToShow = mainProjects;
     <!-- View All Link -->
     <div class="mt-8 text-center">
       <a 
-        href="/work/" 
+        href={workIndexUrl}
         class="inline-flex items-center gap-2 text-text-secondary hover:text-accent-cyan transition-colors"
       >
-        <span>View all projects</span>
+        <span>{t.archive.viewAll}</span>
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
         </svg>
