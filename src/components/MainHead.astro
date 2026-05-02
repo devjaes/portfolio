@@ -1,14 +1,19 @@
 ---
 import "../styles/global.css";
+import { getTranslations, type Locale } from "../i18n";
 
 interface Props {
   title?: string | undefined;
   description?: string | undefined;
+  locale?: Locale;
 }
 
+const { locale = "en" } = Astro.props;
+const t = getTranslations(locale);
+
 const {
-  title = "Jair Mera | Full Stack Engineer & AI Specialist",
-  description = "Portfolio of Jair Mera, a Full Stack Engineer specializing in React, TypeScript, and AI-accelerated development. View my projects and experience.",
+  title = t.meta.siteTitle,
+  description = t.meta.siteDescription,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -18,30 +23,25 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="generator" content={Astro.generator} />
 
-<!-- SEO -->
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalURL} />
 
-<!-- Open Graph / Social -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:site_name" content="Jair Mera Portfolio" />
+<meta property="og:locale" content={locale === "es" ? "es_ES" : "en_US"} />
 
-<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 
-<!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-<!-- Preconnect to Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-<!-- Theme color for mobile browsers -->
 <meta name="theme-color" content="#0a0a0a" />
 <meta name="color-scheme" content="dark" />
