@@ -192,7 +192,7 @@ export const es: Translations = {
       {
         title: "AWS Certified Solutions Architect — Associate",
         issuer: "Amazon Web Services",
-        issuedLabel: "Abril 2026", // TODO: replace with exact Credly date (Spanish month name)
+        issuedLabel: "29 de abril de 2026",
         statusLabel: "Activa",
         skills: [
           "Arquitectura cloud",
