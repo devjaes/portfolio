@@ -1,50 +1,28 @@
 ---
-// Engineering Philosophy Section
-// Showcases work principles that align with Tier-1 SaaS culture (Deel)
-interface PhilosophyCard {
-  title: string;
-  icon: string;
-  description: string;
-  highlight?: boolean;
+import { getTranslations, type Locale } from "../i18n";
+
+interface Props {
+  locale?: Locale;
 }
 
-const principles: PhilosophyCard[] = [
-  {
-    title: "Full Ownership",
-    icon: "layers",
-    description:
-      "I own features end-to-end: from Postgres schema design to React component architecture to CI/CD pipeline. No handovers, no excuses.",
-  },
-  {
-    title: "Testing-First",
-    icon: "shield",
-    highlight: true,
-    description:
-      "Automated testing isn't an afterthought. Jest unit tests, Playwright E2E, and thorough debugging are baked into my workflow from day one.",
-  },
-  {
-    title: "Ship Fast, Ship Right",
-    icon: "rocket",
-    description:
-      "Migrated a full ERP to Clean Architecture in under 2 weeks. Speed without sacrificing quality — measurable through code reviews and test coverage.",
-  },
-];
+const { locale = "en" } = Astro.props;
+const t = getTranslations(locale);
 ---
 
 <section class="section-spacing">
   <div class="container-custom">
     <!-- Section Header -->
     <div class="text-center mb-12">
-      <h2 class="text-3xl sm:text-4xl font-bold mb-4">How I Work</h2>
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">{t.philosophy.title}</h2>
       <p class="text-text-secondary max-w-2xl mx-auto">
-        Principles that drive every line of code I write.
+        {t.philosophy.subtitle}
       </p>
     </div>
 
     <!-- Philosophy Cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
       {
-        principles.map((card, index) => (
+        t.philosophy.cards.map((card, index) => (
           <div
             class:list={[
               "philosophy-card group relative p-6 lg:p-8 rounded-2xl border transition-all duration-300 overflow-hidden",
@@ -145,7 +123,7 @@ const principles: PhilosophyCard[] = [
             {card.highlight && (
               <div class="absolute top-4 right-4">
                 <span class="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 bg-accent-cyan/15 text-accent-cyan rounded-full border border-accent-cyan/20">
-                  Core
+                  {card.highlightLabel ?? "Core"}
                 </span>
               </div>
             )}
