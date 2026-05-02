@@ -19,9 +19,9 @@ const mainProjects = allProjects.filter((p) => p.data.isMain);
 const projectsToShow = mainProjects;
 
 const workIndexUrl = locale === "es" ? "/es/work/" : "/work/";
-const projectUrl = (slug: string) => {
-  const cleanSlug = slug.replace(/\.es$/, "");
-  return locale === "es" ? `/es/work/${cleanSlug}/` : `/work/${cleanSlug}/`;
+const projectUrl = (entry: typeof allProjects[number]) => {
+  const cleanId = entry.id.replace(/\.es\.md$/, "").replace(/\.md$/, "");
+  return locale === "es" ? `/es/work/${cleanId}/` : `/work/${cleanId}/`;
 };
 ---
 
@@ -39,7 +39,7 @@ const projectUrl = (slug: string) => {
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {projectsToShow.map((project, index) => (
         <a 
-          href={projectUrl(project.slug)}
+          href={projectUrl(project)}
           class="group block p-5 rounded-xl border border-surface-border bg-surface/30 hover:bg-surface hover:border-surface-light transition-all duration-300"
           style={`animation-delay: ${index * 50}ms;`}
         >
