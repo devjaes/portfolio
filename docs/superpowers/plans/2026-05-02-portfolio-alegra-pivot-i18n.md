@@ -90,7 +90,9 @@ git commit -m "feat(assets): add AWS Solutions Architect Associate badge"
 
 ---
 
-## Task 2: Vitest Setup
+## Task 2: Vitest Setup — SKIPPED
+
+> **SKIPPED 2026-05-02:** User opted out of adding Vitest. The i18n helper in Task 4 will be verified via `pnpm build` and runtime exercise instead of unit tests. Skip this task and the test-writing steps in Task 4 (Step 1, 2, 5).
 
 **Files:**
 - Modify: `package.json`
@@ -356,11 +358,13 @@ git commit -m "feat(i18n): define Translations type contract"
 
 ## Task 4: i18n Helpers — getLocale, getCounterpartPath, getAlternateUrls
 
+> **NOTE:** Vitest was skipped (Task 2). Drop the test file (`src/i18n/index.test.ts`) and skip Steps 1, 2, 5 below. Verify by running `pnpm build` after Step 3, plus manual verification once a page consumes the helpers in Task 6.
+
 **Files:**
 - Create: `src/i18n/index.ts`
-- Create: `src/i18n/index.test.ts`
+- ~~Create: `src/i18n/index.test.ts`~~ *(dropped — see note above)*
 
-- [ ] **Step 1: Write failing tests**
+- [ ] **Step 1: ~~Write failing tests~~ — SKIPPED**
 
 ```ts
 // src/i18n/index.test.ts
@@ -432,10 +436,7 @@ describe("getAlternateUrls", () => {
 });
 ```
 
-- [ ] **Step 2: Run tests, expect FAIL**
-
-Run: `pnpm test src/i18n/index.test.ts`
-Expected: import error — `./index` does not exist yet.
+- [ ] **Step 2: ~~Run tests, expect FAIL~~ — SKIPPED**
 
 - [ ] **Step 3: Implement helpers**
 
@@ -500,15 +501,15 @@ import type { Translations } from "./types";
 export const es = {} as Translations;
 ```
 
-- [ ] **Step 5: Run tests, expect PASS**
+- [ ] **Step 5: Verify build still passes**
 
-Run: `pnpm test src/i18n/index.test.ts`
-Expected: all 17 tests pass.
+Run: `pnpm build`
+Expected: build succeeds. (No tests are run since Vitest was skipped; build acts as the type-check gate.)
 
 - [ ] **Step 6: Commit**
 
 ```bash
-git add src/i18n/index.ts src/i18n/index.test.ts src/i18n/en.ts src/i18n/es.ts
+git add src/i18n/index.ts src/i18n/en.ts src/i18n/es.ts
 git commit -m "feat(i18n): add locale detection and counterpart-path helpers"
 ```
 
