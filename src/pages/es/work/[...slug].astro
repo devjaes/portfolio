@@ -1,0 +1,69 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ContactCTA from '../../../components/ContactCTA.astro';
+import { getTranslations } from '../../../i18n';
+
+interface Props {
+  entry: CollectionEntry<'work'>;
+}
+
+export async function getStaticPaths() {
+  const work = await getCollection('work');
+  return work
+    .filter((entry) => entry.id.endsWith('.es.md'))
+    .map((entry) => ({
+      params: { slug: entry.id.replace(/\.es\.md$/, '') },
+      props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const locale = 'es';
+const t = getTranslations(locale);
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.description} locale={locale}>
+  <section class="pt-24 pb-12 md:pt-32 md:pb-16">
+    <div class="container-custom">
+      <a href="/es/work/" class="inline-flex items-center gap-2 text-text-muted hover:text-accent-cyan transition-colors duration-200 mb-8 group">
+        <svg class="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        <span>{t.workPage.backLink}</span>
+      </a>
+
+      <div class="max-w-4xl">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-text-primary mb-6 animate-fade-in-up">{entry.data.title}</h1>
+        <div class="flex flex-wrap gap-2 mb-6 animate-fade-in-up" style="animation-delay: 100ms;">
+          {entry.data.tags.map((tag: string) => (
+            <span class="px-3 py-1.5 text-sm font-medium rounded-full bg-surface-light border border-surface-border text-text-secondary hover:border-accent-cyan/50 hover:text-accent-cyan transition-colors duration-200">{tag}</span>
+          ))}
+        </div>
+        <p class="text-lg sm:text-xl text-text-secondary max-w-3xl animate-fade-in-up" style="animation-delay: 150ms;">{entry.data.description}</p>
+      </div>
+    </div>
+  </section>
+
+  {entry.data.img && (
+    <section class="pb-12 md:pb-16 animate-fade-in-up" style="animation-delay: 200ms;">
+      <div class="container-custom">
+        <div class="relative rounded-2xl overflow-hidden border border-surface-border bg-surface">
+          <div class="absolute inset-0 bg-gradient-to-br from-accent-cyan/10 via-transparent to-accent-purple/10 opacity-50"></div>
+          <img src={entry.data.img} alt={entry.data.img_alt || entry.data.title} class="relative w-full h-auto object-cover" />
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="pb-20">
+    <div class="container-custom">
+      <article class="prose prose-invert prose-lg max-w-4xl mx-auto">
+        <Content />
+      </article>
+    </div>
+  </section>
+
+  <ContactCTA locale={locale} />
+</BaseLayout>

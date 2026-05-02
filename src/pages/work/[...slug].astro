@@ -2,27 +2,29 @@
 import { type CollectionEntry, getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ContactCTA from '../../components/ContactCTA.astro';
+import { getTranslations } from '../../i18n';
 
 interface Props {
-	entry: CollectionEntry<'work'>;
+  entry: CollectionEntry<'work'>;
 }
 
-// This is a dynamic route that generates a page for every Markdown file in src/content/
-// Read more about dynamic routes and this `getStaticPaths` function in the Astro docs:
-// https://docs.astro.build/en/core-concepts/routing/#dynamic-routes
 export async function getStaticPaths() {
-	const work = await getCollection('work');
-	return work.map((entry) => ({
-		params: { slug: entry.slug },
-		props: { entry },
-	}));
+  const work = await getCollection('work');
+  return work
+    .filter((entry) => !entry.id.endsWith('.es.md'))
+    .map((entry) => ({
+      params: { slug: entry.slug },
+      props: { entry },
+    }));
 }
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+const locale = 'en';
+const t = getTranslations(locale);
 ---
 
-<BaseLayout title={entry.data.title} description={entry.data.description}>
+<BaseLayout title={entry.data.title} description={entry.data.description} locale={locale}>
 	<!-- Project Header -->
 	<section class="pt-24 pb-12 md:pt-32 md:pb-16">
 		<div class="container-custom">
@@ -40,7 +42,7 @@ const { Content } = await entry.render();
 				>
 					<path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
 				</svg>
-				<span>Back to Projects</span>
+				<span>{t.workPage.backLink}</span>
 			</a>
 
 			<!-- Project Title & Meta -->
@@ -93,7 +95,7 @@ const { Content } = await entry.render();
 	</section>
 
 	<!-- Contact CTA -->
-	<ContactCTA />
+	<ContactCTA locale={locale} />
 </BaseLayout>
 
 <style is:global>

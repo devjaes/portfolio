@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getTranslations } from "../../i18n";
+
+const locale = "es";
+const t = getTranslations(locale);
+---
+
+<BaseLayout title={t.meta.notFoundTitle} description={t.meta.notFoundDescription} locale={locale}>
+  <section class="section-spacing">
+    <div class="container-custom text-center">
+      <h1 class="text-5xl sm:text-7xl font-bold mb-6">404</h1>
+      <p class="text-xl text-text-primary mb-2">{t.notFound.title}</p>
+      <p class="text-text-secondary mb-8">{t.notFound.subtitle}</p>
+      <a href="/es/" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors">{t.notFound.cta}</a>
+    </div>
+  </section>
+</BaseLayout>

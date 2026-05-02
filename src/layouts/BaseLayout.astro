@@ -2,34 +2,40 @@
 import MainHead from '../components/MainHead.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { getLocale, getAlternateUrls, type Locale } from '../i18n';
 
 interface Props {
-	title?: string | undefined;
-	description?: string | undefined;
+  title?: string | undefined;
+  description?: string | undefined;
+  locale?: Locale;
 }
 
 const { title, description } = Astro.props;
+const locale: Locale = Astro.props.locale ?? getLocale(Astro.url.pathname);
+const origin = Astro.site?.origin ?? "https://devjaes.dev";
+const alternates = getAlternateUrls(Astro.url.pathname, origin);
 ---
 
-<html lang="en" class="dark">
+<html lang={locale} class="dark">
 	<head>
-		<MainHead title={title} description={description} />
+		<MainHead title={title} description={description} locale={locale} />
+		<link rel="alternate" hreflang="en" href={alternates.en} />
+		<link rel="alternate" hreflang="es" href={alternates.es} />
+		<link rel="alternate" hreflang="x-default" href={alternates.en} />
 	</head>
 	<body class="min-h-screen bg-background text-text-secondary antialiased">
-		<!-- Subtle background gradient -->
 		<div class="fixed inset-0 -z-10 bg-background">
 			<div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(59,130,246,0.1),transparent)]"></div>
 			<div class="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_100%_0%,rgba(168,85,247,0.05),transparent)]"></div>
 		</div>
-		
-		<Nav />
+
+		<Nav locale={locale} />
 		<main>
 			<slot />
 		</main>
-		<Footer />
+		<Footer locale={locale} />
 
 		<script>
-			// Smooth scroll for anchor links
 			document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 				anchor.addEventListener('click', function (e) {
 					e.preventDefault();
