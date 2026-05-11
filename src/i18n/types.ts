@@ -76,6 +76,7 @@ export interface Translations {
     roleBadge: string;
     awsCertPill: string;
     awsCertVerifyUrl: string;
+    locationPill: string;
     headlinePart1: string;
     headlineHighlight1: string;
     headlinePart2: string;

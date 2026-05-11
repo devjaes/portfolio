@@ -3,15 +3,15 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ContactCTA from "../components/ContactCTA.astro";
 import { getTranslations } from "../i18n";
+import { filterWorkByLocale, getWorkUrl } from "../lib/work-urls";
 
 const locale = "en";
 const t = getTranslations(locale);
 
-const projects = (await getCollection("work"))
-  .filter((entry) => !entry.id.endsWith(".es.md"))
-  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
-
-const projectUrl = (slug: string) => `/work/${slug.replace(/\.es$/, "")}`;
+const projects = filterWorkByLocale(
+  await getCollection("work"),
+  locale
+).sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
 ---
 
 <BaseLayout title={t.meta.workTitle} description={t.meta.workDescription} locale={locale}>
@@ -25,7 +25,7 @@ const projectUrl = (slug: string) => `/work/${slug.replace(/\.es$/, "")}`;
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
-            <a href={projectUrl(project.slug)} class="group relative rounded-xl border border-surface-border bg-surface/50 overflow-hidden transition-all duration-300 hover:border-accent-cyan/50 hover:bg-surface hover:scale-[1.02]">
+            <a href={getWorkUrl(project, locale)} class="group relative rounded-xl border border-surface-border bg-surface/50 overflow-hidden transition-all duration-300 hover:border-accent-cyan/50 hover:bg-surface hover:scale-[1.02]">
               <div class="relative h-48 overflow-hidden">
                 <img src={project.data.img} alt={project.data.img_alt || project.data.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
                 <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/30 to-transparent" />

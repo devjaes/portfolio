@@ -38,6 +38,18 @@
 /* Base Styles */
 html {
   scroll-behavior: smooth;
+  /* Offset for fixed nav (h-16 = 4rem) so anchor jumps don't land under header. */
+  scroll-padding-top: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 body {

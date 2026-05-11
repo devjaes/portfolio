@@ -1,0 +1,23 @@
+---
+import { brandIcons, type BrandName } from "../config/brand-icons";
+
+interface Props {
+  name: BrandName;
+  class?: string;
+  ariaLabel?: string;
+}
+
+const { name, class: className, ariaLabel } = Astro.props;
+const { path, viewBox } = brandIcons[name];
+---
+
+<svg
+  class={className}
+  fill="currentColor"
+  viewBox={viewBox}
+  role={ariaLabel ? "img" : undefined}
+  aria-label={ariaLabel}
+  aria-hidden={ariaLabel ? undefined : "true"}
+>
+  <path d={path} />
+</svg>
