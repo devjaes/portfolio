@@ -20,7 +20,6 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# lock files
+# lock files — keep pnpm-lock.yaml tracked so Vercel uses pnpm + honors overrides.
 package-lock.json
 yarn.lock
-pnpm-lock.yaml
