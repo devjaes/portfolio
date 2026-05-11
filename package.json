@@ -23,6 +23,9 @@
     "@iconify-json/ri": "^1.1.21",
     "@iconify-json/skill-icons": "^1.1.8"
   },
+  "overrides": {
+    "sitemap": "7.1.2"
+  },
   "pnpm": {
     "overrides": {
       "sitemap": "7.1.2"
