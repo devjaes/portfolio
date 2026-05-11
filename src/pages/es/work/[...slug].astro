@@ -51,7 +51,7 @@ const t = getTranslations(locale);
       <div class="container-custom">
         <div class="relative rounded-2xl overflow-hidden border border-surface-border bg-surface">
           <div class="absolute inset-0 bg-gradient-to-br from-accent-cyan/10 via-transparent to-accent-purple/10 opacity-50"></div>
-          <img src={entry.data.img} alt={entry.data.img_alt || entry.data.title} class="relative w-full h-auto object-cover" />
+          <img src={entry.data.img} alt={entry.data.img_alt || entry.data.title} loading="eager" fetchpriority="high" decoding="async" class="relative w-full h-auto object-cover" />
         </div>
       </div>
     </section>

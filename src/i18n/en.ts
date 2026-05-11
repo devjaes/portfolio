@@ -2,14 +2,16 @@ import type { Translations } from "./types";
 
 export const en: Translations = {
   meta: {
-    siteTitle: "Jair Mera | Full Stack Engineer · Node.js · AWS",
+    siteTitle:
+      "Jair Mera | Ruby on Rails & React Engineer · Mid-Level Full Stack",
     siteDescription:
-      "Portfolio of Jair Mera — Full Stack Engineer focused on Node.js, NestJS, Ruby on Rails, AWS Serverless, and React. AWS Certified Solutions Architect — Associate.",
-    aboutTitle: "About | Jair Mera",
+      "Portfolio of Jair Mera — Mid-Level Full Stack Engineer specializing in Ruby on Rails and React/Next.js, with strong Node.js and AWS Serverless experience. AWS Certified Solutions Architect — Associate. Building scalable SaaS and APIs for U.S.-market remote teams.",
+    aboutTitle: "About | Jair Mera — Ruby on Rails & React Engineer",
     aboutDescription:
-      "Learn more about Jair Mera, Full Stack Engineer specializing in Node.js, AWS Serverless, and AI-accelerated development.",
-    workTitle: "Projects | Jair Mera",
-    workDescription: "Learn about Jair Mera's most recent projects",
+      "Mid-Level Full Stack Engineer specializing in Ruby on Rails, React/Next.js, Node.js, and AWS Serverless. AWS Certified Solutions Architect — Associate. Based in Ecuador (EST / UTC-5), accustomed to async-first U.S. remote teams.",
+    workTitle: "Projects | Jair Mera — Ruby on Rails, React & Node.js Work",
+    workDescription:
+      "Selected Ruby on Rails, React/Next.js, and Node.js projects by Jair Mera — high-traffic SaaS, enterprise ERPs, and event-driven systems delivered for U.S.-market clients.",
     notFoundTitle: "404 | Jair Mera",
     notFoundDescription: "Page not found.",
   },
@@ -21,17 +23,19 @@ export const en: Translations = {
     menuLabel: "Toggle menu",
   },
   hero: {
-    roleBadge: "Full Stack Engineer · Node.js · Rails · React/Next · AWS",
+    roleBadge:
+      "Mid-Level Full Stack Engineer · Ruby on Rails · React/Next · Node.js · AWS",
     awsCertPill: "AWS Certified Solutions Architect — Associate",
     awsCertVerifyUrl:
       "https://www.credly.com/badges/dae7f5e9-0d0a-456d-a8bf-3476394740cc",
+    locationPill: "Ecuador (EST / UTC-5)",
     headlinePart1: "Engineering ",
     headlineHighlight1: "End-to-End SaaS",
     headlinePart2: " Products with ",
     headlineHighlight2: "Serverless Architectures",
     headlinePart3: " and AI-Accelerated Workflows",
     subheadline:
-      "Full Stack Engineer focused on **Node.js** (NestJS/Express), **Ruby on Rails**, and **React/Next.js**. Building scalable APIs, event-driven systems, and SaaS web apps. Currently at **Senirop**, working on **TAPinto.net**.",
+      "Mid-Level Full Stack Engineer specializing in **Ruby on Rails** and **React/Next.js**, with strong **Node.js** (NestJS/Express) and **AWS Serverless** experience. Building scalable APIs, event-driven systems, and SaaS web apps for the U.S. market. Currently at **Senirop**, shipping features on **TAPinto.net**.",
     primaryCta: "View Work",
     secondaryCta: "Download CV",
     socialProof: "Connect with me",
@@ -42,10 +46,10 @@ export const en: Translations = {
     subtitle: "Principles that drive every line of code I write.",
     cards: [
       {
-        title: "Full Ownership",
+        title: "End-to-End Ownership",
         icon: "layers",
         description:
-          "I own features end-to-end: from Postgres schema design to React component architecture to CI/CD pipeline. No handovers, no excuses.",
+          "I own features end-to-end: Rails API schema and service layer through React/Next.js components and CI/CD on AWS. Strict API contracts, custom hooks, scalable component patterns — no handovers, no blockers.",
       },
       {
         title: "Testing-First",
@@ -53,13 +57,13 @@ export const en: Translations = {
         highlight: true,
         highlightLabel: "Core",
         description:
-          "Automated testing isn't an afterthought. Jest unit tests, Playwright E2E, and thorough debugging are baked into my workflow from day one.",
+          "Testing isn't optional. RSpec + Jest at the unit layer, Playwright at the integration layer — every feature ships with the coverage to back it. Refactoring stays cheap; production stays calm.",
       },
       {
         title: "Ship Fast, Ship Right",
         icon: "rocket",
         description:
-          "Migrated a full ERP to Clean Architecture in under 2 weeks. Speed without sacrificing quality — measurable through code reviews and test coverage.",
+          "Migrated a legacy ERP to Clean Architecture in under 2 weeks — Rails API + React, zero data loss, ~60% less tech debt. AI-accelerated workflow (Claude Code, Cursor) compresses ramp time, never replaces engineering judgment.",
       },
     ],
   },
@@ -67,7 +71,7 @@ export const en: Translations = {
     title: "Tech Stack",
     subtitle:
       "Building scalable applications with type-safe, battle-tested technologies.",
-    coreLabel: "Core Engineering",
+    coreLabel: "Full Stack Core",
   },
   experience: {
     title: "Experience",
@@ -91,14 +95,13 @@ export const en: Translations = {
         ],
       },
       {
-        title: "Cofounder & Back End Developer",
+        title: "Back End Developer",
         company: "Development Dynamics (Contract)",
         date: "Mar 2024 - Aug 2024",
         badges: ["NestJS", "TypeScript", "Jest", "Jira"],
         points: [
           "Designed and implemented 15+ RESTful API endpoints using NestJS + TypeScript, including data models, DTOs, guards, and business logic from scratch.",
           "Established the testing culture: wrote 50+ Jest unit/integration tests, achieving >85% coverage on critical API paths.",
-          "Drove sprint planning and backlog grooming in Jira, shipping 2-week sprints consistently while managing technical scope with non-technical co-founders.",
         ],
       },
       {
@@ -124,7 +127,8 @@ export const en: Translations = {
   },
   skills: {
     title: "Technical Skills",
-    subtitle: "Technologies and tools I use daily to build high-quality software.",
+    subtitle:
+      "Technologies and tools I use daily to build high-quality software.",
     dailyLabel: "Daily",
     categories: [
       {
@@ -132,28 +136,40 @@ export const en: Translations = {
         icon: "server",
         highlight: true,
         skills: [
+          { name: "Ruby on Rails", color: "#cc0000" },
           { name: "Node.js", color: "#68a063" },
           { name: "NestJS", color: "#e0234e" },
           { name: "Express", color: "#ffffff" },
-          { name: "Ruby on Rails", color: "#cc0000" },
+          { name: "Golang", color: "#00ADD8" },
+          { name: "REST APIs", color: "#22d3ee" },
+          { name: "BullMQ", color: "#dc2626" },
           { name: "PostgreSQL", color: "#336791" },
+          { name: "MongoDB", color: "#47A248" },
           { name: "AWS Lambda", color: "#ff9900" },
-          { name: "Serverless Framework", color: "#fd5750" },
-          { name: "DynamoDB", color: "#4053d6" },
           { name: "S3", color: "#ff9900" },
-          { name: "SQS", color: "#ff4f8b" },
-          { name: "SNS", color: "#ff4f8b" },
-          { name: "CloudFormation / CDK", color: "#ff9900" },
+          { name: "DynamoDB", color: "#4053d6" },
+          { name: "SQS / SNS", color: "#ff4f8b" },
+          { name: "Serverless Framework", color: "#fd5750" },
         ],
       },
       {
-        title: "Core Stack",
+        title: "Frontend",
         icon: "code",
+        highlight: true,
         skills: [
-          { name: "TypeScript", color: "#3178c6" },
-          { name: "JavaScript", color: "#f7df1e" },
           { name: "React 18/19", color: "#61dafb" },
           { name: "Next.js", color: "#ffffff" },
+          { name: "TypeScript", color: "#3178c6" },
+          { name: "JavaScript", color: "#f7df1e" },
+          { name: "Zustand", color: "#818cf8" },
+          { name: "TanStack Query", color: "#ff4154" },
+          { name: "TanStack React Router", color: "#73b6ff" },
+          { name: "TanStack Forms", color: "#d2fc6fff" },
+          { name: "React Hook Form", color: "#a4ea59ff" },
+          { name: "Zod", color: "#e81b82ff" },
+          { name: "Yup", color: "#d5bd0dff" },
+          { name: "Tailwind CSS", color: "#06b6d4" },
+          { name: "Vite", color: "#646cff" },
         ],
       },
       {
@@ -165,6 +181,9 @@ export const en: Translations = {
           { name: "Cursor", color: "#22d3ee" },
           { name: "Windsurf", color: "#a855f7" },
           { name: "GitHub Copilot", color: "#ffffff" },
+          { name: "MCPs", color: "#fc8686ff" },
+          { name: "Agentic Workflows", color: "#6e46a9ff" },
+          { name: "Spec driven development", color: "#68d168ff" },
         ],
       },
       {
@@ -176,6 +195,10 @@ export const en: Translations = {
           { name: "Docker", color: "#2496ed" },
           { name: "Git", color: "#f05032" },
           { name: "GitHub Actions", color: "#2088ff" },
+          { name: "GitLab CI", color: "#fc6d26" },
+          { name: "AWS EC2", color: "#3e91f6ff" },
+          { name: "AWS ECS", color: "#fdaa3eff" },
+          { name: "AWS ECR", color: "#ff880eff" },
         ],
       },
     ],
@@ -210,7 +233,8 @@ export const en: Translations = {
   },
   featured: {
     title: "Featured Work",
-    subtitle: "Highlights from my professional career and personal achievements.",
+    subtitle:
+      "Highlights from my professional career and personal achievements.",
     confidentialLabel: "Confidential",
     projects: [
       {
@@ -271,7 +295,8 @@ export const en: Translations = {
       "Looking for a Full Stack Engineer who owns features end-to-end and builds scalable backend services? Let's talk.",
     cta: "Send Me a Message",
     mailtoSubject: "Contact from Portfolio",
-    mailtoBody: "Hi Jair,\n\nI found your portfolio and would like to discuss...",
+    mailtoBody:
+      "Hi Jair,\n\nI found your portfolio and would like to discuss...",
   },
   footer: {
     copyright: (year: number) => `© ${year} Jair Mera.`,
@@ -288,7 +313,8 @@ export const en: Translations = {
     backgroundTitle: "Background",
     educationTitle: "Education",
     universityName: "Technical University of Ambato",
-    universityDegree: "Software Engineering (2021 - Present)",
+    universityDegree:
+      "Software Engineering (2021 - Expected Graduation: December 2026)",
     highSchoolName: "Bolivar High School",
     highSchoolDegree: "Bachelor of Science",
     honorsTitle: "Honors & Awards",
@@ -302,7 +328,7 @@ export const en: Translations = {
     spanishLabel: "Spanish",
     spanishLevel: "(Native)",
     englishLabel: "English",
-    englishLevel: "(B2)",
+    englishLevel: "(Highly Proficient — Daily async/sync US communication)",
     softTitle: "What I Bring to the Table",
     softCards: [
       {

@@ -35,8 +35,16 @@ const categories = t.skills.categories;
               <div class="absolute inset-0 rounded-xl bg-gradient-to-br from-accent-cyan/10 to-accent-purple/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-xl" />
             )}
 
+            {/* Daily chip (absolute, top-right) — keeps position consistent
+                across cards regardless of title length. */}
+            {category.highlight && (
+              <span class="absolute top-4 right-4 z-10 shrink-0 text-xs font-medium px-2 py-0.5 bg-accent-cyan/20 text-accent-cyan rounded-full">
+                {t.skills.dailyLabel}
+              </span>
+            )}
+
             {/* Header */}
-            <div class="flex items-center gap-3 mb-5">
+            <div class="flex items-center gap-3 mb-5 pr-20">
               <div
                 class:list={[
                   "p-2 rounded-lg",
@@ -108,17 +116,12 @@ const categories = t.skills.categories;
               </div>
               <h3
                 class:list={[
-                  "font-semibold",
+                  "font-semibold leading-tight",
                   category.highlight ? "text-accent-cyan" : "text-text-primary",
                 ]}
               >
                 {category.title}
               </h3>
-              {category.highlight && (
-                <span class="ml-auto text-xs font-medium px-2 py-0.5 bg-accent-cyan/20 text-accent-cyan rounded-full">
-                  {t.skills.dailyLabel}
-                </span>
-              )}
             </div>
 
             {/* Skills List */}

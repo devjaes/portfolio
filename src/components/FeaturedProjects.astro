@@ -59,6 +59,9 @@ const featuredProjects = t.featured.projects;
                 <img
                   src={project.image}
                   alt={project.title}
+                  loading={index === 0 ? "eager" : "lazy"}
+                  decoding="async"
+                  fetchpriority={index === 0 ? "high" : "auto"}
                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/50 to-transparent" />
@@ -209,5 +212,28 @@ const featuredProjects = t.featured.projects;
 
   article:not(:hover) .long-desc {
     pointer-events: none;
+  }
+
+  /* Touch devices (no hover) — surface long description by default so
+     mobile recruiters can read business impact without a hover gesture. */
+  @media (hover: none) {
+    .short-desc {
+      display: none;
+    }
+    .long-desc {
+      opacity: 1 !important;
+      max-height: none !important;
+      pointer-events: auto !important;
+    }
+  }
+
+  /* Keyboard accessibility: focusing the overlay anchor reveals long desc. */
+  article:focus-within .short-desc {
+    opacity: 0;
+    max-height: 0;
+  }
+  article:focus-within .long-desc {
+    opacity: 1;
+    max-height: 24rem;
   }
 </style>
