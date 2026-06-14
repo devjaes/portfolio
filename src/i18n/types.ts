@@ -42,6 +42,41 @@ export interface FeaturedProject {
   image?: string;
 }
 
+export interface WorkStat {
+  value: string;
+  label: string;
+}
+
+export interface WorkCard {
+  title: string;
+  context?: string;
+  description: string;
+  tech: string[];
+  highlight?: string;
+  stats?: WorkStat[];
+  link?: string;
+  slug?: string;
+  image?: string;
+  imageAlt?: string;
+}
+
+export interface Work {
+  flagshipTitle: string;
+  flagshipSubtitle: string;
+  moreTitle: string;
+  moreSubtitle: string;
+  earlierTitle: string;
+  earlierSubtitle: string;
+  viewProjectLabel: string;
+  currentlyBuildingTitle: string;
+  currentlyBuildingSubtitle: string;
+  inProgressLabel: string;
+  building: WorkCard[];
+  flagship: WorkCard[];
+  more: WorkCard[];
+  earlier: WorkCard[];
+}
+
 export interface Cert {
   title: string;
   issuer: string;
@@ -126,6 +161,7 @@ export interface Translations {
     confidentialLabel: string;
     projects: FeaturedProject[];
   };
+  work: Work;
   archive: {
     title: string;
     subtitle: string;
