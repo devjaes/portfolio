@@ -3,12 +3,13 @@ import type { Translations } from "./types";
 export const es: Translations = {
   meta: {
     siteTitle:
-      "Jair Mera | Ingeniero Ruby on Rails & React · Mid-Level Full Stack",
+      "Jair Mera | Ingeniero Full Stack · Ruby on Rails · TypeScript / NestJS / Next.js",
     siteDescription:
-      "Portafolio de Jair Mera — Ingeniero Full Stack Mid-Level especializado en Ruby on Rails y React/Next.js, con sólida experiencia en Node.js y AWS Serverless. AWS Certified Solutions Architect — Associate. Construyo SaaS y APIs escalables para equipos remotos del mercado de EE. UU.",
-    aboutTitle: "Sobre mí | Jair Mera — Ingeniero Ruby on Rails & React",
+      "Portafolio de Jair Mera — Ingeniero Full Stack especializado en Ruby on Rails y TypeScript (NestJS / Next.js), con experiencia en AWS Serverless. AWS Certified Solutions Architect — Associate. Construyo SaaS y APIs escalables para equipos remotos del mercado de EE. UU.",
+    aboutTitle:
+      "Sobre mí | Jair Mera — Ingeniero Full Stack (Ruby on Rails & TypeScript)",
     aboutDescription:
-      "Ingeniero Full Stack Mid-Level especializado en Ruby on Rails, React/Next.js, Node.js y AWS Serverless. AWS Certified Solutions Architect — Associate. Basado en Ecuador (EST / UTC-5), acostumbrado a equipos remotos async-first en EE. UU.",
+      "Ingeniero Full Stack especializado en Ruby on Rails, TypeScript (NestJS / Next.js) y AWS Serverless. AWS Certified Solutions Architect — Associate. Basado en Ecuador (EST / UTC-5), acostumbrado a equipos remotos async-first en EE. UU.",
     workTitle:
       "Proyectos | Jair Mera — Trabajo en Ruby on Rails, React y Node.js",
     workDescription:
@@ -25,18 +26,18 @@ export const es: Translations = {
   },
   hero: {
     roleBadge:
-      "Ingeniero Full Stack Mid-Level · Ruby on Rails · React/Next · Node.js · AWS",
+      "Ingeniero Full Stack · Ruby on Rails · TypeScript / NestJS / Next.js · AWS Certified",
     awsCertPill: "AWS Certified Solutions Architect — Associate",
     awsCertVerifyUrl:
       "https://www.credly.com/badges/dae7f5e9-0d0a-456d-a8bf-3476394740cc",
     locationPill: "Ecuador (EST / UTC-5)",
-    headlinePart1: "Construyendo productos ",
+    headlinePart1: "",
     headlineHighlight1: "SaaS de extremo a extremo",
-    headlinePart2: " con ",
-    headlineHighlight2: "arquitecturas Serverless",
-    headlinePart3: " y flujos acelerados por IA",
+    headlinePart2: " sobre ",
+    headlineHighlight2: "AWS serverless",
+    headlinePart3: ". Desarrollo asistido por IA en el día a día.",
     subheadline:
-      "Ingeniero Full Stack Mid-Level especializado en **Ruby on Rails** y **React/Next.js**, con sólida experiencia en **Node.js** (NestJS/Express) y **AWS Serverless**. Construyo APIs escalables, sistemas event-driven y aplicaciones SaaS para el mercado de EE. UU. Actualmente en **Senirop**, enviando funcionalidades en **TAPinto.net**.",
+      "Ingeniero Full Stack especializado en **Ruby on Rails** y **TypeScript** (NestJS / Next.js), con experiencia en **AWS Serverless**. Construyo APIs escalables, sistemas event-driven y aplicaciones SaaS para el mercado de EE. UU. Actualmente en **Senirop**, enviando funcionalidades en **TAPinto.net** (~2M visitas/mes).",
     primaryCta: "Ver proyectos",
     secondaryCta: "Descargar CV",
     socialProof: "Conecta conmigo",
@@ -64,7 +65,7 @@ export const es: Translations = {
         title: "Entregar rápido y bien",
         icon: "rocket",
         description:
-          "Migré un ERP legacy a Clean Architecture en menos de 2 semanas — Rails API + React, cero pérdida de datos, ~60 % menos deuda técnica. Flujo acelerado por IA (Claude Code, Cursor, Copilot) que comprime el ramp time, nunca reemplaza el criterio de ingeniería.",
+          "Migré un ERP legacy a Clean Architecture en menos de 2 semanas — Rails API + React, cero pérdida de datos, ~60 % menos deuda técnica. Flujo asistido por IA (Claude Code, Cursor, Copilot) que comprime el ramp time, nunca reemplaza el criterio de ingeniería.",
       },
     ],
   },
@@ -264,16 +265,6 @@ export const es: Translations = {
         image: "/assets/lideser.png",
       },
       {
-        title: "AI Code Quality Validator",
-        shortDesc:
-          "Herramienta interna para evaluar y comparar la calidad de código generado por LLMs.",
-        longDesc:
-          "Desarrollé un sistema interno para auditar código generado por modelos de IA. Construí pipelines automatizados de validación con análisis AST que procesan cientos de fragmentos al día, asegurando que las salidas cumplan con estándares técnicos rigurosos definidos por Senior Tech Leads. Se usa para medir y mejorar la calidad del código generado por IA en todo el equipo.",
-        tech: ["Node.js", "Análisis AST", "TypeScript", "Evaluación IA"],
-        confidential: true,
-        image: "/assets/code-validator.webp",
-      },
-      {
         title: "Algoritmos premiados",
         shortDesc:
           "1er lugar en Algorithm Challenge y 3er lugar en Fintech Innovation Contest.",
@@ -289,6 +280,172 @@ export const es: Translations = {
     subtitle:
       "Proyectos previos que muestran mi crecimiento como desarrollador.",
     viewAll: "Ver todos los proyectos",
+  },
+  work: {
+    flagshipTitle: "Trabajo destacado",
+    flagshipSubtitle:
+      "Proyectos flagship — escala de producción, impacto medido.",
+    moreTitle: "Más trabajo",
+    moreSubtitle:
+      "Builds recientes en fintech, auth, visión por computadora y sistemas en tiempo real.",
+    earlierTitle: "Proyectos anteriores",
+    earlierSubtitle:
+      "El archivo — trabajo fundacional, conservado para el registro.",
+    viewProjectLabel: "Ver caso de estudio",
+    currentlyBuildingTitle: "Construyendo ahora",
+    currentlyBuildingSubtitle: "En desarrollo activo.",
+    inProgressLabel: "En progreso",
+    building: [
+      {
+        title: "Tickbase",
+        context: "PLATAFORMA DE ANALÍTICA DE TRADING CUANTITATIVO",
+        description:
+          "Plataforma de analítica de mercado event-driven: TypeScript / NestJS + un microservicio en Go + pgvector + TimescaleDB. Ingesta concurrente de datos de mercado (goroutines y channels en Go), RAG sobre notas de trading, y reportes semanales agénticos.",
+        tech: ["TypeScript", "NestJS", "Go", "pgvector", "TimescaleDB"],
+      },
+    ],
+    flagship: [
+      {
+        title: "TAPinto.net",
+        context: "SENIROP · PRODUCCIÓN · EQUIPO US EN INGLÉS",
+        description:
+          "Contribuidor full-stack en una plataforma de noticias de alto tráfico en EE. UU. Construí módulos CMS complejos para 12+ tipos de contenido, ajusté jobs en background, optimicé capas de caché y performance hotspots, e integré ad-serving dinámico y pasarelas de pago.",
+        tech: ["Ruby on Rails", "React", "PostgreSQL", "Background Jobs", "Caché"],
+        stats: [
+          { value: "~2M/mes", label: "Visitas mensuales" },
+          { value: "12+", label: "Tipos de contenido CMS" },
+        ],
+        link: "https://www.tapinto.net/",
+        image: "/assets/tapinto.bmp",
+        imageAlt: "Plataforma de noticias TAPinto.net",
+      },
+      {
+        title: "Gendocs V3",
+        context: "UNIV. TÉCNICA DE AMBATO · LÍDER SCRUM DE 4",
+        description:
+          "Sistema event-driven de gestión documental que maneja miles de documentos académicos. Implementé procesamiento asíncrono con colas BullMQ, sacando la generación de reportes de la ruta de request y colapsando la latencia.",
+        tech: ["Next.js", "NestJS", "BullMQ", "PostgreSQL", "Event-Driven"],
+        stats: [
+          { value: "70%", label: "Generación más rápida" },
+          { value: "30s→9s", label: "Latencia de reporte" },
+        ],
+        slug: "nested/gendocsv3",
+        image: "/assets/gendocs.jpg",
+        imageAlt: "Automatización documental Gendocs V3",
+      },
+      {
+        title: "ERP de exportación Lideser",
+        context: "CLIENTE SENIROP · ARQUITECTO LÍDER",
+        description:
+          "Arquitecté la migración de un ERP de exportación legacy monolítico a una Clean Architecture moderna (Rails API + React) en un plazo récord de dos semanas. Diseñé la estrategia de migración de PostgreSQL para garantizar cero pérdida de datos.",
+        tech: ["Clean Architecture", "Rails API", "PostgreSQL", "TypeScript"],
+        stats: [
+          { value: "<2 sem", label: "Migración completa" },
+          { value: "~60%", label: "Menos deuda técnica" },
+        ],
+        image: "/assets/lideser.png",
+        imageAlt: "ERP de exportación Lideser",
+      },
+    ],
+    more: [
+      {
+        title: "FoppyAI",
+        context: "EQUIPO DE 2 · PROYECTO POST-HACKATHON",
+        description:
+          "Agente de voz con IA para finanzas personales, construido sobre nuestro prototipo de hackathon Fopymes: Whisper STT + ruteo de intención con GPT sobre un backend multi-agente permiten registrar transacciones, metas y presupuestos por voz.",
+        tech: ["Next.js", "Hono", "Drizzle", "OpenAI Whisper"],
+        highlight: "3er lugar — Hatary Shunko Fintech Innovation",
+        slug: "hatary-shunko",
+        image: "/assets/stock-1.jpg",
+        imageAlt: "Agente de voz financiero FoppyAI",
+      },
+      {
+        title: "Securis",
+        context: "CAPSTONE UNIVERSITARIO · ARQUITECTO LÍDER",
+        description:
+          "Plataforma de documentos segura con SSO de Microsoft OAuth, SQL Server Dynamic Data Masking, un interceptor de logging con redacción, y una capa propia de cifrado + compresión para payloads punto a punto.",
+        tech: ["NestJS", "Vue 3", "SQL Server", "MS OAuth"],
+        highlight: "SSO + enmascaramiento de datos en BD",
+        slug: "securis",
+        image: "/assets/stock-2.jpg",
+        imageAlt: "Plataforma de documentos segura Securis",
+      },
+      {
+        title: "Cementerios",
+        context: "PROJECT MANAGER · EQUIPO MULTIFUNCIONAL",
+        description:
+          "Sistema de gestión cementerial que modela el ciclo de vida de nichos — inventario, propiedad e herencia, pagos y procedimientos de inhumación. Entregado como Project Manager.",
+        tech: ["Next.js 15", "NestJS", "PostgreSQL", "AWS S3"],
+        highlight: "Lideré la entrega como PM",
+        slug: "cementerios",
+        image: "/assets/stock-3.jpg",
+        imageAlt: "Sistema de gestión cementerial",
+      },
+      {
+        title: "Titan Training",
+        context: "PROTOTIPO CV · PAUSADO",
+        description:
+          "Prototipo de visión por computadora para detección de ciclistas de downhill MTB y clasificación de atributos: detección YOLOv11 alimentando un clasificador multi-label EfficientNet-B2. Prototipo; proyecto pausado.",
+        tech: ["Python", "YOLOv11", "EfficientNet-B2", "PyTorch"],
+        highlight: "Pipeline detección + clasificación (prototipo)",
+        slug: "titan-training",
+        image: "/assets/stock-4.jpg",
+        imageAlt: "Visión por computadora Titan Training",
+      },
+      {
+        title: "La Jefecita",
+        context: "OPERACIÓN DE RESTAURANTE EN TIEMPO REAL",
+        description:
+          "Plataforma de restaurante por rol con una capa WebSocket que mantiene el estado de las órdenes consistente entre meseros, cocina y caja en cada dispositivo del local.",
+        tech: ["Next.js", "NestJS", "WebSockets", "Stripe"],
+        highlight: "−30% errores de toma de orden",
+        slug: "lajefecita",
+        image: "/assets/jefecita.jpg",
+        imageAlt: "Plataforma de restaurante La Jefecita",
+      },
+    ],
+    earlier: [
+      {
+        title: "LookPay",
+        context: "PROYECTO TEMPRANO",
+        description:
+          "Simulación de pago con reconocimiento facial con match en menos de 2s, explorando flujos de auth biométrica sin contraseñas.",
+        tech: ["Next.js", "Spring Boot", "AWS Rekognition"],
+        slug: "lookpay",
+        image: "/assets/lookpay.png",
+        imageAlt: "Pago con reconocimiento facial LookPay",
+      },
+      {
+        title: "POS SRI",
+        context: "PROYECTO TEMPRANO",
+        description:
+          "Punto de venta para comerciantes ecuatorianos con gestión de inventario y facturación electrónica validada por el SRI.",
+        tech: ["Spring Boot", "Next.js", "PostgreSQL"],
+        slug: "pos-system",
+        image: "/assets/possytem.png",
+        imageAlt: "Sistema de punto de venta SRI",
+      },
+      {
+        title: "UTA Web App",
+        context: "PROYECTO TEMPRANO",
+        description:
+          "Rediseño de landing institucional en Astro + React para la Universidad Técnica de Ambato. Desplegado en Vercel.",
+        tech: ["Astro", "React", "Tailwind"],
+        slug: "uta-web-app",
+        image: "/assets/uta-web-app.png",
+        imageAlt: "Landing institucional UTA",
+      },
+      {
+        title: "Ambivalence",
+        context: "PROYECTO TEMPRANO",
+        description:
+          "Plataforma e-commerce de dos apps (tienda + admin) para una marca de ropa. Next.js + Prisma + Clerk.",
+        tech: ["Next.js", "Prisma", "Clerk"],
+        slug: "ambivalence",
+        image: "/assets/ambivalence.jpg",
+        imageAlt: "Tienda e-commerce Ambivalence",
+      },
+    ],
   },
   contact: {
     title: "Construyamos algo a escala",
@@ -307,9 +464,9 @@ export const es: Translations = {
     h1Part1: "Sobre ",
     h1Highlight: "mí",
     paragraph1:
-      "Gracias por pasar. Soy Jair Mera, un Ingeniero Full Stack con enfoque backend, basado en Ecuador, apasionado por construir servicios escalables en Node.js sobre AWS, aprovechando arquitecturas serverless y acelerando la entrega con herramientas de IA.",
+      "Gracias por pasar. Soy Jair Mera, un Ingeniero Full Stack con enfoque backend, basado en Ecuador. Construyo SaaS y APIs en producción con Ruby on Rails y TypeScript (NestJS / Next.js), sistemas event-driven y arquitecturas serverless sobre AWS — donde soy Solutions Architect certificado.",
     paragraph2:
-      "Siempre me ha apasionado la tecnología. Desde niño me fascinaron las computadoras, lo que me llevó a estudiar Ingeniería de Software en 2021. Hoy combino mi experiencia técnica con herramientas potenciadas por IA para entregar soluciones de alta calidad y listas para producción más rápido.",
+      "Siempre me ha apasionado la tecnología. Desde niño me fascinaron las computadoras, lo que me llevó a estudiar Ingeniería de Software en 2021. Hoy me enfoco en entregar software listo para producción con arquitectura limpia y testing sólido, usando herramientas de IA para ir más rápido sin recortar el criterio de ingeniería.",
     portraitAlt: "Jair Mera trabajando",
     backgroundTitle: "Trayectoria",
     educationTitle: "Educación",
