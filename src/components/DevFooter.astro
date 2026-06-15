@@ -1,0 +1,49 @@
+---
+import { getTranslations, type Locale } from "../i18n";
+interface Props { locale?: Locale; }
+const { locale = "en" } = Astro.props;
+const t = getTranslations(locale);
+---
+
+<div id="devfoot" class="devfoot" role="button" tabindex="0" aria-label={t.nav.statusOpen}>
+  <span class="df-g">●</span><span class="df-t">ready · 0ms</span>
+</div>
+
+<script>
+  const chip = document.getElementById("devfoot");
+  if (chip) {
+    const g = chip.querySelector(".df-g")!;
+    const tnode = chip.querySelector(".df-t")!;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let lastY = window.scrollY;
+    let settle: ReturnType<typeof setTimeout>;
+
+    if (!reduce) {
+      window.addEventListener("scroll", () => {
+        const dy = Math.round(Math.abs(window.scrollY - lastY));
+        lastY = window.scrollY;
+        if (dy < 1) return;
+        chip.classList.add("live");
+        g.textContent = "▶";
+        tnode.textContent = `live · ${dy}ms`;
+        clearTimeout(settle);
+        settle = setTimeout(() => { chip.classList.remove("live"); g.textContent = "●"; tnode.textContent = "ready · 0ms"; }, 400);
+      }, { passive: true });
+    }
+
+    const doReload = () => {
+      g.textContent = "↻";
+      tnode.textContent = "reload · 124ms";
+      chip.classList.add("live");
+      if (!reduce) {
+        document.body.style.transition = "opacity .08s ease";
+        document.body.style.opacity = "0.35";
+        setTimeout(() => { document.body.style.opacity = "1"; }, 90);
+        setTimeout(() => { document.body.style.transition = ""; }, 400);
+      }
+      setTimeout(() => { chip.classList.remove("live"); g.textContent = "●"; tnode.textContent = "ready · 0ms"; }, 700);
+    };
+    chip.addEventListener("click", doReload);
+    chip.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); doReload(); } });
+  }
+</script>

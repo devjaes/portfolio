@@ -1,5 +1,5 @@
 // Brand glyphs (filled, 24x24 viewBox). Centralized so they aren't duplicated
-// across <BrandIcon>, TechOrbit, and any future caller.
+// across <BrandIcon> and any future caller.
 //
 // Simple-icons dropped the AWS mark over trademark concerns, so we keep
 // a hand-rolled path here.

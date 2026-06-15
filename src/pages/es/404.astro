@@ -7,12 +7,13 @@ const t = getTranslations(locale);
 ---
 
 <BaseLayout title={t.meta.notFoundTitle} description={t.meta.notFoundDescription} locale={locale}>
-  <section class="section-spacing">
-    <div class="container-custom text-center">
-      <h1 class="text-5xl sm:text-7xl font-bold mb-6">404</h1>
-      <p class="text-xl text-text-primary mb-2">{t.notFound.title}</p>
-      <p class="text-text-secondary mb-8">{t.notFound.subtitle}</p>
-      <a href="/es/" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors">{t.notFound.cta}</a>
+  <section class="section">
+    <div class="wrap" style="text-align:center; display:flex; flex-direction:column; align-items:center; gap:14px;">
+      <span class="label">404 · no encontrado</span>
+      <h1 style="font-size:clamp(48px,10vw,96px); font-family:var(--mono);">404</h1>
+      <p style="color:var(--tx-1); font-size:18px;">{t.notFound.title}</p>
+      <p style="color:var(--tx-2);">{t.notFound.subtitle}</p>
+      <a class="btn btn-primary" href="/es/" style="margin-top:8px;">{t.notFound.cta}</a>
     </div>
   </section>
 </BaseLayout>

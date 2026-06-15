@@ -1,0 +1,21 @@
+---
+interface Props { dir?: "up" | "down"; id: string; }
+const { dir = "up", id } = Astro.props;
+const up = "M0,28 L11,26 L22,29 L33,22 L44,24 L55,16 L66,18 L77,10 L88,12 L100,4";
+const down = "M0,5 L11,8 L22,6 L33,13 L44,11 L55,17 L66,15 L77,23 L88,21 L100,28";
+const line = dir === "down" ? down : up;
+const endY = dir === "down" ? 28 : 4;
+const area = `${line} L100,34 L0,34 Z`;
+---
+
+<svg viewBox="0 0 100 34" preserveAspectRatio="none" width="64" height="24" aria-hidden="true" class="spark">
+  <defs>
+    <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="oklch(0.74 0.115 158)" stop-opacity="0.30" />
+      <stop offset="100%" stop-color="oklch(0.74 0.115 158)" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+  <path d={area} fill={`url(#${id})`} />
+  <path d={line} fill="none" stroke="oklch(0.80 0.11 158)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" />
+  <circle cx="100" cy={endY} r="2.4" fill="oklch(0.84 0.12 158)" />
+</svg>

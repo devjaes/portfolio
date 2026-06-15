@@ -1,0 +1,114 @@
+---
+import "../styles/pages.css";
+import type { CollectionEntry } from "astro:content";
+import { getTranslations, type Locale } from "../i18n";
+import type { WorkCard, WorkStatus } from "../i18n/types";
+import ContactCTA from "./ContactCTA.astro";
+
+interface Props { entry: CollectionEntry<"work">; locale?: Locale; }
+const { entry, locale = "en" } = Astro.props;
+const { Content } = await entry.render();
+const t = getTranslations(locale);
+
+const slug = entry.id.replace(/\.es\.md$/, "").replace(/\.md$/, "");
+const cards: WorkCard[] = [...t.work.building, ...t.work.flagship, ...t.work.more, ...t.work.earlier];
+const card = cards.find((c) => c.slug === slug);
+
+const GLYPH: Record<WorkStatus, string> = { ship: "▲", build: "◉", paused: "■", down: "▼" };
+const CLS: Record<WorkStatus, string> = { ship: "up", build: "am", paused: "fl", down: "dn" };
+const status = (card?.status ?? "ship") as WorkStatus;
+
+const homePath = locale === "es" ? "/es/" : "/";
+const projectsHref = `${homePath}#work`;
+
+const specRows = [
+  card?.context && { label: "Context", value: card.context },
+  { label: "Stack", value: entry.data.tags.join(" · ") },
+  { label: "Status", value: t.work.statusLabels[status] },
+  card?.year && { label: "Year", value: card.year },
+].filter(Boolean) as { label: string; value: string }[];
+---
+
+<div class="wrap">
+  <div class="crumb">
+    <a class="back" href={projectsHref}>{t.workPage.backLink}</a>
+    <span class="sep">~/</span><a href={projectsHref}>projects</a>
+    <span class="sep">/</span><span class="cur">{slug}</span>
+  </div>
+
+  <header class="phero">
+    <div class="phero-grid">
+      <div class="phero-main reveal in">
+        <div class="phero-head">
+          {card?.symbol && <span class="flag-sym">{card.symbol}</span>}
+          <span class:list={["status-pill", CLS[status]]}><span class="gly">{GLYPH[status]}</span>{t.work.statusLabels[status]}</span>
+          {entry.data.tags.slice(0, 1).map((tag) => <span class="chip">{tag}</span>)}
+        </div>
+        <h1>{entry.data.title}</h1>
+        {card?.context && <div class="ctxline">{card.context}</div>}
+        <p class="lede">{entry.data.description}</p>
+        {card?.stats && card.stats.length > 0 && (
+          <div class="kpibar">
+            {card.stats.map((k) => (
+              <div class="k"><div class:list={["kn", k.green && "green"]}>{k.value}</div><div class="kl">{k.label}</div></div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <aside class="spec reveal in">
+        <div class="spec-bar">
+          <span class="sym">{card?.symbol ?? entry.data.title}</span>
+          <span class:list={["status-pill", "sm", CLS[status]]}><span class="gly">{GLYPH[status]}</span>{t.work.statusLabels[status]}</span>
+        </div>
+        {specRows.map((r) => (
+          <div class="row"><span class="rl">{r.label}</span><span class="rv">{r.value}</span></div>
+        ))}
+        <div class="spec-cta">
+          <a class="btn btn-primary" href={`${homePath}#contact`}>
+            <svg class="ico" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7l9 6 9-6M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z" /></svg>
+            {t.contact.cta}
+          </a>
+          <a class="btn btn-ghost" href={projectsHref}>{t.workPage.backLink}</a>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  {entry.data.img && (
+    <figure class="case-shot reveal">
+      <div class="winbar"><span class="dots"><i></i><i></i><i></i></span><span class="url">{slug}</span></div>
+      <img src={entry.data.img} alt={entry.data.img_alt ?? entry.data.title} loading="lazy" />
+    </figure>
+  )}
+
+  <section class="section" style="padding-top:0">
+    <article class="prose">
+      <Content />
+    </article>
+  </section>
+</div>
+
+<ContactCTA locale={locale} />
+
+<style is:global>
+  .prose { max-width: 760px; color: var(--tx-1); line-height: 1.75; font-size: 15.5px; }
+  .prose h2 { font-size: 1.5rem; color: var(--tx-0); margin: 2.4rem 0 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--line); }
+  .prose h3 { font-size: 1.2rem; color: var(--tx-0); margin: 1.8rem 0 0.8rem; }
+  .prose p { margin-bottom: 1.1rem; }
+  .prose ul, .prose ol { margin: 0 0 1.1rem; padding-left: 1.4rem; }
+  .prose li { margin-bottom: 0.55rem; }
+  .prose ul li::marker, .prose ol li::marker { color: var(--accent); }
+  .prose strong { color: var(--tx-0); font-weight: 600; }
+  .prose a { color: oklch(0.82 0.10 158); text-decoration: underline; text-underline-offset: 2px; }
+  .prose code { font-family: var(--mono); background: var(--bg-2); border: 1px solid var(--line-2); border-radius: var(--r-xs); padding: 0.15rem 0.4rem; font-size: 0.86em; color: oklch(0.82 0.10 158); }
+  .prose pre { background: var(--bg-1); border: 1px solid var(--line); border-radius: var(--r); padding: 1rem 1.25rem; overflow-x: auto; margin-bottom: 1.1rem; }
+  .prose pre code { background: transparent; border: none; padding: 0; color: var(--tx-1); }
+  .prose blockquote { border-left: 3px solid var(--accent); padding-left: 1.1rem; margin: 1.4rem 0; color: var(--tx-2); font-style: italic; }
+  .prose hr { border: none; border-top: 1px solid var(--line); margin: 2.2rem 0; }
+  .prose > h2:first-child, .prose > h3:first-child { margin-top: 0; }
+  .video-thumb { position: relative; display: block; border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; margin: 0 0 1.5rem; background: var(--bg-2); }
+  .video-thumb img { width: 100%; display: block; aspect-ratio: 16 / 9; object-fit: cover; margin: 0; border: none; border-radius: 0; transition: transform .3s ease, opacity .2s ease; }
+  .video-thumb:hover img { transform: scale(1.03); opacity: 0.92; }
+  .video-thumb-cta { position: absolute; left: 12px; bottom: 12px; font-family: var(--mono); font-size: 12px; color: var(--tx-0); background: rgba(10,14,21,0.7); border: 1px solid var(--line-2); border-radius: var(--r-xs); padding: 6px 11px; backdrop-filter: blur(6px); }
+</style>

@@ -3,137 +3,82 @@ import { getTranslations, type Locale } from "../i18n";
 import BrandIcon from "./BrandIcon.astro";
 import { socialLinks } from "../config/social";
 
-interface Props {
-  align?: "start" | "center";
-  showCTA?: boolean;
-  showImage?: boolean;
-  locale?: Locale;
-}
-
-const {
-  align = "center",
-  showCTA = true,
-  showImage = true,
-  locale = "en",
-} = Astro.props;
-
+interface Props { locale?: Locale; }
+const { locale = "en" } = Astro.props;
 const t = getTranslations(locale);
+const c = t.heroCard;
 
-// Subheadline contains **bold** markers — translation strings are trusted/static,
-// so a simple regex → <strong> swap is safe. Don't add user-supplied content here.
-const renderSubheadline = (s: string) =>
-  s.replace(/\*\*(.+?)\*\*/g, '<strong class="text-text-primary">$1</strong>');
+const email = "hello@devjaes.dev";
+const homePath = locale === "es" ? "/es/" : "/";
+const [symHead, symTail] = c.barSymbol.split(":");
+
+// Subheadline carries **bold** markers — translation strings are trusted/static.
+const renderLead = (s: string) =>
+  s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
 ---
 
-<section class="section-spacing">
-  <div class="container-custom">
-    <div class:list={[
-      "flex gap-12 lg:gap-16",
-      showImage ? "flex-col lg:flex-row items-center" : "flex-col",
-      align === 'center' && !showImage ? "items-center text-center" : ""
-    ]}>
-
-      {showImage && (
-        <div class="relative flex-shrink-0 animate-fade-in">
-          <div class="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80">
-            <div class="absolute inset-0 rounded-full bg-gradient-to-br from-accent-cyan/30 via-accent/20 to-accent-purple/30 blur-2xl opacity-60"></div>
-            <div class="relative w-full h-full rounded-full p-1 bg-gradient-to-br from-accent-cyan/50 via-surface-border to-accent-purple/50">
-              <img
-                src="/assets/portrait.jpg"
-                alt={t.hero.portraitAlt}
-                width="1024"
-                height="765"
-                loading="eager"
-                fetchpriority="high"
-                decoding="async"
-                class="w-full h-full object-cover rounded-full"
-              />
-            </div>
+<header class="hero section" id="top">
+  <div class="wrap hero-grid">
+    <aside class="idcard reveal in">
+      <div class="bar">
+        <span class="l mono-sym">{symHead}<span class="tk-sym">:{symTail}</span></span>
+        <span class="q-tag"><span class="dot dot-up pulse"></span> {c.barStatus}</span>
+      </div>
+      <div class="photo">
+        <img src="/assets/portrait.jpg" alt={t.hero.portraitAlt} width="1024" height="765" fetchpriority="high" decoding="async" />
+        <span class="photo-tag">{c.photoTag}</span>
+      </div>
+      <div class="idbody">
+        <div class="id-head">
+          <div class="q-id">
+            <div class="q-name">Jair Mera</div>
+            <div class="q-meta">{c.metaLabel}</div>
+          </div>
+          <div class="id-status">
+            <div class="sl">{c.statusTitle}</div>
+            <div class="sline up"><span class="gly">▲</span> {c.statusLine1}</div>
+            <div class="sline am"><span class="gly">◉</span> {c.statusLine2}</div>
           </div>
         </div>
-      )}
-
-      <div class:list={[
-        "flex flex-col gap-6",
-        showImage ? "lg:text-left text-center items-center lg:items-start" : "",
-        align === 'center' && !showImage ? "items-center text-center" : "items-start text-left"
-      ]}>
-        <!-- Role + AWS Cert pills -->
-        <div class="flex flex-wrap gap-2 animate-fade-in-up">
-          <span class="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-medium tracking-wide uppercase rounded-full border border-accent-cyan/30 bg-accent-cyan/10 text-accent-cyan">
-            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-            </svg>
-            {t.hero.roleBadge}
-          </span>
-          <a
-            href={t.hero.awsCertVerifyUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-medium tracking-wide uppercase rounded-full border border-[#ff9900]/40 bg-[#ff9900]/10 text-[#ff9900] hover:bg-[#ff9900]/20 transition-colors"
-          >
-            <BrandIcon name="aws" class="w-3 h-3" />
-            {t.hero.awsCertPill}
-          </a>
-          <span class="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-medium tracking-wide uppercase rounded-full border border-emerald-400/30 bg-emerald-400/10 text-emerald-300">
-            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            {t.hero.locationPill}
-          </span>
+        <div class="id-stats">
+          <div class="st"><div class="sl">{c.stackLabel}</div><div class="sv">{c.stackValue}</div></div>
+          <div class="st"><div class="sl">{c.certLabel}</div><div class="sv">{c.certValue}</div></div>
+          <div class="st"><div class="sl">{c.zoneLabel}</div><div class="sv">{c.zoneValue}</div></div>
         </div>
+      </div>
+    </aside>
 
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] max-w-3xl animate-fade-in-up">
-          {t.hero.headlinePart1}
-          <span class="text-gradient">{t.hero.headlineHighlight1}</span>
-          {t.hero.headlinePart2}
-          <span class="text-gradient">{t.hero.headlineHighlight2}</span>
-          {t.hero.headlinePart3}
-        </h1>
+    <div class="hero-copy">
+      <div class="hero-badges">
+        <a class="chip chip-amber" href={t.hero.awsCertVerifyUrl} target="_blank" rel="noopener noreferrer">{t.hero.awsChip}</a>
+        <span class="chip">{t.hero.locationPill}</span>
+      </div>
 
-        <p
-          class="text-lg sm:text-xl text-text-secondary max-w-2xl animate-fade-in-up"
-          style="animation-delay: 100ms;"
-          set:html={renderSubheadline(t.hero.subheadline)}
-        />
+      <div class="hero-title">
+        <h1 set:html={t.hero.headline.replace(/\n/g, "<br>")} />
+        <p class="hero-tagline">{t.hero.tagline}</p>
+      </div>
 
-        {showCTA && (
-          <>
-            <div class="flex flex-col sm:flex-row gap-4 mt-2 animate-fade-in-up" style="animation-delay: 200ms;">
-              <a href="#projects" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors duration-200">
-                {t.hero.primaryCta}
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-              </a>
-              <a href="/cv-jair-mera.pdf" target="_blank" rel="noopener noreferrer nofollow" class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-surface-border text-text-primary font-semibold rounded-lg hover:bg-surface-light hover:border-text-muted transition-colors duration-200">
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                {t.hero.secondaryCta}
-              </a>
-            </div>
+      <p class="hero-sub" set:html={renderLead(t.hero.subLead)} />
 
-            <div class="flex items-center gap-4 mt-4 animate-fade-in-up" style="animation-delay: 300ms;">
-              {socialLinks.map(({ label, href, icon }) => (
-                <a href={href} target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-full border border-surface-border text-text-muted hover:text-text-primary hover:border-text-muted hover:bg-surface-light transition-all duration-200" aria-label={label}>
-                  <BrandIcon name={icon} class="w-5 h-5" />
-                </a>
-              ))}
-              <span class="text-sm text-text-muted">{t.hero.socialProof}</span>
-            </div>
-          </>
-        )}
-
-        <slot />
+      <div class="hero-actions">
+        <a class="btn btn-primary" href={`${homePath}#experience`}>
+          {t.hero.viewExperienceCta}
+          <svg class="ico" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </a>
+        <a class="btn btn-ghost" href={`${homePath}#work`}>
+          {t.hero.primaryCta}
+          <svg class="ico" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </a>
+        <div class="hero-social">
+          {socialLinks.map((s) => (
+            <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}><BrandIcon name={s.icon} class="w-4 h-4" /></a>
+          ))}
+          <a href={`mailto:${email}`} aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M4 7l8 6 8-6" /></svg>
+          </a>
+        </div>
       </div>
     </div>
   </div>
-</section>
-
-<style>
-  @keyframes fade-in-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes fade-in    { from { opacity: 0; transform: scale(0.95); }  to { opacity: 1; transform: scale(1); } }
-  .animate-fade-in-up { opacity: 0; animation: fade-in-up 0.6s ease-out forwards; }
-  .animate-fade-in    { opacity: 0; animation: fade-in 0.8s ease-out forwards; }
-</style>
+</header>

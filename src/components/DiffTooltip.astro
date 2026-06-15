@@ -1,0 +1,37 @@
+---
+// Renders inside the Lideser ERP "~60% less tech debt" KPI (a .diff-trigger).
+const id = "diff-ldsr";
+---
+
+<div class="diff-tip" id={id} role="tooltip" hidden>
+  <div class="dt-head">git diff · lideser-erp · monolith → clean arch</div>
+  <div class="dt-row del">- legacy/orders/process.rb        +842 −0   (monolithic, no tests)</div>
+  <div class="dt-row add">+ app/services/orders/dispatcher  +231 −842 (clean arch, RSpec)</div>
+  <div class="dt-row ctx">@@ deploy cycle @@ 30s → 9s, debt −60%</div>
+</div>
+
+<script>
+  const positionTip = (tr: HTMLElement, tip: HTMLElement) => {
+    const r = tr.getBoundingClientRect();
+    tip.style.left = "-9999px"; tip.style.top = "0px";
+    const tw = tip.offsetWidth, th = tip.offsetHeight;
+    let left = r.left + r.width / 2 - tw / 2;
+    left = Math.max(12, Math.min(left, window.innerWidth - tw - 12));
+    let top = r.top - th - 10;
+    tip.classList.remove("below");
+    if (top < 12) { top = r.bottom + 10; tip.classList.add("below"); }
+    tip.style.left = left + "px";
+    tip.style.top = top + "px";
+  };
+  document.querySelectorAll<HTMLElement>(".diff-trigger").forEach((tr) => {
+    const tip = tr.querySelector<HTMLElement>(".diff-tip");
+    if (!tip) return;
+    const show = () => { tip.hidden = false; positionTip(tr, tip); };
+    const hide = () => { tip.hidden = true; };
+    tr.addEventListener("mouseenter", show);
+    tr.addEventListener("mouseleave", hide);
+    tr.addEventListener("focus", show);
+    tr.addEventListener("blur", hide);
+    window.addEventListener("scroll", () => { if (!tip.hidden) positionTip(tr, tip); }, { passive: true });
+  });
+</script>

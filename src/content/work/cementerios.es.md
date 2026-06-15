@@ -23,5 +23,4 @@ Lideré el proyecto como **Project Manager**, no como tech lead. Mi aporte fue o
 ## Complejidad de dominio
 No es un CRUD. Modela lógica de negocio cementerial: bloques regulares (venta por nicho) vs. mausoleos (venta como unidad familiar), sucesión e herencia de propiedad, y cadenas de validación que deben pasar antes de poder registrar una inhumación.
 
-## Notas honestas
-Mi valor aquí es liderazgo y entrega sobre un equipo de varias personas y un dominio complejo — explícitamente no autoría única del código.
+*Mi aporte aquí fue liderazgo y entrega sobre un equipo de varias personas y un dominio complejo.*

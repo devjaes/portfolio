@@ -27,5 +27,4 @@ Securis was a security-focused capstone: a document-management system that neede
 ## My role
 I was the **lead architect and initial owner**: project setup, the core NestJS module structure, the Dynamic Data Masking configuration, the logging interceptor, and the Huffman encoding. Two teammates contributed the auth flow and the documents module.
 
-## Honest notes
-The standout is the database-level Dynamic Data Masking paired with the redacting interceptor — genuine, role-aware data protection at the layer that matters most.
+*The standout is the database-level Dynamic Data Masking paired with the redacting interceptor — genuine, role-aware data protection at the layer that matters most.*

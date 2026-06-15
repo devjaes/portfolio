@@ -12,6 +12,8 @@
   "dependencies": {
     "@astrojs/sitemap": "3.0.5",
     "@astrojs/tailwind": "^6.0.2",
+    "@fontsource/geist-sans": "^5.2.5",
+    "@fontsource/jetbrains-mono": "^5.2.8",
     "astro": "^3.3.2",
     "astro-icon": "^1.1.0",
     "simple-icons": "^16.3.0",

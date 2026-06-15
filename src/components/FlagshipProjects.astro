@@ -1,0 +1,76 @@
+---
+import { getTranslations, type Locale } from "../i18n";
+import type { WorkStatus } from "../i18n/types";
+import Sparkline from "./Sparkline.astro";
+import DiffTooltip from "./DiffTooltip.astro";
+
+interface Props { locale?: Locale; }
+const { locale = "en" } = Astro.props;
+const t = getTranslations(locale);
+const base = locale === "es" ? "/es" : "";
+
+const GLYPH: Record<WorkStatus, string> = { ship: "▲", build: "◉", paused: "■", down: "▼" };
+const CLS: Record<WorkStatus, string> = { ship: "up", build: "am", paused: "fl", down: "dn" };
+---
+
+<section class="section" id="work" style="padding-top:8px">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="left">
+        <span class="sec-idx">04 /</span>
+        <h2 class="sec-title">{t.work.flagshipTitle}</h2>
+      </div>
+      <span class="sec-sub">{t.work.flagshipSubtitle}</span>
+    </div>
+
+    <div class="flagships">
+      {t.work.flagship.map((p, i) => {
+        const status = (p.status ?? "ship") as WorkStatus;
+        const caseUrl = p.slug ? `${base}/work/${p.slug}/` : null;
+        return (
+          <article class="flag reveal">
+            <div class="flag-main">
+              <div class="flag-head">
+                {p.symbol && <span class="flag-sym">{p.symbol}</span>}
+                <h3>
+                  {caseUrl ? <a href={caseUrl} class="flag-title-link">{p.title}</a>
+                    : p.link ? <a href={p.link} target="_blank" rel="noopener noreferrer">{p.title} ↗</a>
+                    : p.title}
+                </h3>
+                <span class:list={["status-pill", CLS[status]]}><span class="gly">{GLYPH[status]}</span>{t.work.statusLabels[status]}</span>
+              </div>
+              {p.context && <div class="flag-ctx">{p.context}</div>}
+              <p class="flag-desc">{p.description}</p>
+              <div class="flag-tags">{p.tech.map((tech) => <span class="chip">{tech}</span>)}</div>
+              {caseUrl && <a class="flag-case" href={caseUrl}>{t.work.viewProjectLabel} →</a>}
+            </div>
+            <div class="flag-side">
+              {p.viz && (
+                <div class="flag-viz">
+                  <span class="vlabel">{p.vizLabel}</span>
+                  <Sparkline dir={p.viz} id={`spk${i}`} />
+                </div>
+              )}
+              <div class:list={["flag-kpis", p.stats && p.stats.length === 1 && "single"]}>
+                {p.stats?.map((k) => (
+                  k.diff ? (
+                    <div class="k diff-trigger" tabindex="0" aria-describedby="diff-ldsr">
+                      <div class:list={["n", k.green && "green"]}>{k.value}</div>
+                      <div class="l">{k.label}</div>
+                      <DiffTooltip />
+                    </div>
+                  ) : (
+                    <div class="k">
+                      <div class:list={["n", k.green && "green"]}>{k.value}</div>
+                      <div class="l">{k.label}</div>
+                    </div>
+                  )
+                ))}
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>

@@ -23,9 +23,4 @@ Arquitectura de dos etapas: **YOLOv11m** detecta nueve clases de objetos (corred
 ## Estado (pausado)
 La arquitectura central y el pipeline de entrenamiento están listos (notebook de Colab, configs YAML, entrenamiento e inferencia modulares). El proyecto se pausó cuando se canceló el sistema descendente al que iba a alimentar.
 
-## Limitaciones honestas
-- **Sin métricas validadas.** El README declara cifras objetivo de mAP / F1, pero no se validaron en estos datos.
-- **Dataset pequeño** — aproximadamente 222 imágenes de detección y 240 de clasificación, con aumento de datos.
-- **Prototipo, basado en notebook** — sin CI/CD, sin registros de inferencia en el mundo real, pesos entrenados no commiteados.
-
-El valor es amplitud: un pipeline de visión por computadora funcional (detección + clasificación multi-label) junto a mi trabajo de backend y LLM — no un producto terminado.
+*Alcance: un prototipo basado en notebook sobre un dataset pequeño — su valor es la amplitud, un pipeline funcional de detección + clasificación multi-label junto a mi trabajo de backend y LLM.*
