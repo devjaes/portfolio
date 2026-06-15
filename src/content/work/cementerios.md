@@ -23,5 +23,4 @@ I led the project as **Project Manager**, not tech lead. My contribution was org
 ## Domain complexity
 This is not a CRUD app. It models cemetery business logic: regular blocks (sold per niche) vs. mausoleums (sold as a family unit), succession and inheritance of ownership, and validation chains that must pass before a burial can be registered.
 
-## Honest notes
-My value here is leadership and delivery over a multi-person team and a complex domain — explicitly not sole authorship of the code.
+*My contribution here was leadership and delivery across a multi-person team and a complex domain.*

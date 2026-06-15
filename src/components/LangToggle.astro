@@ -9,17 +9,17 @@ const otherLocale: Locale = locale === "en" ? "es" : "en";
 ---
 
 <div
-  class="inline-flex items-center rounded-full border border-surface-border bg-surface/60 p-0.5 text-xs font-semibold"
+  class="inline-flex items-center gap-0.5 rounded-sm p-0.5 font-mono text-xs font-semibold"
   role="group"
   aria-label={t.langToggle.ariaLabel}
 >
-  <span class="px-2.5 py-1 rounded-full bg-surface-light text-text-primary">
+  <span class="rounded-xs bg-[var(--accent)] px-2.5 py-1 font-bold text-bg-0" aria-current="true">
     {locale === "en" ? t.langToggle.en : t.langToggle.es}
   </span>
   <a
     href={counterpartHref}
     hreflang={otherLocale}
-    class="px-2.5 py-1 rounded-full text-text-muted hover:text-text-primary transition-colors"
+    class="rounded-xs px-2.5 py-1 text-tx-2 hover:bg-bg-3 hover:text-tx-0 transition-colors"
   >
     {locale === "en" ? t.langToggle.es : t.langToggle.en}
   </a>

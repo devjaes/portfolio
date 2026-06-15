@@ -13,7 +13,10 @@ tags:
   - AWS S3
 ---
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/BqeJK45yrGA?si=L1_15hNxnDjnX8TO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<a class="video-thumb" href="https://www.youtube.com/watch?v=BqeJK45yrGA" target="_blank" rel="noopener noreferrer">
+  <img src="/assets/pos-system-video.webp" alt="Ver la demo del POS con cumplimiento SRI en YouTube" loading="lazy" width="960" height="540" />
+  <span class="video-thumb-cta">▶ Ver demo en YouTube</span>
+</a>
 
 ## Descripción del proyecto
 Un sistema POS completo para pequeños comercios ecuatorianos que operaban con hojas de cálculo, recibos en papel y declaraciones tributarias manuales a fin de mes. El sistema unifica inventario, ventas y generación de facturas XML validadas por SRI en un único flujo transaccional, con almacenamiento auditable en PostgreSQL y archivado de documentos en AWS S3.

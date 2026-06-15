@@ -1,0 +1,85 @@
+---
+import { Icon } from "astro-icon/components";
+import { siCursor, siWindsurf } from "simple-icons";
+import { getTranslations, type Locale } from "../i18n";
+interface Props { locale?: Locale; }
+const { locale = "en" } = Astro.props;
+const t = getTranslations(locale);
+
+// simple-icons brand marks (monochrome) for tools with no iconify logo.
+// Black/near-black brand hexes are overridden to a light tone for dark bg.
+const SI: Record<string, { path: string; color: string }> = {
+  Cursor: { path: siCursor.path, color: "#cfd6e0" },
+  Windsurf: { path: siWindsurf.path, color: "#58b3a0" },
+};
+
+// Verified against installed @iconify-json/skill-icons + logos. Tools without a
+// standard logo (REST APIs, BullMQ, Zustand, TanStack*, AI tooling) fall back to a colored dot.
+const ICONS: Record<string, string> = {
+  "Ruby on Rails": "skill-icons:rails",
+  "Node.js": "skill-icons:nodejs-dark",
+  NestJS: "skill-icons:nestjs-dark",
+  Express: "skill-icons:expressjs-dark",
+  Golang: "skill-icons:golang",
+  PostgreSQL: "skill-icons:postgresql-dark",
+  MongoDB: "skill-icons:mongodb",
+  "AWS Lambda": "skill-icons:aws-dark",
+  S3: "skill-icons:aws-dark",
+  DynamoDB: "skill-icons:aws-dark",
+  "SQS / SNS": "skill-icons:aws-dark",
+  "Serverless Framework": "logos:serverless",
+  "React 18/19": "skill-icons:react-dark",
+  "Next.js": "skill-icons:nextjs-dark",
+  TypeScript: "skill-icons:typescript",
+  JavaScript: "skill-icons:javascript",
+  "TanStack Query": "logos:react-query-icon",
+  Zod: "logos:zod",
+  "Tailwind CSS": "skill-icons:tailwindcss-dark",
+  Vite: "skill-icons:vite-dark",
+  "Claude Code": "logos:claude-icon",
+  "GitHub Copilot": "logos:github-copilot",
+  Playwright: "logos:playwright",
+  Jest: "skill-icons:jest",
+  Docker: "skill-icons:docker",
+  Git: "skill-icons:git",
+  "GitHub Actions": "skill-icons:githubactions-dark",
+  "GitLab CI": "skill-icons:gitlab-dark",
+  "AWS EC2": "skill-icons:aws-dark",
+  "AWS ECS": "skill-icons:aws-dark",
+  "AWS ECR": "skill-icons:aws-dark",
+};
+---
+
+<section class="section" id="stack" style="padding-top:8px">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="left">
+        <span class="sec-idx">02 /</span>
+        <h2 class="sec-title">{t.techStack.title}</h2>
+      </div>
+      <span class="sec-sub">{t.techStack.subtitle}</span>
+    </div>
+    <div class="stack reveal">
+      {t.skills.categories.map((cat) => (
+        <div class="stack-col">
+          <div class="ch">
+            <h3>{cat.title}</h3>
+            {cat.highlight && <span class="d">{t.skills.dailyLabel}</span>}
+          </div>
+          <div class="stack-list">
+            {cat.skills.map((s) => (
+              <span class="stack-item">
+                {ICONS[s.name]
+                  ? <Icon name={ICONS[s.name]} class="si-icon" />
+                  : SI[s.name]
+                  ? <svg class="si-icon" viewBox="0 0 24 24" fill={SI[s.name].color} aria-hidden="true"><path d={SI[s.name].path} /></svg>
+                  : <span class="sd" style={`background:${s.color ?? "var(--tx-2)"}`}></span>}
+                {s.name}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

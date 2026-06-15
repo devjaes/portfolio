@@ -27,5 +27,4 @@ Securis fue un capstone enfocado en seguridad: un sistema de gestión documental
 ## Mi rol
 Fui el **arquitecto principal y propietario inicial**: setup del proyecto, la estructura de módulos NestJS, la configuración de Dynamic Data Masking, el interceptor de logging y la codificación Huffman. Dos compañeros contribuyeron el flujo de auth y el módulo de documentos.
 
-## Notas honestas
-Lo destacable es el Dynamic Data Masking a nivel de base de datos junto con el interceptor con redacción — protección de datos real y consciente del rol, en la capa que más importa.
+*Lo destacable es el Dynamic Data Masking a nivel de base de datos junto con el interceptor con redacción — protección de datos real y consciente del rol, en la capa que más importa.*

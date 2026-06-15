@@ -23,9 +23,4 @@ A two-stage architecture: **YOLOv11m** detects nine object classes (rider, helme
 ## Status (paused)
 The core architecture and training pipeline are in place (Colab notebook, YAML configs, modular training and inference). The project was paused when the downstream system it was meant to feed was cancelled.
 
-## Honest limitations
-- **No validated metrics.** The README states target mAP / F1 figures, but they were not validated on this data.
-- **Small dataset** — roughly 222 detection images and 240 classification images, with augmentation.
-- **Prototype, notebook-driven** — no CI/CD, no real-world inference logs, trained weights not committed.
-
-The value is breadth: a working computer-vision pipeline (detection + multi-label classification) alongside my backend and LLM work — not a finished product.
+*Scope: a notebook-driven prototype on a small dataset — its value is breadth, a working detection + multi-label classification pipeline alongside my backend and LLM work.*

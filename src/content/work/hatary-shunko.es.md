@@ -26,11 +26,4 @@ El audio se graba en el cliente Next.js y se envía a un backend Hono sobre Bun.
 ## Mi rol
 Fui el contribuidor dominante — alrededor del **73% de los commits de backend y 68% de frontend**. Construí el módulo de voz (puertos/adaptadores, el orquestador multi-agente, los adaptadores de Whisper y GPT, la capa de validación) y el hook de captura de audio y la UI de voz del frontend.
 
-## Limitaciones honestas
-- **Solo voz a texto** — no hay síntesis de voz; las respuestas son texto.
-- **Prompts hardcodeados** y un conjunto fijo de tres intenciones.
-- **Solo español**, sin soporte multilingüe.
-- El backend tiene cobertura de pruebas decente; el **frontend no tiene**.
-- Sin observabilidad alrededor de las llamadas de IA.
-
-Es una pieza honesta de integración de IA aplicada en contexto fintech — funcional, no un producto pulido.
+*Alcance: un prototipo enfocado de hackathon — español, ruteo de voz a intención sobre tres flujos, con backend probado — construido como integración de IA aplicada en un contexto fintech.*

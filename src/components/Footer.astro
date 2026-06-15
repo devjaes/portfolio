@@ -1,59 +1,24 @@
 ---
 import { getTranslations, type Locale } from "../i18n";
-import BrandIcon from "./BrandIcon.astro";
 import { socialLinks } from "../config/social";
 
 interface Props { locale?: Locale; }
 const { locale = "en" } = Astro.props;
 const t = getTranslations(locale);
-
-const currentYear = new Date().getFullYear();
+const year = 2026;
+const email = "hello@devjaes.dev";
+const homePath = locale === "es" ? "/es/" : "/";
 ---
 
-<footer class="border-t border-surface-border bg-surface/30">
-  <div class="container-custom py-12">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-      <!-- Copyright -->
-      <div
-        class="flex flex-col sm:flex-row items-center gap-2 text-center sm:text-left"
-      >
-        <p class="text-text-muted text-sm">
-          {t.footer.copyright(currentYear)}
-        </p>
-        <span class="hidden sm:inline text-surface-border">•</span>
-        <p class="text-text-muted text-sm">
-          {t.footer.builtWith} <a
-            href="https://astro.build/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-text-secondary hover:text-accent-cyan transition-colors"
-            >Astro</a
-          >, <a
-            href="https://tailwindcss.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-text-secondary hover:text-accent-cyan transition-colors"
-            >Tailwind</a
-          >
-        </p>
-      </div>
-
-      <!-- Social Links -->
-      <div class="flex items-center gap-4">
-        {
-          socialLinks.map(({ label, href, icon }) => (
-            <a
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="p-2 text-text-muted hover:text-text-primary transition-colors"
-              aria-label={label}
-            >
-              <BrandIcon name={icon} class="w-5 h-5" />
-            </a>
-          ))
-        }
-      </div>
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <span>{t.footer.copyright(year)} · {t.footer.builtWith} Astro + Tailwind</span>
+    <div class="links">
+      {socialLinks.map((s) => (
+        <a href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</a>
+      ))}
+      <a href={`mailto:${email}`}>Email</a>
+      <a href={`${homePath}#top`}>Top ↑</a>
     </div>
   </div>
 </footer>

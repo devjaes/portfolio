@@ -1,0 +1,139 @@
+---
+import { getTranslations, type Locale } from "../i18n";
+import { socialLinks } from "../config/social";
+interface Props { locale?: Locale; }
+const { locale = "en" } = Astro.props;
+const t = getTranslations(locale);
+const cp = t.commandPalette;
+const github = socialLinks.find((s) => s.icon === "github")?.href ?? "https://github.com/devjaes";
+const linkedin = socialLinks.find((s) => s.icon === "linkedin")?.href ?? "https://linkedin.com/in/jair-mera-dev";
+const homeHash = locale === "es" ? "/es/" : "/";
+---
+
+<div id="cmdk" class="cmdk" hidden>
+  <div class="cmdk-backdrop" data-close></div>
+  <div class="cmdk-panel" role="dialog" aria-modal="true" aria-label="Command palette">
+    <div class="cmdk-input">
+      <span class="cmdk-prompt">$</span>
+      <input id="cmdk-q" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder={cp.placeholder} aria-label="Command" />
+    </div>
+    <div class="cmdk-list" id="cmdk-list" role="listbox" aria-label="Commands"></div>
+    <div class="cmdk-err" id="cmdk-err" hidden></div>
+    <div class="cmdk-foot">
+      <span><b>↑↓</b> {cp.navHint}</span>
+      <span><b>↵</b> {cp.runHint}</span>
+      <span><b>esc</b> {cp.escHint}</span>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ github, linkedin, homeHash, emptyLabel: cp.emptyLabel, descriptions: cp.descriptions }}>
+  const desc = (c) => descriptions[c] || "";
+  const motionOK = () => !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const scrollToSel = (sel) => {
+    const el = document.querySelector(sel);
+    if (!el) { window.location.href = homeHash + sel; return; }
+    const y = el.getBoundingClientRect().top + window.scrollY - 64;
+    window.scrollTo({ top: y, behavior: motionOK() ? "smooth" : "auto" });
+  };
+  const flash = (el, cls) => {
+    if (!el) return;
+    el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls);
+    setTimeout(() => el.classList.remove(cls), 1500);
+  };
+  const openExt = (url) => window.open(url, "_blank", "noopener,noreferrer");
+  const knob = (fn, arg) => (window.portfolioKnobs && window.portfolioKnobs[fn]) && window.portfolioKnobs[fn](arg);
+
+  const CMDS = [
+    { c: "whoami", d: "flash the hero ID card", h: "id", run: () => { closeCmdk(); window.scrollTo({ top: 0, behavior: motionOK() ? "smooth" : "auto" }); flash(document.querySelector(".idcard"), "flash"); } },
+    { c: "ls projects", d: "jump to Selected Work", h: "nav", run: () => { closeCmdk(); scrollToSel("#work"); } },
+    { c: "ls building", d: "jump to Tickbase", h: "nav", run: () => { closeCmdk(); scrollToSel("#building"); } },
+    { c: "cat tickbase", d: "open Tickbase architecture", h: "nav", run: () => { closeCmdk(); scrollToSel("#building"); flash(document.querySelector(".building .arch"), "flash"); } },
+    { c: "cat experience", d: "jump to Experience", h: "nav", run: () => { closeCmdk(); scrollToSel("#experience"); } },
+    { c: "contact", d: "jump to contact", h: "nav", run: () => { closeCmdk(); scrollToSel("#contact"); } },
+    { c: "github", d: "open GitHub ↗", h: "link", run: () => { closeCmdk(); openExt(github); } },
+    { c: "linkedin", d: "open LinkedIn ↗", h: "link", run: () => { closeCmdk(); openExt(linkedin); } },
+    { c: "theme green", d: "green accent", h: "theme", run: () => { knob("applyAccent", "green"); closeCmdk(); } },
+    { c: "theme cyan", d: "cyan accent", h: "theme", run: () => { knob("applyAccent", "cyan"); closeCmdk(); } },
+    { c: "theme amber", d: "amber accent", h: "theme", run: () => { knob("applyAccent", "amber"); closeCmdk(); } },
+    { c: "density comfortable", d: "comfortable spacing", h: "view", run: () => { knob("applyDensity", "comfortable"); closeCmdk(); } },
+    { c: "density compact", d: "compact spacing", h: "view", run: () => { knob("applyDensity", "compact"); closeCmdk(); } },
+    { c: "grid off", d: "no background grid", h: "view", run: () => { knob("applyGrid", "0"); closeCmdk(); } },
+    { c: "grid subtle", d: "subtle background grid", h: "view", run: () => { knob("applyGrid", "0.5"); closeCmdk(); } },
+    { c: "grid strong", d: "strong background grid", h: "view", run: () => { knob("applyGrid", "1"); closeCmdk(); } },
+    { c: "help", d: "list every command", h: "sys", run: () => { const q = document.getElementById("cmdk-q"); q.value = ""; cmdkFilter(""); } },
+    { c: "clear", d: "close palette", h: "sys", run: () => closeCmdk() },
+  ];
+
+  let cmdkActive = 0, cmdkMatches = [];
+  const fuzzy = (q, str) => {
+    q = q.toLowerCase().replace(/\s+/g, " ").trim();
+    str = str.toLowerCase();
+    if (!q) return true;
+    let i = 0;
+    for (const ch of str) { if (ch === q[i]) i++; if (i === q.length) return true; }
+    return false;
+  };
+  function cmdkFilter(q) {
+    const list = document.getElementById("cmdk-list");
+    document.getElementById("cmdk-err").hidden = true;
+    cmdkMatches = CMDS.filter((cmd) => fuzzy(q, cmd.c + " " + desc(cmd.c)));
+    cmdkActive = 0;
+    list.innerHTML = cmdkMatches.map((cmd, i) =>
+      `<div class="cmdk-row${i === 0 ? " active" : ""}" role="option" data-i="${i}"><span class="cc">${cmd.c}</span><span class="cd">${desc(cmd.c)}</span><span class="ch">${cmd.h}</span></div>`
+    ).join("") || `<div class="cmdk-empty">${emptyLabel}</div>`;
+    list.querySelectorAll(".cmdk-row").forEach((row) => {
+      row.addEventListener("mousemove", () => setActive(+row.dataset.i));
+      row.addEventListener("click", () => { const m = cmdkMatches[+row.dataset.i]; if (m) m.run(); });
+    });
+  }
+  function setActive(i) {
+    cmdkActive = i;
+    const rows = document.querySelectorAll("#cmdk-list .cmdk-row");
+    rows.forEach((r, j) => r.classList.toggle("active", j === i));
+    const cur = rows[i];
+    if (cur) {
+      const list = document.getElementById("cmdk-list");
+      const top = cur.offsetTop, bot = top + cur.offsetHeight;
+      if (top < list.scrollTop) list.scrollTop = top;
+      else if (bot > list.scrollTop + list.clientHeight) list.scrollTop = bot - list.clientHeight;
+    }
+  }
+  function openCmdk() {
+    const m = document.getElementById("cmdk");
+    if (!m.hidden) return;
+    m.hidden = false;
+    document.body.style.overflow = "hidden";
+    const q = document.getElementById("cmdk-q");
+    q.value = ""; cmdkFilter("");
+    requestAnimationFrame(() => q.focus());
+  }
+  function closeCmdk() {
+    const m = document.getElementById("cmdk");
+    if (m.hidden) return;
+    m.hidden = true;
+    document.body.style.overflow = "";
+  }
+  function runCmdkEnter() {
+    const q = document.getElementById("cmdk-q");
+    if (cmdkMatches.length) { cmdkMatches[cmdkActive].run(); return; }
+    const err = document.getElementById("cmdk-err");
+    err.textContent = `zsh: command not found: ${q.value.trim()}`;
+    err.hidden = false;
+  }
+
+  const m = document.getElementById("cmdk");
+  const q = document.getElementById("cmdk-q");
+  document.getElementById("cmdk-open")?.addEventListener("click", openCmdk);
+  m.querySelectorAll("[data-close]").forEach((b) => b.addEventListener("click", closeCmdk));
+  window.addEventListener("keydown", (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); m.hidden ? openCmdk() : closeCmdk(); return; }
+    if (m.hidden) return;
+    if (e.key === "Escape") { e.preventDefault(); closeCmdk(); }
+    else if (e.key === "ArrowDown") { e.preventDefault(); if (cmdkMatches.length) setActive((cmdkActive + 1) % cmdkMatches.length); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); if (cmdkMatches.length) setActive((cmdkActive - 1 + cmdkMatches.length) % cmdkMatches.length); }
+    else if (e.key === "Enter") { e.preventDefault(); runCmdkEnter(); }
+    else if (e.key === "Tab") { e.preventDefault(); q.focus(); }
+  });
+  q.addEventListener("input", () => { document.getElementById("cmdk-err").hidden = true; cmdkFilter(q.value); });
+</script>

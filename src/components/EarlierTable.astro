@@ -1,0 +1,49 @@
+---
+import { getTranslations, type Locale } from "../i18n";
+interface Props { locale?: Locale; }
+const { locale = "en" } = Astro.props;
+const t = getTranslations(locale);
+const cols = t.work.earlierColumns;
+const base = locale === "es" ? "/es" : "";
+---
+
+<section class="section" style="padding-top:8px">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="left">
+        <span class="sec-idx">06 /</span>
+        <h2 class="sec-title">{t.work.earlierTitle}</h2>
+      </div>
+      <span class="sec-sub">{t.work.earlierSubtitle}</span>
+    </div>
+    <div class="earlier-wrap reveal">
+      <table class="earlier-table">
+        <thead>
+          <tr>
+            <th>{cols.sym}</th>
+            <th>{cols.project}</th>
+            <th>{cols.what}</th>
+            <th>{cols.signal}</th>
+            <th>{cols.stack}</th>
+            <th style="text-align:right">{cols.year}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {t.work.earlier.map((p) => (
+            <tr>
+              <td class="sym">{p.symbol}</td>
+              <td class="name">
+                {p.slug ? <a href={`${base}/work/${p.slug}/`}>{p.title}</a> : p.title}
+                {p.offline && <span class="offline"> — SITE DOWN</span>}
+              </td>
+              <td class="what">{p.description}</td>
+              <td class="metric">{p.highlight}</td>
+              <td class="stack">{p.tech.join(" · ")}</td>
+              <td class="year">{p.year}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
