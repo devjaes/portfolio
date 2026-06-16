@@ -3,9 +3,9 @@ import type { Translations } from "./types";
 export const en: Translations = {
   meta: {
     siteTitle:
-      "Jair Mera | Full-Stack Engineer · Ruby on Rails · TypeScript / NestJS / Next.js",
+      "Jair Mera | Full-Stack Engineer · Ruby · TypeScript · Go · AWS Certified",
     siteDescription:
-      "Portfolio of Jair Mera — Full-Stack Engineer specializing in Ruby on Rails and TypeScript (NestJS / Next.js), with AWS Serverless experience. AWS Certified Solutions Architect — Associate. Building scalable SaaS and APIs for U.S.-market remote teams.",
+      "Backend-leaning Full-Stack Engineer. Ruby · TypeScript · Go on AWS (Certified Solutions Architect — Associate). Building production systems at scale — shipping TAPinto.net (~2M visits/mo) remote from Ecuador.",
     aboutTitle:
       "About | Jair Mera — Full-Stack Engineer (Ruby on Rails & TypeScript)",
     aboutDescription:
@@ -26,6 +26,7 @@ export const en: Translations = {
     contact: "Contact",
     statusOpen: "OPEN TO WORK",
     commandLabel: "Command palette (⌘K)",
+    scrollTop: "Scroll to top",
   },
   hero: {
     roleBadge:

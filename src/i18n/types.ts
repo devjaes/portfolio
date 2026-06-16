@@ -213,6 +213,7 @@ export interface Translations {
     contact: string;
     statusOpen: string;
     commandLabel: string;
+    scrollTop: string;
   };
   hero: {
     roleBadge: string;
