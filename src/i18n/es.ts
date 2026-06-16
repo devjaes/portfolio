@@ -552,7 +552,7 @@ export const es: Translations = {
     paragraphs: [
       "Soy un ingeniero full-stack de **Ambato, Ecuador**, que trabaja backend-first en Ruby, TypeScript y Go. Las partes del trabajo que más disfruto son las que nadie captura en pantalla — **esquemas, colas y migraciones** — las decisiones que determinan si un sistema se mantiene tranquilo bajo carga.",
       "La mayor parte de mi trabajo ha sido ingeniería de producto de extremo a extremo: liderar un equipo Scrum en **Gendocs V3**, enviar features en **TAPinto.net** con un equipo de EE. UU. en inglés, y arquitectar la migración de dos semanas del **ERP de exportación Lideser**. Soy **AWS Certified Solutions Architect**, y cada vez más orientado a **fintech** — Tickbase es hacia donde va eso.",
-      "Estoy terminando mi carrera de Ingeniería de Software en la Universidad Técnica de Ambato y estoy **abierto a roles remotos** con equipos de producto de EE. UU. / U. E.",
+      "Estudié Ingeniería de Software en la Universidad Técnica de Ambato y estoy **abierto a roles remotos** con equipos de producto de EE. UU. / U. E.",
     ],
     honorsTitle: "Premios y reconocimientos",
     honorsSub: "Resultados competitivos — algoritmos e IA aplicada.",
@@ -581,9 +581,7 @@ export const es: Translations = {
     educationLabel: "Educación",
     eduDegree: "Ingeniería de Software",
     eduOrg: "Universidad Técnica de Ambato",
-    eduYears: "2021 — Dic 2026 (estimado)",
-    eduProgressPct: "90%",
-    eduProgressLabel: "≈ 90% COMPLETO · GRADUACIÓN DIC 2026",
+    eduYears: "2021 — 2026",
     languagesLabel: "Idiomas",
     languages: [
       { name: "Español", level: "NATIVO", pct: "100%" },
@@ -752,7 +750,7 @@ export const es: Translations = {
     educationTitle: "Educación",
     universityName: "Universidad Técnica de Ambato",
     universityDegree:
-      "Ingeniería de Software (2021 - Fecha estimada de graduación: Diciembre 2026)",
+      "Ingeniería de Software (2021 — 2026)",
     highSchoolName: "Colegio Bolívar",
     highSchoolDegree: "Bachillerato en Ciencias",
     honorsTitle: "Premios y reconocimientos",
