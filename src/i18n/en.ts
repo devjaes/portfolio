@@ -129,7 +129,7 @@ export const en: Translations = {
       {
         title: "Full Stack Developer",
         company: "Ambivalence Clothing",
-        date: "Mar 2023 - May 2023",
+        date: "Mar 2023 - Jun 2023",
         badges: ["Next.js 14", "TypeScript"],
         points: [
           "Designed and developed a full e-commerce platform using Next.js 14 with TypeScript, implementing product catalog, cart, and checkout flows.",
@@ -138,7 +138,7 @@ export const en: Translations = {
       {
         title: "Freelance Full-Stack Developer",
         company: "Freelance",
-        date: "Oct 2022 - Jun 2023",
+        date: "Oct 2022 - May 2023",
         badges: ["React", "Spring Boot", "PostgreSQL"],
         points: [
           "Built an inventory management system for a tools retailer with React + Spring Boot and PostgreSQL — stock control, product catalog, and transactional records.",
@@ -741,8 +741,7 @@ export const en: Translations = {
     backgroundTitle: "Background",
     educationTitle: "Education",
     universityName: "Technical University of Ambato",
-    universityDegree:
-      "Software Engineering (2021 — 2026)",
+    universityDegree: "Software Engineering (2021 — 2026)",
     highSchoolName: "Bolivar High School",
     highSchoolDegree: "Bachelor of Science",
     honorsTitle: "Honors & Awards",
