@@ -387,6 +387,7 @@ export const es: Translations = {
         ],
         image: "/assets/lideser.png",
         imageAlt: "ERP de exportación Lideser",
+        link: "https://lideser.com/web/",
       },
       {
         title: "Gendocs V3",
@@ -418,7 +419,7 @@ export const es: Translations = {
         symbol: "HTRY",
         status: "ship",
         slug: "hatary-shunko",
-        image: "/assets/stock-1.jpg",
+        image: "/assets/foppy.png",
         imageAlt: "Agente de voz financiero FoppyAI",
       },
       {
@@ -431,20 +432,20 @@ export const es: Translations = {
         symbol: "SCRS",
         status: "ship",
         slug: "securis",
-        image: "/assets/stock-2.jpg",
+        image: "/assets/securis.png",
         imageAlt: "Plataforma de documentos segura Securis",
       },
       {
         title: "Cementerios",
-        context: "PROJECT MANAGER · EQUIPO MULTIFUNCIONAL",
+        context: "TECH LEAD · EQUIPO MULTIFUNCIONAL",
         description:
-          "Sistema de gestión cementerial que modela el ciclo de vida de nichos — inventario, propiedad e herencia, pagos y procedimientos de inhumación. Entregado como Project Manager.",
+          "Sistema de gestión cementerial que modela el ciclo de vida de nichos — inventario, propiedad e herencia, pagos y procedimientos de inhumación. Entregado como Tech Lead.",
         tech: ["Next.js 15", "NestJS", "PostgreSQL", "AWS S3"],
-        highlight: "Lideré la entrega como PM",
+        highlight: "Lideré la entrega como Tech Lead",
         symbol: "CMTR",
         status: "ship",
         slug: "cementerios",
-        image: "/assets/stock-3.jpg",
+        image: "/assets/cementerios.png",
         imageAlt: "Sistema de gestión cementerial",
       },
       {
@@ -457,7 +458,7 @@ export const es: Translations = {
         symbol: "TITN",
         status: "paused",
         slug: "titan-training",
-        image: "/assets/stock-4.jpg",
+        image: "/assets/titan_training.jpeg",
         imageAlt: "Visión por computadora Titan Training",
       },
       {

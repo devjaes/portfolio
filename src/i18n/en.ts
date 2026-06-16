@@ -379,6 +379,7 @@ export const en: Translations = {
         ],
         image: "/assets/lideser.png",
         imageAlt: "Lideser Export ERP",
+        link: "https://lideser.com/web/",
       },
       {
         title: "Gendocs V3",
@@ -410,7 +411,7 @@ export const en: Translations = {
         symbol: "HTRY",
         status: "ship",
         slug: "hatary-shunko",
-        image: "/assets/stock-1.jpg",
+        image: "/assets/foppy.png",
         imageAlt: "FoppyAI voice finance agent",
       },
       {
@@ -423,20 +424,20 @@ export const en: Translations = {
         symbol: "SCRS",
         status: "ship",
         slug: "securis",
-        image: "/assets/stock-2.jpg",
+        image: "/assets/securis.png",
         imageAlt: "Securis secure document platform",
       },
       {
         title: "Cementerios",
-        context: "PROJECT MANAGER · CROSS-FUNCTIONAL TEAM",
+        context: "TECH LEAD · CROSS-FUNCTIONAL TEAM",
         description:
-          "Cemetery management system modeling niche (burial-plot) lifecycle — inventory, ownership and inheritance, payments, and burial procedures. Delivered as Project Manager.",
+          "Cemetery management system modeling niche (burial-plot) lifecycle — inventory, ownership and inheritance, payments, and burial procedures. Delivered as Tech Lead.",
         tech: ["Next.js 15", "NestJS", "PostgreSQL", "AWS S3"],
-        highlight: "Led delivery as PM",
+        highlight: "Led delivery as Tech Lead",
         symbol: "CMTR",
         status: "ship",
         slug: "cementerios",
-        image: "/assets/stock-3.jpg",
+        image: "/assets/cementerios.png",
         imageAlt: "Cementerios management system",
       },
       {
@@ -449,7 +450,7 @@ export const en: Translations = {
         symbol: "TITN",
         status: "paused",
         slug: "titan-training",
-        image: "/assets/stock-4.jpg",
+        image: "/assets/titan_training.jpeg",
         imageAlt: "Titan Training computer vision",
       },
       {

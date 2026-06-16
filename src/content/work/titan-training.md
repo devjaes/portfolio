@@ -1,7 +1,7 @@
 ---
 title: Titan Training — MTB Rider Computer Vision
 publishDate: 2026-01-06 00:00:00
-img: /assets/stock-4.jpg
+img: /assets/titan_training.jpeg
 isMain: false
 img_alt: Computer-vision pipeline for MTB rider detection
 description: |

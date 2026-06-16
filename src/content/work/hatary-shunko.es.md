@@ -1,7 +1,7 @@
 ---
 title: FoppyAI — Finanzas Personales por Voz
 publishDate: 2025-09-01 00:00:00
-img: /assets/stock-1.jpg
+img: /assets/foppy.png
 isMain: false
 img_alt: Agente de voz de finanzas personales FoppyAI
 description: |

@@ -1,7 +1,7 @@
 ---
 title: Titan Training — Visión por Computadora para Ciclistas MTB
 publishDate: 2026-01-06 00:00:00
-img: /assets/stock-4.jpg
+img: /assets/titan_training.jpeg
 isMain: false
 img_alt: Pipeline de visión por computadora para detección de ciclistas MTB
 description: |
