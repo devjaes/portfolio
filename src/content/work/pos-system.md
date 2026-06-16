@@ -13,7 +13,10 @@ tags:
   - AWS S3
 ---
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/BqeJK45yrGA?si=L1_15hNxnDjnX8TO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<a class="video-thumb" href="https://www.youtube.com/watch?v=BqeJK45yrGA" target="_blank" rel="noopener noreferrer">
+  <img src="/assets/pos-system-video.webp" alt="Watch the SRI-Compliant POS demo on YouTube" loading="lazy" width="960" height="540" />
+  <span class="video-thumb-cta">▶ Watch demo on YouTube</span>
+</a>
 
 ## Project Description
 A full Point-of-Sale system built for small Ecuadorian retailers who were stuck running their daily operations across spreadsheets, paper receipts, and end-of-month manual tax filings. The system unifies inventory, sales, and SRI-validated XML invoice generation into one transactional flow, with audit-safe storage in PostgreSQL and document archiving on AWS S3.

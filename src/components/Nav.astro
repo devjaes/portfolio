@@ -1,8 +1,6 @@
 ---
 import { getTranslations, type Locale } from "../i18n";
 import LangToggle from "./LangToggle.astro";
-import BrandIcon from "./BrandIcon.astro";
-import { socialLinks } from "../config/social";
 
 interface Props { locale?: Locale; }
 const { locale = "en" } = Astro.props;
@@ -10,184 +8,71 @@ const t = getTranslations(locale);
 
 const homePath = locale === "es" ? "/es/" : "/";
 const aboutPath = locale === "es" ? "/es/about/" : "/about/";
-const workPath = locale === "es" ? "/es/work/" : "/work/";
-const expHash = locale === "es" ? "/es/#experience" : "/#experience";
+const email = "hello@devjaes.dev";
 
-const textLinks: { label: string; href: string }[] = [
-  { label: t.nav.home, href: homePath },
-  { label: t.nav.experience, href: expHash },
-  { label: t.nav.projects, href: workPath },
+const links = [
+  { label: t.nav.building, href: `${homePath}#building` },
+  { label: t.nav.projects, href: `${homePath}#work` },
+  { label: t.nav.experience, href: `${homePath}#experience` },
   { label: t.nav.about, href: aboutPath },
+  { label: t.nav.contact, href: `${homePath}#contact` },
 ];
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 glass">
-  <nav class="container-custom flex items-center justify-between h-16">
-    <!-- Logo -->
-    <a
-      href={homePath}
-      class="flex items-center gap-2 text-text-primary font-semibold text-lg hover:text-accent-cyan transition-colors"
-    >
-      <svg
-        class="w-6 h-6 text-accent-cyan"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="2"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-        ></path>
-      </svg>
-      <span class="hidden sm:inline">Jair Mera</span>
-    </a>
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href={homePath} aria-label="Jair Mera — home"><span class="sq"></span> JAIR&nbsp;MERA</a>
 
-    <!-- Desktop Navigation -->
-    <ul class="hidden md:flex items-center gap-1">
-      {
-        textLinks.map(({ label, href }) => {
-          // Handle hash links (like /#experience)
-          const isHashLink = href.includes('#');
-          const basePath = isHashLink ? href.split('#')[0] || '/' : href;
-          const isActive = isHashLink
-            ? Astro.url.pathname === basePath
-            : Astro.url.pathname === href || (href !== "/" && href !== "/es/" && Astro.url.pathname.startsWith(href));
-
-          return (
-            <li>
-              <a
-                href={href}
-                class:list={[
-                  "px-4 py-2 rounded-lg text-sm font-medium transition-colors",
-                  isActive && !isHashLink
-                    ? "text-text-primary bg-surface-light"
-                    : "text-text-muted hover:text-text-primary hover:bg-surface-light/50",
-                ]}
-              >
-                {label}
-              </a>
-            </li>
-          );
-        })
-      }
-    </ul>
-
-    <!-- Social Icons (Desktop) -->
-    <div class="hidden md:flex items-center gap-3">
-      <LangToggle locale={locale} />
-      {
-        socialLinks.map(({ label, href, icon }) => (
-          <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="p-2 text-text-muted hover:text-text-primary transition-colors"
-            aria-label={label}
-          >
-            <BrandIcon name={icon} class="w-5 h-5" />
-          </a>
-        ))
-      }
+    <div class="nav-links">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
     </div>
 
-    <!-- Mobile Menu Button -->
-    <button
-      id="mobile-menu-btn"
-      class="md:hidden p-2 text-text-muted hover:text-text-primary transition-colors"
-      aria-label={t.nav.menuLabel}
-      aria-expanded="false"
-    >
-      <svg
-        class="w-6 h-6 menu-icon"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="2"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M4 6h16M4 12h16M4 18h16"></path>
-      </svg>
-      <svg
-        class="w-6 h-6 close-icon hidden"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="2"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M6 18L18 6M6 6l12 12"></path>
-      </svg>
-    </button>
-  </nav>
+    <div class="nav-right">
+      <LangToggle locale={locale} />
+      <span class="nav-status"><span class="dot dot-up pulse"></span> {t.nav.statusOpen}</span>
+      <button class="nav-kbd hidden md:inline-flex" id="cmdk-open" aria-label={t.commandPalette.openLabel} title={t.nav.commandLabel}>⌘K</button>
+      <span class="nav-clock hidden md:inline" id="clock">—</span>
+      <a class="nav-cta hidden md:inline-flex" href={`mailto:${email}`}>{email}</a>
 
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="md:hidden hidden border-t border-surface-border">
-    <div class="container-custom py-4 space-y-1">
-      {
-        textLinks.map(({ label, href }) => {
-          const isHashLink = href.includes('#');
-          const basePath = isHashLink ? href.split('#')[0] || '/' : href;
-          const isActive = isHashLink
-            ? Astro.url.pathname === basePath
-            : Astro.url.pathname === href || (href !== "/" && href !== "/es/" && Astro.url.pathname.startsWith(href));
-
-          return (
-            <a
-              href={href}
-              class:list={[
-                "block px-4 py-3 rounded-lg text-base font-medium transition-colors",
-                isActive && !isHashLink
-                  ? "text-text-primary bg-surface-light"
-                  : "text-text-muted hover:text-text-primary hover:bg-surface-light/50",
-              ]}
-            >
-              {label}
-            </a>
-          );
-        })
-      }
-      <div class="flex items-center gap-4 pt-4 px-4 border-t border-surface-border mt-4">
-        <LangToggle locale={locale} />
-        <div class="ml-auto flex gap-3">
-          {
-            socialLinks.map(({ label, href, icon }) => (
-              <a
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="p-2 text-text-muted hover:text-text-primary transition-colors"
-                aria-label={label}
-              >
-                <BrandIcon name={icon} class="w-5 h-5" />
-              </a>
-            ))
-          }
-        </div>
-      </div>
+      <button id="mobile-menu-btn" class="md:hidden p-2 text-tx-2 hover:text-tx-0 transition-colors" aria-label={t.nav.menuLabel} aria-expanded="false">
+        <svg class="w-6 h-6 menu-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        <svg class="w-6 h-6 close-icon hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+      </button>
     </div>
   </div>
-</header>
 
-<!-- Spacer for fixed header -->
-<div class="h-16"></div>
+  <div id="mobile-menu" class="md:hidden hidden border-t border-line">
+    <div class="wrap py-4 space-y-1">
+      {links.map((l) => (
+        <a href={l.href} class="block px-3 py-3 rounded-xs font-mono text-sm text-tx-1 hover:text-tx-0 hover:bg-bg-2 transition-colors">{l.label}</a>
+      ))}
+      <a href={`mailto:${email}`} class="block px-3 py-3 rounded-xs font-mono text-sm text-tx-1 hover:text-tx-0 hover:bg-bg-2 transition-colors">{email}</a>
+    </div>
+  </div>
+</nav>
 
 <script>
-  const menuBtn = document.getElementById("mobile-menu-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const menuIcon = menuBtn?.querySelector(".menu-icon");
-  const closeIcon = menuBtn?.querySelector(".close-icon");
-
-  menuBtn?.addEventListener("click", () => {
-    const isExpanded = menuBtn.getAttribute("aria-expanded") === "true";
-    menuBtn.setAttribute("aria-expanded", (!isExpanded).toString());
-    mobileMenu?.classList.toggle("hidden");
-    menuIcon?.classList.toggle("hidden");
-    closeIcon?.classList.toggle("hidden");
+  const btn = document.getElementById("mobile-menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  btn?.addEventListener("click", () => {
+    const open = btn.getAttribute("aria-expanded") === "true";
+    btn.setAttribute("aria-expanded", (!open).toString());
+    menu?.classList.toggle("hidden");
+    btn.querySelector(".menu-icon")?.classList.toggle("hidden");
+    btn.querySelector(".close-icon")?.classList.toggle("hidden");
   });
+
+  // EST / UTC−5 clock
+  const node = document.getElementById("clock");
+  if (node) {
+    const tick = () => {
+      const now = new Date();
+      const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+      const est = new Date(utc - 5 * 3600000);
+      const p = (n: number) => String(n).padStart(2, "0");
+      node.textContent = `${p(est.getHours())}:${p(est.getMinutes())}:${p(est.getSeconds())} EST`;
+    };
+    tick();
+    setInterval(tick, 1000);
+  }
 </script>

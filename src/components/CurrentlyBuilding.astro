@@ -1,0 +1,63 @@
+---
+import { getTranslations, type Locale } from "../i18n";
+interface Props { locale?: Locale; }
+const { locale = "en" } = Astro.props;
+const t = getTranslations(locale);
+const tb = t.tickbase;
+const proj = t.work.building[0];
+---
+
+<section class="section" id="building" style="padding-top:8px">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="left">
+        <span class="sec-idx">03 /</span>
+        <h2 class="sec-title">{t.work.currentlyBuildingTitle}</h2>
+      </div>
+      <span class="sec-sub">{t.work.currentlyBuildingSubtitle}</span>
+    </div>
+
+    <div class="panel building reveal">
+      <div class="building-top">
+        <div class="building-id">
+          <span class="building-status"><span class="dot dot-amber pulse"></span> {tb.statusLabel}</span>
+          <h3>{proj.title}<span class="sub">{proj.context}</span></h3>
+          <p class="building-desc">{proj.description}</p>
+        </div>
+        <div class="building-side">
+          <div class="building-metrics">
+            {tb.metrics.map((m) => (
+              <div class="m"><div class="n">{m.value}</div><div class="l">{m.label}</div></div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="arch">
+        <div class="arch-label">
+          <span class="label">{tb.archTitle}</span>
+          <span class="label" style="color:var(--tx-3)">{tb.dataFlowLabel}</span>
+        </div>
+        <div class="arch-flow">
+          {tb.columns.map((col) => (
+            <div class="arch-col">
+              <span class="cap">{col.cap}</span>
+              {col.nodes.map((node) => (
+                <div class:list={["node", node.accent && "accent"]}>
+                  <div class="nh"><span class="nt">{node.name}</span><span class="badge">{node.badge}</span></div>
+                  <div class="nd">{node.desc}</div>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="building-foot">
+        <div class="building-tags">
+          {proj.tech.map((tech) => <span class="chip">{tech}</span>)}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

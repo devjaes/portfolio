@@ -1,44 +1,30 @@
 ---
-// Layout
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-// Components
+import Ticker from "../components/Ticker.astro";
 import Hero from "../components/Hero.astro";
 import EngineeringPhilosophy from "../components/EngineeringPhilosophy.astro";
-import TechOrbit from "../components/TechOrbit.astro";
 import Experience from "../components/Experience.astro";
-import Skills from "../components/Skills.astro";
-import Certifications from "../components/Certifications.astro";
-import FeaturedProjects from "../components/FeaturedProjects.astro";
-import ArchiveProjects from "../components/ArchiveProjects.astro";
+import CurrentlyBuilding from "../components/CurrentlyBuilding.astro";
+import FlagshipProjects from "../components/FlagshipProjects.astro";
+import MidProjects from "../components/MidProjects.astro";
+import EarlierTable from "../components/EarlierTable.astro";
+import StackMatrix from "../components/StackMatrix.astro";
+import Watching from "../components/Watching.astro";
 import ContactCTA from "../components/ContactCTA.astro";
+
+const locale = "en";
 ---
 
-<BaseLayout>
-  <!-- Hero Section -->
-  <Hero />
-
-  <!-- Engineering Philosophy -->
-  <EngineeringPhilosophy />
-
-  <!-- Tech Stack Orbital -->
-  <TechOrbit />
-
-  <!-- Experience Section -->
-  <Experience />
-
-  <!-- Skills Section -->
-  <Skills />
-
-  <!-- Certifications Section -->
-  <Certifications />
-
-  <!-- Featured Projects Section -->
-  <FeaturedProjects />
-
-  <!-- Archive Projects Section -->
-  <ArchiveProjects />
-
-  <!-- Contact CTA -->
-  <ContactCTA />
+<BaseLayout locale={locale}>
+  <Ticker locale={locale} />
+  <Hero locale={locale} />
+  <EngineeringPhilosophy locale={locale} />
+  <Experience locale={locale} />
+  <StackMatrix locale={locale} />
+  <CurrentlyBuilding locale={locale} />
+  <FlagshipProjects locale={locale} />
+  <MidProjects locale={locale} />
+  <EarlierTable locale={locale} />
+  <Watching locale={locale} />
+  <ContactCTA locale={locale} />
 </BaseLayout>

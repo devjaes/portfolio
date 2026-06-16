@@ -42,6 +42,144 @@ export interface FeaturedProject {
   image?: string;
 }
 
+export interface WorkStat {
+  value: string;
+  label: string;
+  green?: boolean;
+  diff?: boolean;
+}
+
+export type WorkStatus = "ship" | "build" | "paused" | "down";
+
+export interface WorkCard {
+  title: string;
+  context?: string;
+  description: string;
+  tech: string[];
+  highlight?: string;
+  stats?: WorkStat[];
+  link?: string;
+  slug?: string;
+  image?: string;
+  imageAlt?: string;
+  symbol?: string;
+  status?: WorkStatus;
+  viz?: "up" | "down";
+  vizLabel?: string;
+  offline?: boolean;
+  year?: string;
+}
+
+export interface ArchNode {
+  name: string;
+  badge: string;
+  desc: string;
+  accent?: boolean;
+}
+
+export interface ArchColumn {
+  cap: string;
+  nodes: ArchNode[];
+}
+
+export interface Tickbase {
+  statusLabel: string;
+  archTitle: string;
+  dataFlowLabel: string;
+  archLinkLabel: string;
+  metrics: { value: string; label: string }[];
+  columns: ArchColumn[];
+}
+
+export interface Watching {
+  title: string;
+  subtitle: string;
+  chartSymbol: string;
+  chartMeta: string;
+  chartPrice: string;
+  chartChange: string;
+  chartNote: string;
+  chartLive: string;
+  readingTitle: string;
+  reading: { title: string; tag: string }[];
+}
+
+export interface AboutAward {
+  place: string;
+  suffix: string;
+  tier: "gold" | "bronze";
+  title: string;
+  org: string;
+  desc: string;
+  when: string;
+}
+
+export interface AboutPage {
+  dashboardLabel: string;
+  crumbCurrent: string;
+  cardName: string;
+  cardRole: string;
+  cardStatus: string;
+  qstats: { label: string; value: string }[];
+  kicker: string;
+  headline: string;
+  paragraphs: string[];
+  honorsTitle: string;
+  honorsSub: string;
+  awards: AboutAward[];
+  backgroundTitle: string;
+  backgroundSub: string;
+  educationLabel: string;
+  eduDegree: string;
+  eduOrg: string;
+  eduYears: string;
+  eduProgressPct: string;
+  eduProgressLabel: string;
+  languagesLabel: string;
+  languages: { name: string; level: string; pct: string }[];
+  certLabel: string;
+  certTitle: string;
+  certStatus: string;
+  ctaKicker: string;
+  ctaTitle: string;
+  viewWorkLabel: string;
+}
+
+export interface HeroCard {
+  barSymbol: string;
+  barStatus: string;
+  photoTag: string;
+  metaLabel: string;
+  statusTitle: string;
+  statusLine1: string;
+  statusLine2: string;
+  stackLabel: string;
+  stackValue: string;
+  certLabel: string;
+  certValue: string;
+  zoneLabel: string;
+  zoneValue: string;
+}
+
+export interface Work {
+  flagshipTitle: string;
+  flagshipSubtitle: string;
+  moreTitle: string;
+  moreSubtitle: string;
+  earlierTitle: string;
+  earlierSubtitle: string;
+  viewProjectLabel: string;
+  currentlyBuildingTitle: string;
+  currentlyBuildingSubtitle: string;
+  inProgressLabel: string;
+  statusLabels: { ship: string; build: string; paused: string; down: string };
+  earlierColumns: { sym: string; project: string; what: string; signal: string; stack: string; year: string };
+  building: WorkCard[];
+  flagship: WorkCard[];
+  more: WorkCard[];
+  earlier: WorkCard[];
+}
+
 export interface Cert {
   title: string;
   issuer: string;
@@ -71,6 +209,10 @@ export interface Translations {
     projects: string;
     about: string;
     menuLabel: string;
+    building: string;
+    contact: string;
+    statusOpen: string;
+    commandLabel: string;
   };
   hero: {
     roleBadge: string;
@@ -87,6 +229,11 @@ export interface Translations {
     secondaryCta: string;
     socialProof: string;
     portraitAlt: string;
+    headline: string;
+    tagline: string;
+    subLead: string;
+    awsChip: string;
+    viewExperienceCta: string;
   };
   philosophy: {
     title: string;
@@ -125,6 +272,31 @@ export interface Translations {
     subtitle: string;
     confidentialLabel: string;
     projects: FeaturedProject[];
+  };
+  work: Work;
+  aboutPage: AboutPage;
+  heroCard: HeroCard;
+  tickbase: Tickbase;
+  watching: Watching;
+  tweaks: {
+    toggleLabel: string;
+    accentLabel: string;
+    gridLabel: string;
+    gridOff: string;
+    gridSubtle: string;
+    gridStrong: string;
+    densityLabel: string;
+    densityComfortable: string;
+    densityCompact: string;
+  };
+  commandPalette: {
+    placeholder: string;
+    openLabel: string;
+    navHint: string;
+    runHint: string;
+    escHint: string;
+    emptyLabel: string;
+    descriptions: Record<string, string>;
   };
   archive: {
     title: string;

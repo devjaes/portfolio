@@ -1,0 +1,54 @@
+---
+import { getTranslations, type Locale } from "../i18n";
+import type { WorkStatus } from "../i18n/types";
+interface Props { locale?: Locale; }
+const { locale = "en" } = Astro.props;
+const t = getTranslations(locale);
+
+const GLYPH: Record<WorkStatus, string> = { ship: "▲", build: "◉", paused: "■", down: "▼" };
+const CLS: Record<WorkStatus, string> = { ship: "up", build: "am", paused: "fl", down: "dn" };
+const base = locale === "es" ? "/es" : "";
+const realImg = (src?: string) => src && !src.includes("/stock-") ? src : null;
+---
+
+<section class="section" style="padding-top:8px">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="left">
+        <span class="sec-idx">05 /</span>
+        <h2 class="sec-title">{t.work.moreTitle}</h2>
+      </div>
+      <span class="sec-sub">{t.work.moreSubtitle}</span>
+    </div>
+
+    <div class="mids">
+      {t.work.more.map((p) => {
+        const status = (p.status ?? "ship") as WorkStatus;
+        const amber = status === "build" || status === "paused";
+        const img = realImg(p.image);
+        const href = p.slug ? `${base}/work/${p.slug}/` : null;
+        const Tag = href ? "a" : "article";
+        return (
+          <Tag class="mid reveal" href={href}>
+            {img && <div class="mid-thumb"><img src={img} alt={p.imageAlt ?? p.title} loading="lazy" /></div>}
+            <div class="mid-top">
+              <div class="mid-id">
+                {p.symbol && <span class="mid-sym">{p.symbol}</span>}
+                <h3>{p.title}</h3>
+              </div>
+              <span class:list={["status-pill", "sm", CLS[status]]}><span class="gly">{GLYPH[status]}</span>{t.work.statusLabels[status]}</span>
+            </div>
+            {p.context && <div class="mid-role">{p.context}</div>}
+            <p class="mid-desc">{p.description}</p>
+            {p.highlight && (
+              <div class:list={["mid-metric", amber && "am"]}>
+                <span class:list={["dot", amber ? "dot-amber" : "dot-up"]}></span>{p.highlight}
+              </div>
+            )}
+            <div class="mid-tags">{p.tech.map((tech) => <span class="mini-tag">{tech}</span>)}</div>
+          </Tag>
+        );
+      })}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,33 @@
+---
+import { getTranslations, type Locale } from "../i18n";
+import type { WorkCard, WorkStatus } from "../i18n/types";
+interface Props { locale?: Locale; }
+const { locale = "en" } = Astro.props;
+const t = getTranslations(locale);
+
+const GLYPH: Record<WorkStatus, string> = { ship: "▲", build: "◉", paused: "■", down: "▼" };
+const CLS: Record<WorkStatus, string> = { ship: "up", build: "am", paused: "fl", down: "dn" };
+
+const cards: WorkCard[] = [...t.work.building, ...t.work.flagship, ...t.work.more, ...t.work.earlier];
+const entries = cards
+  .filter((c) => c.symbol)
+  .map((c) => ({
+    sym: c.symbol!,
+    name: c.title,
+    metric: c.stats?.[0]?.value ?? c.highlight ?? t.work.statusLabels[c.status ?? "ship"],
+    status: (c.status ?? "ship") as WorkStatus,
+  }));
+const track = [...entries, ...entries];
+---
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="ticker-track">
+    {track.map((e) => (
+      <span class="tk">
+        <span class="tk-sym2">{e.sym}</span>
+        <span class="tk-nm">{e.name}</span>
+        <b class:list={["tkv", CLS[e.status]]}><span class="gly">{GLYPH[e.status]}</span>{e.metric}</b>
+      </span>
+    ))}
+  </div>
+</div>

@@ -1,0 +1,152 @@
+---
+import { getTranslations, type Locale } from "../i18n";
+import { getGoldSeries } from "../lib/gold";
+interface Props { locale?: Locale; }
+const { locale = "en" } = Astro.props;
+const t = getTranslations(locale);
+const w = t.watching;
+
+const gold = await getGoldSeries();
+
+const W = 600, H = 150, yTop = 22, yBot = 128;
+const fmt = (n: number) => n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const sign = (n: number) => (n >= 0 ? "+" : "");
+const up = gold ? gold.up : true;
+
+let line: string;
+let area: string;
+let endY: number;
+
+if (gold) {
+  const pts = gold.points;
+  const min = Math.min(...pts), max = Math.max(...pts);
+  const range = max - min || 1;
+  const x = (i: number) => (i / (pts.length - 1)) * W;
+  const y = (v: number) => yBot - ((v - min) / range) * (yBot - yTop);
+  line = "M" + pts.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" L");
+  area = `${line} L${W},${H} L0,${H} Z`;
+  endY = y(pts[pts.length - 1]);
+} else {
+  line = "M0,110 L40,104 L80,112 L120,96 L160,100 L200,84 L240,90 L280,70 L320,76 L360,58 L400,64 L440,46 L480,52 L520,38 L560,44 L600,30";
+  area = `${line} L600,150 L0,150 Z`;
+  endY = 30;
+}
+
+const priceStr = gold ? fmt(gold.last) : w.chartPrice;
+const changeStr = gold
+  ? `${up ? "▲" : "▼"} ${sign(gold.changePct)}${gold.changePct.toFixed(2)}%  ${sign(gold.changeAbs)}${fmt(gold.changeAbs)}`
+  : w.chartChange;
+const noteStr = gold ? `// ${w.chartSymbol} · ${gold.asOf}` : w.chartNote;
+
+const grad = up ? "oklch(0.74 0.115 158)" : "oklch(0.67 0.125 25)";
+const stroke = up ? "oklch(0.78 0.11 158)" : "oklch(0.72 0.12 25)";
+const dotColor = up ? "oklch(0.82 0.12 158)" : "oklch(0.80 0.13 25)";
+const chColor = up ? "oklch(0.80 0.11 158)" : "oklch(0.78 0.11 25)";
+---
+
+<section class="section" style="padding-top:8px">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="left">
+        <span class="sec-idx">07 /</span>
+        <h2 class="sec-title">{w.title}</h2>
+      </div>
+      <span class="sec-sub">{w.subtitle}</span>
+    </div>
+    <div class="watch-grid">
+      <div class="panel chart-panel reveal">
+        <div class="chart-head">
+          <div class="chart-sym">
+            <span class="dot dot-up pulse" style="width:5px;height:5px"></span>
+            <span class="s">{w.chartSymbol}</span>
+            <span class="x">{w.chartMeta}</span>
+          </div>
+          <div class="chart-price">
+            <div class="p" id="gold-price">{priceStr}</div>
+            <div class="ch" id="gold-change" style={`color:${chColor}`}>{changeStr}</div>
+          </div>
+        </div>
+        <div class="chart-body">
+          <svg class="chart-svg" viewBox="0 0 600 150" preserveAspectRatio="none" role="img" aria-label={`${w.chartSymbol} ${w.chartMeta}`}>
+            <defs>
+              <linearGradient id="watch-g" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color={grad} stop-opacity="0.28" />
+                <stop offset="100%" stop-color={grad} stop-opacity="0" />
+              </linearGradient>
+            </defs>
+            <line x1="0" y1="38" x2="600" y2="38" stroke="var(--line)" stroke-width="1" />
+            <line x1="0" y1="75" x2="600" y2="75" stroke="var(--line)" stroke-width="1" />
+            <line x1="0" y1="112" x2="600" y2="112" stroke="var(--line)" stroke-width="1" />
+            <path id="gold-area" d={area} fill="url(#watch-g)" />
+            <path id="gold-line" d={line} fill="none" stroke={stroke} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            <circle id="gold-dot" cx="600" cy={endY} r="3.2" fill={dotColor} />
+          </svg>
+        </div>
+        <div class="chart-note" id="gold-note">{noteStr}</div>
+      </div>
+      <div class="panel read-panel reveal">
+        <div class="rh">{w.readingTitle}</div>
+        {w.reading.map((r) => (
+          <div class="read-item"><span class="rt">{r.title}</span><span class="rd">{r.tag}</span></div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ SYM: w.chartSymbol, LIVE: w.chartLive }}>
+  const W = 600, H = 150, yTop = 22, yBot = 128;
+  const fmt = (n) => n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const sign = (n) => (n >= 0 ? "+" : "");
+  const isod = (d) => d.toISOString().slice(0, 10);
+
+  function paths(points) {
+    const min = Math.min(...points), max = Math.max(...points), range = (max - min) || 1;
+    const x = (i) => (i / (points.length - 1)) * W;
+    const y = (v) => yBot - ((v - min) / range) * (yBot - yTop);
+    const line = "M" + points.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" L");
+    return { line, area: `${line} L${W},${H} L0,${H} Z`, endY: y(points[points.length - 1]) };
+  }
+
+  async function refresh() {
+    try {
+      const end = new Date(), start = new Date(end.getTime() - 55 * 86400000);
+      const tsUrl = `https://api.fxratesapi.com/timeseries?base=XAU&currencies=USD&start_date=${isod(start)}&end_date=${isod(end)}`;
+      const [tsR, ltR] = await Promise.all([
+        fetch(tsUrl),
+        fetch("https://api.fxratesapi.com/latest?base=XAU&currencies=USD"),
+      ]);
+      const ts = await tsR.json(), lt = await ltR.json();
+      const rates = ts?.rates || {};
+      const daily = Object.keys(rates).sort().map((k) => rates[k]?.USD).filter((v) => typeof v === "number" && isFinite(v));
+      const live = lt?.rates?.USD;
+      if (daily.length < 5 || !isFinite(live)) return;
+
+      const prev = daily[daily.length - 1];
+      const points = [...daily.slice(-44), live];
+      const changeAbs = live - prev, changePct = (changeAbs / prev) * 100, up = changeAbs >= 0;
+      const { line, area, endY } = paths(points);
+
+      const colLine = up ? "oklch(0.78 0.11 158)" : "oklch(0.72 0.12 25)";
+      const colDot = up ? "oklch(0.82 0.12 158)" : "oklch(0.80 0.13 25)";
+      const colCh = up ? "oklch(0.80 0.11 158)" : "oklch(0.78 0.11 25)";
+      const colGrad = up ? "oklch(0.74 0.115 158)" : "oklch(0.67 0.125 25)";
+
+      document.getElementById("gold-area").setAttribute("d", area);
+      const lineEl = document.getElementById("gold-line");
+      lineEl.setAttribute("d", line); lineEl.setAttribute("stroke", colLine);
+      const dotEl = document.getElementById("gold-dot");
+      dotEl.setAttribute("cy", endY.toFixed(1)); dotEl.setAttribute("fill", colDot);
+      document.getElementById("gold-price").textContent = fmt(live);
+      const chEl = document.getElementById("gold-change");
+      chEl.textContent = `${up ? "▲" : "▼"} ${sign(changePct)}${changePct.toFixed(2)}%  ${sign(changeAbs)}${fmt(changeAbs)}`;
+      chEl.style.color = colCh;
+      document.querySelectorAll("#watch-g stop").forEach((s) => s.setAttribute("stop-color", colGrad));
+      const hh = String(end.getHours()).padStart(2, "0"), mm = String(end.getMinutes()).padStart(2, "0");
+      document.getElementById("gold-note").textContent = `// ${SYM} · ${LIVE} · ${hh}:${mm}`;
+    } catch (e) { /* keep build snapshot */ }
+  }
+
+  refresh();
+  setInterval(refresh, 60000);
+</script>

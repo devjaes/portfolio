@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portfolio Redesign — Design Direction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg-0:#0a0e15; --bg-1:#0d121b; --bg-2:#111824; --bg-3:#16202e;
+    --line:#1d2735; --line-2:#283546; --line-3:#36475d;
+    --tx-0:#e8eef6; --tx-1:#a3b2c4; --tx-2:#6a7989; --tx-3:#45525f;
+    --up:oklch(0.74 0.115 158); --down:oklch(0.67 0.125 25); --amber:oklch(0.78 0.10 78); --info:oklch(0.72 0.085 235);
+    --sans:"Geist",ui-sans-serif,system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+    --maxw:980px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg-0);color:var(--tx-0);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,40px);}
+  a{color:oklch(0.80 0.10 158);text-decoration:none;}
+  a:hover{text-decoration:underline;text-underline-offset:3px;}
+  h1,h2,h3,h4{margin:0;font-weight:600;letter-spacing:-0.02em;line-height:1.12;}
+  p{margin:0;}
+  .mono{font-family:var(--mono);}
+  code{font-family:var(--mono);font-size:0.86em;background:var(--bg-2);border:1px solid var(--line);padding:1px 6px;border-radius:4px;color:var(--tx-0);white-space:nowrap;}
+  .label{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--tx-2);}
+
+  /* cover */
+  header.cover{border-bottom:1px solid var(--line);padding:clamp(48px,9vw,96px) 0 clamp(36px,6vw,56px);position:relative;overflow:hidden;}
+  header.cover::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:48px 48px;opacity:0.4;mask-image:radial-gradient(ellipse 90% 80% at 30% 0%,#000 20%,transparent 70%);}
+  .cover .inner{position:relative;}
+  .cover .tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;color:oklch(0.82 0.10 158);border:1px solid oklch(0.74 0.115 158/0.32);background:oklch(0.74 0.115 158/0.14);padding:6px 12px;border-radius:5px;}
+  .cover h1{font-size:clamp(30px,5.5vw,52px);letter-spacing:-0.035em;margin:22px 0 16px;max-width:18ch;}
+  .cover .sub{color:var(--tx-1);font-size:clamp(15px,2vw,18px);max-width:62ch;}
+  .cover .meta{display:flex;gap:28px;flex-wrap:wrap;margin-top:28px;font-family:var(--mono);font-size:12px;color:var(--tx-2);}
+  .cover .meta b{color:var(--tx-0);font-weight:600;}
+  .dot{width:7px;height:7px;border-radius:50%;display:inline-block;}
+
+  /* sections */
+  section.s{padding:clamp(40px,7vw,72px) 0;border-bottom:1px solid var(--line);}
+  .s-head{display:flex;align-items:baseline;gap:14px;margin-bottom:28px;}
+  .s-idx{font-family:var(--mono);font-size:13px;color:var(--tx-3);}
+  .s-title{font-size:clamp(20px,3vw,28px);}
+  .lead{color:var(--tx-1);font-size:15.5px;max-width:70ch;margin-bottom:8px;}
+  .lead + .lead{margin-top:14px;}
+
+  /* callout / critique */
+  .crit{display:grid;gap:14px;}
+  .crit-item{border:1px solid var(--line);background:var(--bg-1);border-radius:10px;padding:20px 22px;display:grid;gap:8px;border-left:3px solid var(--line-3);}
+  .crit-item.warn{border-left-color:var(--amber);}
+  .crit-item.flag{border-left-color:var(--down);}
+  .crit-item.ok{border-left-color:var(--up);}
+  .crit-item .ch{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .crit-item h4{font-size:15.5px;}
+  .crit-item .badge{font-family:var(--mono);font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;padding:3px 7px;border-radius:4px;border:1px solid var(--line-2);color:var(--tx-2);}
+  .crit-item.warn .badge{color:oklch(0.84 0.09 78);border-color:oklch(0.78 0.10 78/0.4);background:oklch(0.78 0.10 78/0.12);}
+  .crit-item.flag .badge{color:oklch(0.80 0.11 25);border-color:oklch(0.67 0.125 25/0.4);background:oklch(0.67 0.125 25/0.12);}
+  .crit-item.ok .badge{color:oklch(0.82 0.10 158);border-color:oklch(0.74 0.115 158/0.4);background:oklch(0.74 0.115 158/0.12);}
+  .crit-item p{font-size:13.5px;color:var(--tx-1);line-height:1.6;}
+  .crit-item .fix{font-size:13px;color:var(--tx-2);}
+  .crit-item .fix b{color:oklch(0.80 0.10 158);font-weight:600;}
+
+  /* color tokens */
+  .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+  .sw{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--bg-1);}
+  .sw .chip{height:56px;}
+  .sw .info{padding:9px 11px;display:grid;gap:2px;}
+  .sw .nm{font-family:var(--mono);font-size:11.5px;color:var(--tx-0);}
+  .sw .vl{font-family:var(--mono);font-size:10px;color:var(--tx-2);}
+  .grp-label{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--tx-3);margin:22px 0 12px;}
+
+  /* type scale */
+  .type-row{display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:baseline;padding:16px 0;border-top:1px solid var(--line);}
+  .type-row:first-child{border-top:none;}
+  .type-meta{font-family:var(--mono);font-size:11px;color:var(--tx-2);line-height:1.5;}
+  .type-meta b{color:var(--tx-0);}
+  .scale-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .scale-box{display:grid;place-items:center;background:var(--bg-2);border:1px solid var(--line-2);border-radius:6px;color:oklch(0.82 0.10 158);font-family:var(--mono);font-size:11px;}
+
+  /* hierarchy tiers */
+  .tiers{display:grid;gap:14px;}
+  .tier{border:1px solid var(--line);border-radius:10px;background:var(--bg-1);padding:22px;display:grid;grid-template-columns:160px 1fr;gap:24px;}
+  .tier .t-tag{display:flex;flex-direction:column;gap:8px;}
+  .tier .t-name{font-family:var(--mono);font-size:13px;color:var(--tx-0);font-weight:600;}
+  .tier .t-w{font-family:var(--mono);font-size:11px;color:var(--tx-2);}
+  .tier .t-bar{height:6px;border-radius:3px;background:var(--line-2);}
+  .tier .t-body{display:grid;gap:10px;}
+  .tier ul{margin:0;padding-left:18px;display:grid;gap:5px;}
+  .tier li{font-size:13px;color:var(--tx-1);}
+  .tier li b{color:var(--tx-0);font-weight:600;}
+  .tier .projs{font-family:var(--mono);font-size:11.5px;color:var(--tx-2);}
+  @media(max-width:680px){.tier{grid-template-columns:1fr;gap:14px;}.type-row{grid-template-columns:1fr;gap:6px;}}
+
+  /* file map table */
+  .map{width:100%;border-collapse:collapse;font-size:13px;}
+  .map th{text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--tx-3);font-weight:500;padding:10px 12px;border-bottom:1px solid var(--line-2);}
+  .map td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+  .map tr:hover td{background:var(--bg-1);}
+  .map .file{font-family:var(--mono);font-size:11.5px;color:var(--tx-0);white-space:nowrap;}
+  .map .note{color:var(--tx-1);font-size:12.5px;}
+  .act{font-family:var(--mono);font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;padding:3px 7px;border-radius:4px;white-space:nowrap;}
+  .act.replace{color:oklch(0.80 0.11 25);background:oklch(0.67 0.125 25/0.12);border:1px solid oklch(0.67 0.125 25/0.35);}
+  .act.new{color:oklch(0.82 0.10 158);background:oklch(0.74 0.115 158/0.12);border:1px solid oklch(0.74 0.115 158/0.35);}
+  .act.reskin{color:oklch(0.84 0.09 78);background:oklch(0.78 0.10 78/0.12);border:1px solid oklch(0.78 0.10 78/0.35);}
+  .act.keep{color:var(--tx-2);background:var(--bg-2);border:1px solid var(--line-2);}
+  .map-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;}
+  .map-wrap table{min-width:640px;}
+
+  /* spacing scale */
+  .space-demo{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;}
+  .space-demo .sb{display:grid;gap:6px;justify-items:center;}
+  .space-demo .bar{background:oklch(0.74 0.115 158/0.5);border:1px solid oklch(0.74 0.115 158/0.4);border-radius:3px;width:26px;}
+  .space-demo .sl{font-family:var(--mono);font-size:10px;color:var(--tx-2);}
+
+  .next{display:grid;gap:10px;}
+  .next .ni{display:flex;gap:12px;align-items:flex-start;font-size:13.5px;color:var(--tx-1);}
+  .next .ni .n{font-family:var(--mono);font-size:12px;color:oklch(0.80 0.10 158);flex:none;width:22px;}
+
+  footer.foot{padding:40px 0 64px;}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:550;padding:12px 20px;border-radius:6px;border:1px solid;}
+  .btn-p{background:oklch(0.74 0.115 158/0.14);color:oklch(0.86 0.10 158);border-color:oklch(0.74 0.115 158/0.32);}
+  .btn-g{background:transparent;color:var(--tx-1);border-color:var(--line-2);}
+  .pillrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;}
+  .pill{font-family:var(--mono);font-size:11px;color:var(--tx-1);border:1px solid var(--line-2);background:var(--bg-2);padding:4px 9px;border-radius:4px;}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="wrap inner">
+    <span class="tag"><span class="dot" style="background:oklch(0.74 0.115 158)"></span> DESIGN DIRECTION · v1</span>
+    <h1>Portfolio Redesign — a terminal for a systems engineer.</h1>
+    <p class="sub">Trading the generic dark-SaaS gradient look for a disciplined, data-first aesthetic borrowed from financial terminals — built to read credibly in a 30-second recruiter scan, without pigeonholing you into trading-only roles.</p>
+    <div class="meta">
+      <span><span class="dot" style="background:oklch(0.74 0.115 158)"></span> <b>Jair Mera</b> · Full-Stack Engineer</span>
+      <span>STACK <b>Astro + Tailwind</b></span>
+      <span>SCOPE <b>Home page</b></span>
+      <span>FONTS <b>Geist + JetBrains Mono</b></span>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-p" href="Portfolio Redesign.html">View the live prototype →</a>
+    </div>
+  </div>
+</header>
+
+<!-- 01 — READING THE BRIEF -->
+<section class="s">
+  <div class="wrap">
+    <div class="s-head"><span class="s-idx">01 /</span><h2 class="s-title">How I read the brief</h2></div>
+    <p class="lead">Your brief is unusually complete, so most of this was about restraint, not invention. The throughline I committed to: <b style="color:var(--tx-0)">a Bloomberg/TradingView-influenced terminal aesthetic that signals "production systems engineer" first, and "fintech-aware" second.</b> The terminal language (monospace data, ticker, tight rules, muted market accents) does the domain-signalling; the content stays generalist.</p>
+    <p class="lead">One observation from your current site: it's <b style="color:var(--tx-0)">already dark</b> — cyan/purple glow, a floating tech-orbit, gradient headline text. So the real move isn't light→dark; it's <b style="color:var(--tx-0)">generic-dark-SaaS → disciplined-data-terminal.</b> That means killing the decorative glow and the orbital animation, and replacing "marketing energy" with "instrument-panel calm." Every number earns a monospace slot; nothing glows for the sake of it.</p>
+    <p class="lead">I committed to one strong direction rather than splitting energy across variants — but baked three live knobs into the prototype (<code>Tweaks</code>, bottom-right): accent hue, background-grid intensity, and density. React to those and I'll lock them in.</p>
+  </div>
+</section>
+
+<!-- 02 — HONEST CRITIQUE -->
+<section class="s">
+  <div class="wrap">
+    <div class="s-head"><span class="s-idx">02 /</span><h2 class="s-title">Honest critique — tensions in the brief</h2></div>
+    <p class="lead" style="margin-bottom:22px;">You asked for this directly. None of these are dealbreakers; they're forks where two of your goals pull against each other, plus how I resolved each in the prototype.</p>
+    <div class="crit">
+
+      <div class="crit-item warn">
+        <div class="ch"><span class="badge">Tension</span><h4>"Generalist, don't pigeonhole" vs a hard trading-desk aesthetic + XAUUSD chart</h4></div>
+        <p>This is the central tension. A Bloomberg skin, a gold chart, and a market-analytics flagship all push hard toward "trading engineer." Lean too far and you've pigeonholed yourself into exactly the niche you wanted to avoid.</p>
+        <p class="fix"><b>Resolved:</b> the terminal styling reads "systems/infra engineer" generically — it's the <em>content</em> that would pigeonhole, not the chrome. I kept the chart small and quiet ("What I Track"), never the hero, and framed Tickbase around production concerns (throughput, backpressure, event-driven) rather than trading strategy. The chart is the single most niche element — easiest thing to cut if you want to dial the signal down.</p>
+      </div>
+
+      <div class="crit-item flag">
+        <div class="ch"><span class="badge">Contradiction</span><h4>Live TradingView embed vs "self-host, no external CDN, Lighthouse 90+, AA"</h4></div>
+        <p>A live TradingView widget injects a third-party script + iframe: render-blocking weight, layout shift, an external network dependency, and a privacy/cookie surface. That directly fights your performance and self-hosting constraints.</p>
+        <p class="fix"><b>Resolved:</b> I used a <b>styled static SVG placeholder</b> that reads as a market chart but ships ~0 KB and makes no external call. If you want it live, lazy-mount it only on click/intersection so it never touches the initial Lighthouse run.</p>
+      </div>
+
+      <div class="crit-item warn">
+        <div class="ch"><span class="badge">Tension</span><h4>"AI multiplier, NOT vibe coder / NOT AI Engineer" vs heavy AI-tooling prominence</h4></div>
+        <p>The brief wants AI framed as a productivity multiplier — but the source content gives AI tooling a whole skills column (Claude Code, Cursor, Windsurf, Copilot, MCPs, Agentic Workflows, Spec-driven) and the hero accent-highlights "AI-assisted." Stack those and you can read as AI-first, which is the impression you're trying to avoid.</p>
+        <p class="fix"><b>Resolved:</b> AI tooling stays, but as <em>one</em> column of four, after Backend/Cloud and Frontend — fundamentals lead. Consider letting me shift the hero's green accent from "AI-assisted" onto "AWS serverless" so the eye lands on infra first. Flagging for your call.</p>
+      </div>
+
+      <div class="crit-item flag">
+        <div class="ch"><span class="badge">Credibility risk</span><h4>Placeholder activity metrics (commits/qtr, repos, uptime)</h4></div>
+        <p>You floated an Activity ticker but left the numbers blank, so I used <code>412*</code>, <code>07*</code>, <code>99.9%*</code> (asterisked). Invented metrics are the fastest way to lose a sharp recruiter — and these are the easiest claims to fact-check on your GitHub.</p>
+        <p class="fix"><b>Action needed:</b> give me real numbers, or I'll pull the fabricated ones and keep only verifiable signals (AWS SAA, ~2M traffic, the project metrics you've already validated).</p>
+      </div>
+
+      <div class="crit-item warn">
+        <div class="ch"><span class="badge">Constraint</span><h4>"No external font CDN" vs the mock loading Google Fonts</h4></div>
+        <p>For speed of iteration the prototype links Geist + JetBrains Mono from Google Fonts. Production must not.</p>
+        <p class="fix"><b>For build:</b> self-host via <code>@fontsource/geist-sans</code> + <code>@fontsource/jetbrains-mono</code> (or local <code>woff2</code> + <code>font-display:swap</code>), preload the two hero weights. Zero third-party requests, no CLS.</p>
+      </div>
+
+      <div class="crit-item ok">
+        <div class="ch"><span class="badge">Good call</span><h4>Visual-weight re-rank instead of removing projects</h4></div>
+        <p>Keeping every project but re-ranking by weight is exactly right for a portfolio — it shows range without looking thin, and the tier system below makes the hierarchy legible at a glance.</p>
+        <p class="fix"><b>Kept:</b> three tiers (flagship / mid / earlier-table) with hard visual contrast between them. All metrics preserved verbatim.</p>
+      </div>
+
+      <div class="crit-item ok">
+        <div class="ch"><span class="badge">Resolved</span><h4>Green/red carry P&amp;L meaning — don't put red on buttons</h4></div>
+        <p>You were right to be wary. On a financial-coded palette, red on an interactive element reads "loss / destructive."</p>
+        <p class="fix"><b>Kept:</b> muted green = positive + primary (CTAs, active, "shipped"); muted red <em>only</em> for genuine status (the "site down" tag on Ambivalence). Amber carries AWS/cert/"building."</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 03 — COLOR TOKENS -->
+<section class="s">
+  <div class="wrap">
+    <div class="s-head"><span class="s-idx">03 /</span><h2 class="s-title">Color tokens</h2></div>
+    <p class="lead">Deep slate-navy surfaces (never pure black), a four-step text ramp for hierarchy, and three muted market accents that share chroma/lightness and vary only in hue — so green, red, and amber feel like one family, not three loud signals.</p>
+
+    <div class="grp-label">Surfaces — slate-navy, 5 steps</div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#0a0e15"></div><div class="info"><span class="nm">bg-0 · page</span><span class="vl">#0a0e15</span></div></div>
+      <div class="sw"><div class="chip" style="background:#0d121b"></div><div class="info"><span class="nm">bg-1 · panel</span><span class="vl">#0d121b</span></div></div>
+      <div class="sw"><div class="chip" style="background:#111824"></div><div class="info"><span class="nm">bg-2 · raised</span><span class="vl">#111824</span></div></div>
+      <div class="sw"><div class="chip" style="background:#16202e"></div><div class="info"><span class="nm">bg-3 · inset</span><span class="vl">#16202e</span></div></div>
+      <div class="sw"><div class="chip" style="background:#283546"></div><div class="info"><span class="nm">line-2 · border</span><span class="vl">#283546</span></div></div>
+    </div>
+
+    <div class="grp-label">Text — 4-step ramp</div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#e8eef6"></div><div class="info"><span class="nm">tx-0 · primary</span><span class="vl">#e8eef6 · AAA</span></div></div>
+      <div class="sw"><div class="chip" style="background:#a3b2c4"></div><div class="info"><span class="nm">tx-1 · secondary</span><span class="vl">#a3b2c4 · AA</span></div></div>
+      <div class="sw"><div class="chip" style="background:#6a7989"></div><div class="info"><span class="nm">tx-2 · meta</span><span class="vl">#6a7989 · AA lg</span></div></div>
+      <div class="sw"><div class="chip" style="background:#45525f"></div><div class="info"><span class="nm">tx-3 · faint</span><span class="vl">#45525f · deco</span></div></div>
+    </div>
+
+    <div class="grp-label">Market accents — muted, one family</div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:oklch(0.74 0.115 158)"></div><div class="info"><span class="nm">up · primary</span><span class="vl">oklch(.74 .115 158)</span></div></div>
+      <div class="sw"><div class="chip" style="background:oklch(0.67 0.125 25)"></div><div class="info"><span class="nm">down · status only</span><span class="vl">oklch(.67 .125 25)</span></div></div>
+      <div class="sw"><div class="chip" style="background:oklch(0.78 0.10 78)"></div><div class="info"><span class="nm">amber · cert/build</span><span class="vl">oklch(.78 .10 78)</span></div></div>
+      <div class="sw"><div class="chip" style="background:oklch(0.72 0.085 235)"></div><div class="info"><span class="nm">info · neutral data</span><span class="vl">oklch(.72 .085 235)</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 — TYPE -->
+<section class="s">
+  <div class="wrap">
+    <div class="s-head"><span class="s-idx">04 /</span><h2 class="s-title">Typography</h2></div>
+    <p class="lead"><b style="color:var(--tx-0)">Geist Sans</b> for everything human (headlines, body). <b style="color:var(--tx-0)">JetBrains Mono</b> for everything machine — numbers, KPIs, metadata, tags, timestamps. The split is the whole point: it lets metrics "breathe like a dashboard" and gives the page its instrument-panel rhythm.</p>
+
+    <div style="margin-top:8px;">
+      <div class="type-row"><div class="type-meta"><b>Display</b><br>Geist 600<br>clamp 30–52px<br>−0.03em</div><div style="font-size:clamp(28px,4.5vw,48px);font-weight:600;letter-spacing:-0.03em;line-height:1.05;">End-to-end SaaS on <span style="color:oklch(0.84 0.09 78)">AWS serverless</span>.</div></div>
+      <div class="type-row"><div class="type-meta"><b>Section H2</b><br>Geist 600<br>22–30px</div><div style="font-size:28px;font-weight:600;letter-spacing:-0.02em;">Selected Work</div></div>
+      <div class="type-row"><div class="type-meta"><b>Body</b><br>Geist 400<br>15–16px / 1.6</div><div style="font-size:16px;color:var(--tx-1);max-width:54ch;">Full-Stack Engineer specializing in Ruby on Rails and TypeScript, with AWS Serverless experience.</div></div>
+      <div class="type-row"><div class="type-meta"><b>KPI / number</b><br>JetBrains 600<br>tabular-nums</div><div class="mono" style="font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--tx-0);">~2M<span style="font-size:0.6em;color:var(--tx-2)">/mo</span> &nbsp; 30s→9s &nbsp; ~60%</div></div>
+      <div class="type-row"><div class="type-meta"><b>Label / meta</b><br>JetBrains 500<br>11px · 0.18em · UPPER</div><div class="label" style="font-size:12px;">SENIROP · PRODUCTION · ENGLISH-FIRST US TEAM</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 — SPACING + RADIUS -->
+<section class="s">
+  <div class="wrap">
+    <div class="s-head"><span class="s-idx">05 /</span><h2 class="s-title">Spacing &amp; radius</h2></div>
+    <p class="lead">A 4px-based spacing scale keeps everything on a grid. Radii stay deliberately small — crisp corners read more "instrument" than "friendly app."</p>
+    <div class="grp-label">Spacing scale (px)</div>
+    <div class="space-demo">
+      <div class="sb"><div class="bar" style="height:4px"></div><span class="sl">4</span></div>
+      <div class="sb"><div class="bar" style="height:8px"></div><span class="sl">8</span></div>
+      <div class="sb"><div class="bar" style="height:12px"></div><span class="sl">12</span></div>
+      <div class="sb"><div class="bar" style="height:16px"></div><span class="sl">16</span></div>
+      <div class="sb"><div class="bar" style="height:24px"></div><span class="sl">24</span></div>
+      <div class="sb"><div class="bar" style="height:32px"></div><span class="sl">32</span></div>
+      <div class="sb"><div class="bar" style="height:48px"></div><span class="sl">48</span></div>
+      <div class="sb"><div class="bar" style="height:64px"></div><span class="sl">64</span></div>
+      <div class="sb"><div class="bar" style="height:96px"></div><span class="sl">96</span></div>
+    </div>
+    <div class="grp-label">Radius scale</div>
+    <div class="scale-row">
+      <div class="scale-box" style="width:64px;height:48px;border-radius:3px;">3</div>
+      <div class="scale-box" style="width:64px;height:48px;border-radius:5px;">5</div>
+      <div class="scale-box" style="width:64px;height:48px;border-radius:7px;">7</div>
+      <div class="scale-box" style="width:64px;height:48px;border-radius:11px;">11</div>
+      <span class="type-meta" style="margin-left:8px">xs · sm · base · lg<br>chips → buttons → cards → panels</span>
+    </div>
+  </div>
+</section>
+
+<!-- 06 — HIERARCHY -->
+<section class="s">
+  <div class="wrap">
+    <div class="s-head"><span class="s-idx">06 /</span><h2 class="s-title">Visual hierarchy strategy</h2></div>
+    <p class="lead" style="margin-bottom:22px;">Four weight tiers, each with its own card archetype. The contrast between tiers is deliberate and large — a recruiter should feel the ranking before they read a word.</p>
+    <div class="tiers">
+
+      <div class="tier">
+        <div class="t-tag">
+          <span class="t-name">⬤ FEATURE</span>
+          <span class="t-w">weight ·····</span>
+          <div class="t-bar" style="background:oklch(0.74 0.115 158);"></div>
+        </div>
+        <div class="t-body">
+          <ul>
+            <li><b>Currently Building — Tickbase.</b> Full-width panel, its own section above all other work, live "in progress" status, and a CSS architecture diagram. Nothing else gets a diagram.</li>
+          </ul>
+          <span class="projs">→ Tickbase</span>
+        </div>
+      </div>
+
+      <div class="tier">
+        <div class="t-tag">
+          <span class="t-name">◧ FLAGSHIP</span>
+          <span class="t-w">weight ····</span>
+          <div class="t-bar" style="width:80%;background:oklch(0.74 0.115 158/0.7);"></div>
+        </div>
+        <div class="t-body">
+          <ul>
+            <li><b>Full-width rows</b> with a dedicated KPI panel — the metrics rendered large in mono, dashboard-style. Description + full tech row.</li>
+          </ul>
+          <span class="projs">→ TAPinto.net · Gendocs V3 · Lideser Export ERP</span>
+        </div>
+      </div>
+
+      <div class="tier">
+        <div class="t-tag">
+          <span class="t-name">▤ MID-TIER</span>
+          <span class="t-w">weight ··</span>
+          <div class="t-bar" style="width:55%;background:var(--line-3);"></div>
+        </div>
+        <div class="t-body">
+          <ul>
+            <li><b>Three-up compact grid.</b> One title, one line, one signal metric, tech chips. Enough to be credible, small enough to scan.</li>
+          </ul>
+          <span class="projs">→ Hatary/FoppyAI · Securis · Cementerios · Titan Training · La Jefecita</span>
+        </div>
+      </div>
+
+      <div class="tier">
+        <div class="t-tag">
+          <span class="t-name">▦ EARLIER</span>
+          <span class="t-w">weight ·</span>
+          <div class="t-bar" style="width:30%;background:var(--line-2);"></div>
+        </div>
+        <div class="t-body">
+          <ul>
+            <li><b>Dense data table.</b> Project · what · signal · stack · year. Present for completeness, visually quiet. Ambivalence carries a "site down" status tag and no outbound link, exactly as asked.</li>
+          </ul>
+          <span class="projs">→ LookPay · SRI-Compliant POS · AI Code Quality Validator · Ambivalence · UTA Web App</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 07 — ASTRO FILE MAP -->
+<section class="s">
+  <div class="wrap">
+    <div class="s-head"><span class="s-idx">07 /</span><h2 class="s-title">Astro file-change map</h2></div>
+    <p class="lead" style="margin-bottom:22px;">What changes vs what you reuse, mapped to your existing component tree. The foundational change is the token layer (<code>global.css</code> + <code>tailwind.config.mjs</code>); most components then fall out of the new tokens. No framework migration — pure Astro 3.3 + Tailwind, as scoped.</p>
+    <div class="map-wrap">
+      <table class="map">
+        <thead><tr><th>File</th><th>Action</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td class="file">styles/global.css · tailwind.config.mjs</td><td><span class="act replace">Tokens</span></td><td class="note">Swap the cyan/purple palette for the slate-navy + market-accent tokens. Add <code>--sans</code>/<code>--mono</code> families, small radii. This single change drives most of the reskin.</td></tr>
+          <tr><td class="file">layouts/BaseLayout.astro</td><td><span class="act reskin">Reskin</span></td><td class="note">New bg-0, self-hosted font links, faint chart-grid background overlay.</td></tr>
+          <tr><td class="file">components/Hero.astro</td><td><span class="act replace">Replace</span></td><td class="note">Drop the glowing circular portrait + gradient text. Rebuild as the ID-card + badge row + KPI strip. Headline/tagline strings already updated in <code>en.ts</code>.</td></tr>
+          <tr><td class="file">components/CurrentlyBuilding.astro</td><td><span class="act new">New</span></td><td class="note">Tickbase feature panel + CSS architecture diagram. Sits above FeaturedProjects.</td></tr>
+          <tr><td class="file">components/FeaturedProjects.astro</td><td><span class="act replace">Rework</span></td><td class="note">Becomes the flagship KPI-panel rows. Reads <code>tier: 'flagship'</code> from the work collection.</td></tr>
+          <tr><td class="file">components/MidProjects.astro</td><td><span class="act new">New</span></td><td class="note">Three-up compact grid for <code>tier: 'mid'</code>.</td></tr>
+          <tr><td class="file">components/ArchiveProjects.astro</td><td><span class="act replace">Rework</span></td><td class="note">Becomes the dense "Earlier Projects" table for <code>tier: 'earlier'</code>.</td></tr>
+          <tr><td class="file">components/TechOrbit.astro</td><td><span class="act replace">Remove</span></td><td class="note">The orbital animation goes. Replaced by the StackMatrix.</td></tr>
+          <tr><td class="file">components/StackMatrix.astro</td><td><span class="act new">New</span></td><td class="note">Four-column monospace skill matrix. Absorbs <code>Skills.astro</code>.</td></tr>
+          <tr><td class="file">components/Ticker.astro · Watching.astro</td><td><span class="act new">New</span></td><td class="note">Ticker strip; "What I Track" chart placeholder + reading list.</td></tr>
+          <tr><td class="file">components/EngineeringPhilosophy.astro</td><td><span class="act reskin">Reskin</span></td><td class="note">Same 3 cards → tight "principles" strip in new tokens.</td></tr>
+          <tr><td class="file">components/Experience.astro</td><td><span class="act reskin">Reskin</span></td><td class="note">Timeline → tight two-column rows (mono date/company + points).</td></tr>
+          <tr><td class="file">components/Certifications.astro · ContactCTA.astro · Nav.astro · Footer.astro · Pill.astro</td><td><span class="act reskin">Reskin</span></td><td class="note">Token-level restyle. Nav gains the status dot + EST clock. Cert folds into the contact card.</td></tr>
+          <tr><td class="file">content/config.ts</td><td><span class="act new">Schema</span></td><td class="note">Add <code>tier</code> ('flagship'|'mid'|'earlier') + <code>status</code> ('building'|'shipped'|'paused') to the work collection to drive weight from content.</td></tr>
+          <tr><td class="file">content/work/*.md</td><td><span class="act new">Content</span></td><td class="note">Add tickbase / hatary / securis / cementerios / titan markdown; tag every existing entry with a tier. All current copy + metrics preserved.</td></tr>
+          <tr><td class="file">i18n/en.ts · es.ts</td><td><span class="act reskin">Extend</span></td><td class="note">Add currentlyBuilding, mid-tier, earlier-table, ticker, reading strings. Hero strings already match the new copy.</td></tr>
+          <tr><td class="file">BrandIcon · Icon · IconPaths · LangToggle · MainHead · lib/work-urls · config/social</td><td><span class="act keep">Reuse</span></td><td class="note">No structural change — plumbing carries over as-is.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 08 — CREATIVE DIFFERENTIATORS -->
+<section class="s">
+  <div class="wrap">
+    <div class="s-head"><span class="s-idx">08 /</span><h2 class="s-title">Creative differentiators</h2></div>
+    <p class="lead" style="margin-bottom:8px;">The baseline reads as “generic-good terminal portfolio.” These four additions earn the terminal frame instead of just wearing it — each one makes the dashboard metaphor <em>functional</em>, not decorative. The bar every one had to clear: if it can’t be defended as an engineering decision, it gets cut. No glow, no CRT flicker, no ASCII art.</p>
+    <div class="crit" style="margin-top:22px;">
+
+      <div class="crit-item ok">
+        <div class="ch"><span class="badge">⌘K · Function</span><h4>A real command palette, not a search box in costume</h4></div>
+        <p><b style="color:var(--tx-0)">What:</b> <code>⌘K</code> / <code>ctrl+K</code> (and a nav chip) open a shell-style palette with a <code>$</code> prompt, fuzzy match, and arrow-key nav. Every command does something real — <code>ls projects</code> and <code>cat experience</code> navigate, <code>theme amber</code> / <code>grid off</code> / <code>density compact</code> drive the same knobs as the Tweaks panel, <code>github</code> opens a tab, <code>whoami</code> pulses the ID card.</p>
+        <p><b style="color:var(--tx-0)">Why it earns its place:</b> it’s the one proprietary signature a systems engineer would actually ship — a portfolio you can drive from the keyboard. It also doubles the Tweaks knobs as typed commands, so the “terminal” claim pays off the instant a recruiter tries it.</p>
+        <p class="fix"><b>Failure mode avoided:</b> a palette that just searches headings would be theater. Unknown input returns <code>zsh: command not found</code>; nothing in it is fake. If a command didn’t perform a real action, it didn’t make the list.</p>
+      </div>
+
+      <div class="crit-item ok">
+        <div class="ch"><span class="badge">Symbols</span><h4>Every project is a tradeable symbol with a status</h4></div>
+        <p><b style="color:var(--tx-0)">What:</b> a unified 4-letter ticker code per project (<code>TAPI</code>, <code>LDSR</code>, <code>TKBS</code>…) plus a status glyph — <span class="mono" style="color:oklch(0.80 0.11 158)">▲ shipped</span>, <span class="mono" style="color:oklch(0.83 0.09 78)">◉ building</span>, <span class="mono" style="color:var(--tx-2)">■ paused</span>, <span class="mono" style="color:oklch(0.78 0.11 25)">▼ down</span>. They appear in the ticker, as chips on flagship/mid cards, and as a column in the earlier table.</p>
+        <p><b style="color:var(--tx-0)">Why it earns its place:</b> it’s the connective tissue that makes the whole page read as one instrument rather than a set of styled sections — and the ticker finally carries real, verifiable project data instead of placeholder metrics.</p>
+        <p class="fix"><b>Failure mode avoided:</b> symbols competing with names. See the next card.</p>
+      </div>
+
+      <div class="crit-item warn">
+        <div class="ch"><span class="badge">Legibility tradeoff</span><h4>Symbols enrich for the fintech-literate; titles lead for everyone</h4></div>
+        <p>The risk with a symbol language is obvious: a generalist recruiter doing a 30-second scan should never have to decode <code>LDSR</code> to know it’s the Lideser ERP. If the codes obscure the names, the metaphor has actively hurt the portfolio.</p>
+        <p class="fix"><b>Resolved:</b> the full project title is always the dominant text — H3/H4, largest in the card. The symbol is a small, dim mono chip <em>adjacent</em> to it, never a replacement. In the ticker the symbol and full name sit side by side; names are never truncated. The test: blur the symbols away at 1280px and every project is still identifiable by name. Symbols are supplementary metadata for the readers who’ll appreciate them, invisible to the readers who won’t.</p>
+      </div>
+
+      <div class="crit-item ok">
+        <div class="ch"><span class="badge">Honesty</span><h4>The hero spark became a Status block — zero fake data</h4></div>
+        <p><b style="color:var(--tx-0)">What:</b> the decorative sparkline in the ID card is gone. In its slot: a two-line mono <code>STATUS</code> block — <span class="mono" style="color:oklch(0.82 0.10 158)">▲ open to remote</span> and <span class="mono" style="color:oklch(0.84 0.09 78)">◉ building Tickbase</span>.</p>
+        <p><b style="color:var(--tx-0)">Why it earns its place:</b> the original plan to feed the spark with GitHub commits would understate real output (work lives on GitLab) — a thin or fabricated chart violates the honesty rule we set in the critique. The Status block reinforces availability + current focus with no data to fake and no maintenance: if the situation changes, it’s a two-string edit.</p>
+        <p class="fix"><b>Failure mode avoided:</b> a chart that implies a metric it can’t back. A decorative line pretending to be data is exactly the “slop” the terminal aesthetic is supposed to reject.</p>
+      </div>
+
+      <div class="crit-item ok">
+        <div class="ch"><span class="badge">Micro-feedback</span><h4>An HMR-style dev-server chip, bottom-left</h4></div>
+        <p><b style="color:var(--tx-0)">What:</b> a tiny <span class="mono">● ready · 0ms</span> chip that flickers to <span class="mono" style="color:oklch(0.80 0.11 158)">▶ live · {N}ms</span> on scroll and runs a subtle fake hot-reload on click. Hidden under 768px, static under reduced-motion.</p>
+        <p><b style="color:var(--tx-0)">Why it earns its place:</b> it’s the smallest possible nod to “this person lives in a dev server,” and it reinforces instrument-panel calm — a status line that flickers, not an animation that performs.</p>
+        <p class="fix"><b>Failure mode avoided:</b> annoyance. It’s 10.5px at 0.5 opacity in a corner, never moves layout, and respects reduced-motion. If it ever read as a gimmick it would undercut the discipline of everything else — so it stays a whisper.</p>
+      </div>
+
+      <div class="crit-item ok">
+        <div class="ch"><span class="badge">Proof</span><h4>The ERP claim is hoverable — a git-diff receipt</h4></div>
+        <p><b style="color:var(--tx-0)">What:</b> hovering (or focusing/tapping) the <span class="mono">~60% less debt</span> KPI on Lideser ERP opens a diff-styled tooltip — red removal lines, green additions, a <code>@@ deploy cycle @@ 30s → 9s</code> context line.</p>
+        <p><b style="color:var(--tx-0)">Why it earns its place:</b> it’s your strongest engineering-credibility line, and right now it’s just a number. The diff turns a claim into a receipt — it shows the <em>shape</em> of the work (monolith → service, tests added) in the engineer’s own native format.</p>
+        <p class="fix"><b>Failure mode avoided:</b> a tooltip nobody finds, or one that breaks the scan. It’s keyboard-focusable with <code>aria-describedby</code>, the KPI stays fully legible without it, and it auto-flips above/below to stay on-screen.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 09 — NEXT -->
+<footer class="foot wrap">
+  <div class="s-head"><span class="s-idx">09 /</span><h2 class="s-title">What I need from you</h2></div>
+  <div class="next">
+    <div class="ni"><span class="n">01</span><div><b style="color:var(--tx-0)">Real activity numbers</b> — or a thumbs-down to pull the placeholder ticker metrics entirely.</div></div>
+    <div class="ni"><span class="n">02</span><div><b style="color:var(--tx-0)">Hero accent call</b> — keep the green on "AI-assisted", or move it to "AWS serverless" to lead with infra?</div></div>
+    <div class="ni"><span class="n">03</span><div><b style="color:var(--tx-0)">Chart verdict</b> — keep the quiet static gold chart, make it a lazy live embed, or cut it?</div></div>
+    <div class="ni"><span class="n">04</span><div><b style="color:var(--tx-0)">Tweak the knobs</b> in the prototype (accent / grid / density) and tell me where to lock them.</div></div>
+    <div class="ni"><span class="n">05</span><div>Real GitHub / LinkedIn / CV URLs and the architecture-diagram link for Tickbase (placeholders for now).</div></div>
+    <div class="ni"><span class="n">06</span><div><b style="color:var(--tx-0)">Symbol veto</b> — any of the 14 four-letter codes feel wrong? Likely candidates to rename: <code>TAPI</code>, <code>GDOC</code>, <code>JFCT</code>. Say the word and I’ll swap them.</div></div>
+    <div class="ni"><span class="n">07</span><div><b style="color:var(--tx-0)">Status lines</b> — confirm <span class="mono">▲ open to remote</span> + <span class="mono">◉ building Tickbase</span> are still accurate. If you get booked or pause Tickbase, those two strings update before ship.</div></div>
+  </div>
+  <div class="cta-row" style="margin-top:28px;">
+    <a class="btn btn-p" href="Portfolio Redesign.html">Open the prototype →</a>
+  </div>
+  <div class="pillrow" style="margin-top:18px;">
+    <span class="pill">DESIGN DIRECTION v1</span>
+    <span class="pill">JAIR MERA</span>
+    <span class="pill">PORTFOLIO REDESIGN</span>
+  </div>
+</footer>
+
+</body>
+</html>

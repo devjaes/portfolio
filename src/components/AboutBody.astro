@@ -1,0 +1,128 @@
+---
+import "../styles/pages.css";
+import { getTranslations, type Locale } from "../i18n";
+interface Props { locale?: Locale; }
+const { locale = "en" } = Astro.props;
+const t = getTranslations(locale);
+const a = t.aboutPage;
+const cert = t.certifications.items[0];
+const homePath = locale === "es" ? "/es/" : "/";
+const email = "hello@devjaes.dev";
+const mailto = `mailto:${email}?subject=${encodeURIComponent(t.contact.mailtoSubject)}&body=${encodeURIComponent(t.contact.mailtoBody)}`;
+const bold = (s: string) => s.replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
+---
+
+<div class="wrap">
+  <div class="crumb">
+    <a class="back" href={homePath}>{a.dashboardLabel}</a>
+    <span class="sep">~/</span><span class="cur">{a.crumbCurrent}</span>
+  </div>
+
+  <header class="about-hero">
+    <div class="about-grid">
+      <aside class="aboutcard reveal in">
+        <div class="bar"><span>{t.heroCard.barSymbol}</span><span><span class="dot dot-up pulse"></span> {a.cardStatus}</span></div>
+        <div class="photo"><img src="/assets/portrait.jpg" alt={t.hero.portraitAlt} width="1024" height="765" /></div>
+        <div class="meta">
+          <span class="nm">{a.cardName}</span>
+          <span class="rl">{a.cardRole}</span>
+        </div>
+        <div class="qstats">
+          {a.qstats.map((q) => (
+            <div class="qs"><div class="ql">{q.label}</div><div class="qv">{q.value}</div></div>
+          ))}
+        </div>
+      </aside>
+
+      <div class="bio reveal in">
+        <span class="kicker">{a.kicker}</span>
+        <h1>{a.headline}</h1>
+        {a.paragraphs.map((p) => <p set:html={bold(p)} />)}
+      </div>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top:8px" id="honors">
+    <div class="sec-head">
+      <div class="left"><span class="sec-idx">01 /</span><h2 class="sec-title">{a.honorsTitle}</h2></div>
+      <span class="sec-sub">{a.honorsSub}</span>
+    </div>
+    <div class="awards reveal">
+      {a.awards.map((aw) => (
+        <article class:list={["award", aw.tier]}>
+          <div class="rank"><span class="pl">{aw.place}<span class="o">{aw.suffix}</span></span><span class="pt">PLACE</span></div>
+          <div class="body">
+            <div class="at"><span class="glyph">▲</span> {aw.title}</div>
+            <div class="ai">{aw.org}</div>
+            <p class="ad">{aw.desc}</p>
+          </div>
+          <div class="when">{aw.when}</div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:8px" id="background">
+    <div class="sec-head">
+      <div class="left"><span class="sec-idx">02 /</span><h2 class="sec-title">{a.backgroundTitle}</h2></div>
+      <span class="sec-sub">{a.backgroundSub}</span>
+    </div>
+    <div class="infogrid reveal">
+      <div class="infocard edu">
+        <div class="ic-h"><span class="dot"></span> {a.educationLabel}</div>
+        <div class="deg">{a.eduDegree}</div>
+        <div class="org">{a.eduOrg}</div>
+        <div class="yr"><span class="dot dot-up"></span> {a.eduYears}</div>
+        <div class="prog">
+          <div class="pbar"><i style={`width:${a.eduProgressPct}`}></i></div>
+          <div class="pl">{a.eduProgressLabel}</div>
+        </div>
+      </div>
+
+      <div class="infocard">
+        <div class="ic-h"><span class="dot"></span> {a.languagesLabel}</div>
+        <div class="langs">
+          {a.languages.map((l) => (
+            <div class="lang">
+              <div class="lt"><span class="ln">{l.name}</span><span class="lv">{l.level}</span></div>
+              <div class="lbar"><i style={`width:${l.pct}`}></i></div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="infocard">
+        <div class="ic-h"><span class="dot"></span> {a.certLabel}</div>
+        <div class="certbox">
+          <div class="ctop">
+            <img src={cert.badgeImage} alt={cert.badgeAlt} width="52" height="52" />
+            <div>
+              <div class="ct">{a.certTitle}</div>
+              <div class="cs">{a.certStatus}</div>
+            </div>
+          </div>
+          <a class="cverify" href={cert.verifyUrl} target="_blank" rel="noopener noreferrer">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+            {cert.verifyLabel} ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:8px">
+    <div class="panel" style="padding:clamp(28px,4vw,44px); display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+      <div>
+        <span class="label">{a.ctaKicker}</span>
+        <h2 style="margin-top:12px; font-size:clamp(22px,3vw,30px)">{a.ctaTitle}</h2>
+      </div>
+      <div class="contact-actions" style="margin-top:0">
+        <a class="btn btn-primary" href={mailto}>
+          <svg class="ico" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7l9 6 9-6M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z" /></svg>
+          {t.contact.cta}
+        </a>
+        <a class="btn btn-ghost" href={`${homePath}#work`}>{a.viewWorkLabel}</a>
+      </div>
+    </div>
+  </section>
+</div>

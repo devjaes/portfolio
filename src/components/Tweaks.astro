@@ -1,0 +1,78 @@
+---
+import { getTranslations, type Locale } from "../i18n";
+interface Props { locale?: Locale; }
+const { locale = "en" } = Astro.props;
+const t = getTranslations(locale);
+const tw = t.tweaks;
+---
+
+<div id="tweaks">
+  <button class="tk-toggle" aria-label={tw.toggleLabel}><span class="dot dot-up"></span> {tw.toggleLabel}</button>
+  <div class="tk-body">
+    <div class="tk-group">
+      <span class="gl">{tw.accentLabel}</span>
+      <div class="tk-sw">
+        <button data-acc="green" aria-pressed="true" style="background:oklch(0.74 0.115 158)" title="Green"></button>
+        <button data-acc="cyan" aria-pressed="false" style="background:oklch(0.74 0.10 215)" title="Cyan"></button>
+        <button data-acc="amber" aria-pressed="false" style="background:oklch(0.78 0.10 78)" title="Amber"></button>
+      </div>
+    </div>
+    <div class="tk-group">
+      <span class="gl">{tw.gridLabel}</span>
+      <div class="tk-opts">
+        <button class="tk-opt" data-grid="0" aria-pressed="false">{tw.gridOff}</button>
+        <button class="tk-opt" data-grid="0.5" aria-pressed="true">{tw.gridSubtle}</button>
+        <button class="tk-opt" data-grid="1" aria-pressed="false">{tw.gridStrong}</button>
+      </div>
+    </div>
+    <div class="tk-group">
+      <span class="gl">{tw.densityLabel}</span>
+      <div class="tk-opts">
+        <button class="tk-opt" data-density="comfortable" aria-pressed="true">{tw.densityComfortable}</button>
+        <button class="tk-opt" data-density="compact" aria-pressed="false">{tw.densityCompact}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const ACCENTS: Record<string, [string, string, string]> = {
+    green: ["oklch(0.74 0.115 158)", "oklch(0.74 0.115 158 / 0.14)", "oklch(0.74 0.115 158 / 0.32)"],
+    cyan: ["oklch(0.74 0.10 215)", "oklch(0.74 0.10 215 / 0.14)", "oklch(0.74 0.10 215 / 0.32)"],
+    amber: ["oklch(0.78 0.10 78)", "oklch(0.78 0.10 78 / 0.14)", "oklch(0.78 0.10 78 / 0.32)"],
+  };
+  const syncPressed = (sel: string, match: (el: Element) => boolean) =>
+    document.querySelectorAll(sel).forEach((x) => x.setAttribute("aria-pressed", match(x) ? "true" : "false"));
+
+  const applyAccent = (name: string) => {
+    const a = ACCENTS[name];
+    if (!a) return;
+    const root = document.documentElement;
+    root.style.setProperty("--accent", a[0]);
+    root.style.setProperty("--accent-dim", a[1]);
+    root.style.setProperty("--accent-line", a[2]);
+    syncPressed("#tweaks .tk-sw button", (b) => (b as HTMLElement).dataset.acc === name);
+  };
+  const applyGrid = (val: string) => {
+    document.documentElement.style.setProperty("--grid-alpha", val);
+    syncPressed("#tweaks [data-grid]", (b) => (b as HTMLElement).dataset.grid === String(val));
+  };
+  const applyDensity = (val: string) => {
+    document.body.dataset.density = val;
+    syncPressed("#tweaks [data-density]", (b) => (b as HTMLElement).dataset.density === val);
+  };
+
+  // Shared with the command palette (theme / grid / density commands).
+  (window as any).portfolioKnobs = { applyAccent, applyGrid, applyDensity };
+
+  const panel = document.getElementById("tweaks");
+  if (panel) {
+    panel.querySelector(".tk-toggle")?.addEventListener("click", () => panel.classList.toggle("open"));
+    panel.querySelectorAll<HTMLElement>(".tk-sw button").forEach((b) =>
+      b.addEventListener("click", () => applyAccent(b.dataset.acc!)));
+    panel.querySelectorAll<HTMLElement>("[data-grid]").forEach((b) =>
+      b.addEventListener("click", () => applyGrid(b.dataset.grid!)));
+    panel.querySelectorAll<HTMLElement>("[data-density]").forEach((b) =>
+      b.addEventListener("click", () => applyDensity(b.dataset.density!)));
+  }
+</script>
