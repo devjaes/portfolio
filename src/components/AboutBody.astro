@@ -73,10 +73,6 @@ const bold = (s: string) => s.replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
         <div class="deg">{a.eduDegree}</div>
         <div class="org">{a.eduOrg}</div>
         <div class="yr"><span class="dot dot-up"></span> {a.eduYears}</div>
-        <div class="prog">
-          <div class="pbar"><i style={`width:${a.eduProgressPct}`}></i></div>
-          <div class="pl">{a.eduProgressLabel}</div>
-        </div>
       </div>
 
       <div class="infocard">

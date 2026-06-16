@@ -544,7 +544,7 @@ export const en: Translations = {
     paragraphs: [
       "I'm a full-stack engineer from **Ambato, Ecuador**, working backend-first across Ruby, TypeScript, and Go. The parts of the job I enjoy most are the ones nobody screenshots — **schemas, queues, and migrations** — the decisions that determine whether a system stays calm under load.",
       "Most of my work has been end-to-end product engineering: leading a Scrum team on **Gendocs V3**, shipping features on **TAPinto.net** with an English-first U.S. team, and architecting the two-week migration of the **Lideser export ERP**. I'm an **AWS Certified Solutions Architect**, and increasingly pointed at **fintech** — Tickbase is where that's heading.",
-      "I'm finishing my Software Engineering degree at the Technical University of Ambato and I'm **open to remote roles** with U.S. / E.U. product teams.",
+      "I studied Software Engineering at the Technical University of Ambato, and I'm **open to remote roles** with U.S. / E.U. product teams.",
     ],
     honorsTitle: "Honors & Awards",
     honorsSub: "Competitive results — algorithms and applied AI.",
@@ -573,9 +573,7 @@ export const en: Translations = {
     educationLabel: "Education",
     eduDegree: "Software Engineering",
     eduOrg: "Technical University of Ambato",
-    eduYears: "2021 — Dec 2026 (expected)",
-    eduProgressPct: "90%",
-    eduProgressLabel: "≈ 90% COMPLETE · GRADUATING DEC 2026",
+    eduYears: "2021 — 2026",
     languagesLabel: "Languages",
     languages: [
       { name: "Spanish", level: "NATIVE", pct: "100%" },
@@ -744,7 +742,7 @@ export const en: Translations = {
     educationTitle: "Education",
     universityName: "Technical University of Ambato",
     universityDegree:
-      "Software Engineering (2021 - Expected Graduation: December 2026)",
+      "Software Engineering (2021 — 2026)",
     highSchoolName: "Bolivar High School",
     highSchoolDegree: "Bachelor of Science",
     honorsTitle: "Honors & Awards",

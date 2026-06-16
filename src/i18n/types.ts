@@ -133,8 +133,6 @@ export interface AboutPage {
   eduDegree: string;
   eduOrg: string;
   eduYears: string;
-  eduProgressPct: string;
-  eduProgressLabel: string;
   languagesLabel: string;
   languages: { name: string; level: string; pct: string }[];
   certLabel: string;
