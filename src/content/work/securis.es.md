@@ -1,7 +1,7 @@
 ---
 title: Securis — Plataforma de Documentos Segura
 publishDate: 2025-01-15 00:00:00
-img: /assets/stock-2.jpg
+img: /assets/securis.png
 isMain: false
 img_alt: Plataforma de documentos segura Securis
 description: |

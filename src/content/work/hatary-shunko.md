@@ -1,7 +1,7 @@
 ---
 title: FoppyAI — Voice-Driven Personal Finance
 publishDate: 2025-09-01 00:00:00
-img: /assets/stock-1.jpg
+img: /assets/foppy.png
 isMain: false
 img_alt: FoppyAI personal finance voice agent
 description: |
