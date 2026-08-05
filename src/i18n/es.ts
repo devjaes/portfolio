@@ -104,7 +104,7 @@ export const es: Translations = {
           "Diseñando y construyendo desde cero una plataforma CRM en React 19 + Rails API, definiendo patrones de componentes, hooks personalizados y contratos de API junto al equipo backend.",
           "Contribuidor full-stack en TAPinto.net (Ruby on Rails + React): envío de funcionalidades CMS para 12+ tipos de contenido, ajuste de jobs en background, performance hotspots y capas de caché para mantener veloz una plataforma de noticias de alto tráfico en EE. UU.",
           "Lideré una migración arquitectónica de <2 semanas de un ERP de exportación legacy (Lideser) de monolito a Clean Architecture (React + Rails API), reduciendo ~60 % de deuda técnica.",
-          "Desarrollé un AI Code Quality Validator interno usando análisis AST para auditar código generado por LLMs frente a estándares de Senior Tech Leads.",
+          "Revisé código generado por IA dentro de un programa interno de evaluación de calidad, aportando feedback estructurado que se usó para mejorar la salida del modelo.",
         ],
       },
       {

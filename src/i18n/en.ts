@@ -103,7 +103,7 @@ export const en: Translations = {
           "Architecting a greenfield CRM platform end-to-end in React 19 + Rails API, defining component patterns, custom hooks, and API contracts with the backend team.",
           "Full-stack contributor on TAPinto.net (Ruby on Rails + React), shipping CMS features across 12+ content types, tuning background jobs, performance hotspots, and cache layers to keep a high-traffic US news platform fast.",
           "Led a <2 week architectural migration of a legacy Export ERP (Lideser) from monolith to Clean Architecture (React + Rails API), reducing technical debt by ~60%.",
-          "Built an internal AI Code Quality Validator using AST analysis to audit LLM-generated code against Senior Tech Lead standards.",
+          "Reviewed AI-generated code in an internal quality evaluation program, giving structured feedback that was used to improve the model's output.",
         ],
       },
       {
