@@ -5,7 +5,7 @@ export const es: Translations = {
     siteTitle:
       "Jair Mera | Ingeniero Full Stack · Ruby · TypeScript · Go · AWS Certified",
     siteDescription:
-      "Ingeniero Full Stack enfocado en backend. Ruby · TypeScript · Go sobre AWS (Certified Solutions Architect — Associate). Construyo sistemas de producción a escala — desarrollando TAPinto.net (~2M visitas/mes) en remoto desde Ecuador.",
+      "Ingeniero Full Stack. React · TypeScript · Ruby sobre AWS (Certified Solutions Architect — Associate). Construyo sistemas de producción a escala — desarrollando TAPinto.net (~2M visitas/mes) en remoto desde Ecuador.",
     aboutTitle:
       "Sobre mí | Jair Mera — Ingeniero Full Stack (Ruby on Rails & TypeScript)",
     aboutDescription:
@@ -48,7 +48,7 @@ export const es: Translations = {
     socialProof: "Conecta conmigo",
     portraitAlt: "Jair Mera - Ingeniero Full Stack",
     headline: "Ingeniero Full-Stack · Ruby · TypeScript · Go\nAWS Certified.",
-    tagline: "Construyendo sistemas en producción a escala. Enfoque backend.",
+    tagline: "Construyendo sistemas en producción a escala, de punta a punta.",
     subLead:
       "Enviando **TAPinto.net** (~2M visitas/mes) — plataforma de noticias de EE. UU., remoto desde Ecuador.",
     awsChip: "AWS SAA — CERTIFICADO ↗",
@@ -539,7 +539,7 @@ export const es: Translations = {
     dashboardLabel: "← Dashboard",
     crumbCurrent: "about",
     cardName: "Jair Mera",
-    cardRole: "INGENIERO FULL-STACK · ENFOQUE BACKEND",
+    cardRole: "INGENIERO FULL-STACK · REACT & NODE",
     cardStatus: "DISPONIBLE",
     qstats: [
       { label: "BASE", value: "Ambato, EC" },
@@ -598,7 +598,7 @@ export const es: Translations = {
     barSymbol: "MERA:FS",
     barStatus: "DISPONIBLE ▲",
     photoTag: "INGENIERO FULL-STACK",
-    metaLabel: "ENFOQUE BACKEND",
+    metaLabel: "DE PUNTA A PUNTA",
     statusTitle: "ESTADO",
     statusLine1: "abierto a remoto",
     statusLine2: "construyendo Tickbase",
@@ -742,7 +742,7 @@ export const es: Translations = {
     h1Part1: "Sobre ",
     h1Highlight: "mí",
     paragraph1:
-      "Gracias por pasar. Soy Jair Mera, un Ingeniero Full Stack con enfoque backend, basado en Ecuador. Construyo SaaS y APIs en producción con Ruby on Rails y TypeScript (NestJS / Next.js), sistemas event-driven y arquitecturas serverless sobre AWS — donde soy Solutions Architect certificado.",
+      "Gracias por pasar. Soy Jair Mera, Ingeniero Full Stack basado en Ecuador. Construyo SaaS en producción de punta a punta: interfaces en React y Next.js sobre APIs en Ruby on Rails y TypeScript (NestJS), sistemas event-driven y arquitecturas serverless sobre AWS — donde soy Solutions Architect certificado.",
     paragraph2:
       "Siempre me ha apasionado la tecnología. Desde niño me fascinaron las computadoras, lo que me llevó a estudiar Ingeniería de Software en 2021. Hoy me enfoco en entregar software listo para producción con arquitectura limpia y testing sólido, usando herramientas de IA para ir más rápido sin recortar el criterio de ingeniería.",
     portraitAlt: "Jair Mera trabajando",
