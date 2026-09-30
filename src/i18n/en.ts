@@ -358,14 +358,8 @@ export const en: Translations = {
         title: "TAPinto.net",
         context: "SENIROP · PRODUCTION · ENGLISH-FIRST US TEAM",
         description:
-          "Full-stack contributor on a high-traffic US digital news platform. Engineered complex CMS modules across 12+ content types, tuned background jobs, optimized cache layers and performance hotspots, and integrated dynamic ad-serving and payment gateways.",
-        tech: [
-          "Ruby on Rails",
-          "React",
-          "PostgreSQL",
-          "Background Jobs",
-          "Caching",
-        ],
+          "US news platform serving ~2M monthly visits. I ship features across 12+ CMS content types on a Rails + React estate (PostgreSQL + MongoDB), release behind feature flags, and integrate third-party payment gateway and ad-serving APIs. Rewrote Redis caching on hot endpoints, added New Relic APM, and designed the reusable Playwright E2E architecture.",
+        tech: ["Ruby on Rails", "React", "PostgreSQL", "MongoDB", "Redis", "Playwright"],
         symbol: "TAPI",
         status: "ship",
         viz: "up",
@@ -382,8 +376,8 @@ export const en: Translations = {
         title: "Lideser Export ERP",
         context: "SENIROP CLIENT · LEAD ARCHITECT",
         description:
-          "Architected the migration of a legacy monolithic Export Management ERP to a modern Clean Architecture (Rails API + React) in a record two-week window. Designed the PostgreSQL migration strategy to guarantee zero data loss.",
-        tech: ["Clean Architecture", "Rails API", "PostgreSQL", "TypeScript"],
+          "Proposed and drove the migration of a legacy Export Management ERP to Clean Architecture (Rails API + React) in under two weeks, with a PostgreSQL migration strategy that lost no data. Built the core KPI module and wrote the Playwright E2E suite that guards it.",
+        tech: ["Clean Architecture", "Rails API", "React", "PostgreSQL", "Playwright"],
         symbol: "LDSR",
         status: "ship",
         viz: "down",
@@ -398,10 +392,10 @@ export const en: Translations = {
       },
       {
         title: "Gendocs V3",
-        context: "TECH UNIV. AMBATO · 4-PERSON SCRUM LEAD",
+        context: "TECH UNIV. AMBATO · 4-PERSON SCRUM LEAD · IN PRODUCTION",
         description:
-          "Event-driven document management system handling thousands of academic documents. Implemented async processing with BullMQ queues, moving report generation off the request path and collapsing generation latency.",
-        tech: ["Next.js", "NestJS", "BullMQ", "PostgreSQL", "Event-Driven"],
+          "Document platform that replaced the faculty's legacy generator and runs in university production. Led the 4-person Scrum team; integrated the Google Drive and Docs APIs across thousands of academic records and moved generation into a Bull + Redis worker pipeline with Socket.io notifications, cutting processing time 70%.",
+        tech: ["NestJS", "Next.js", "Bull", "Redis", "PostgreSQL", "Google APIs"],
         symbol: "GDOC",
         status: "ship",
         viz: "down",
@@ -418,10 +412,10 @@ export const en: Translations = {
     more: [
       {
         title: "FoppyAI",
-        context: "TEAM OF 2 · POST-HACKATHON PROJECT",
+        context: "TEAM OF 2 · 3RD PLACE, FINTECH HACKATHON",
         description:
-          "AI voice agent for personal finance, built on our Fopymes hackathon prototype: Whisper STT + GPT intent routing over a multi-agent backend let users log transactions, goals, and budgets by voice.",
-        tech: ["Next.js", "Hono", "Drizzle", "OpenAI Whisper"],
+          "Voice-first personal finance agent: Whisper transcribes Spanish voice notes and LLM intent routing dispatches them to specialised agents that log transactions, goals and budgets. I owned reminders and reporting: deterministic reports kept separate from LLM reports, PII anonymised before anything reaches the model.",
+        tech: ["Hono", "Next.js", "Drizzle / PostgreSQL", "OpenAI Whisper", "Multi-agent routing"],
         highlight: "3rd place — Hatary Shunko Fintech Innovation",
         symbol: "HTRY",
         status: "ship",

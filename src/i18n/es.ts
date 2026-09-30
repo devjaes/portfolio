@@ -361,14 +361,8 @@ export const es: Translations = {
         title: "TAPinto.net",
         context: "SENIROP · PRODUCCIÓN · EQUIPO US EN INGLÉS",
         description:
-          "Contribuidor full-stack en una plataforma de noticias de alto tráfico en EE. UU. Construí módulos CMS complejos para 12+ tipos de contenido, ajusté jobs en background, optimicé capas de caché y performance hotspots, e integré ad-serving dinámico y pasarelas de pago.",
-        tech: [
-          "Ruby on Rails",
-          "React",
-          "PostgreSQL",
-          "Background Jobs",
-          "Caché",
-        ],
+          "Plataforma de noticias de EE. UU. con ~2M de visitas mensuales. Desarrollo features sobre 12+ tipos de contenido del CMS en un ecosistema Rails + React (PostgreSQL + MongoDB), libero detrás de feature flags e integro APIs de terceros de pasarelas de pago y ad-serving. Reescribí el caché en Redis de los endpoints más calientes, agregué APM con New Relic y diseñé la arquitectura E2E reutilizable en Playwright.",
+        tech: ["Ruby on Rails", "React", "PostgreSQL", "MongoDB", "Redis", "Playwright"],
         symbol: "TAPI",
         status: "ship",
         viz: "up",
@@ -385,8 +379,8 @@ export const es: Translations = {
         title: "ERP de exportación Lideser",
         context: "CLIENTE SENIROP · ARQUITECTO LÍDER",
         description:
-          "Arquitecté la migración de un ERP de exportación legacy monolítico a una Clean Architecture moderna (Rails API + React) en un plazo récord de dos semanas. Diseñé la estrategia de migración de PostgreSQL para garantizar cero pérdida de datos.",
-        tech: ["Clean Architecture", "Rails API", "PostgreSQL", "TypeScript"],
+          "Propuse e impulsé la migración de un ERP legacy de gestión de exportaciones a Clean Architecture (Rails API + React) en menos de dos semanas, con una estrategia de migración en PostgreSQL sin pérdida de datos. Construí el módulo core de KPIs y escribí la suite E2E en Playwright que lo protege.",
+        tech: ["Clean Architecture", "Rails API", "React", "PostgreSQL", "Playwright"],
         symbol: "LDSR",
         status: "ship",
         viz: "down",
@@ -406,10 +400,10 @@ export const es: Translations = {
       },
       {
         title: "Gendocs V3",
-        context: "UNIV. TÉCNICA DE AMBATO · LÍDER SCRUM DE 4",
+        context: "UNIV. TÉCNICA DE AMBATO · LÍDER SCRUM DE 4 PERSONAS · EN PRODUCCIÓN",
         description:
-          "Sistema event-driven de gestión documental que maneja miles de documentos académicos. Implementé procesamiento asíncrono con colas BullMQ, sacando la generación de reportes de la ruta de request y colapsando la latencia.",
-        tech: ["Next.js", "NestJS", "BullMQ", "PostgreSQL", "Event-Driven"],
+          "Plataforma documental que reemplazó el generador legacy de la facultad y corre en producción en la universidad. Lideré el equipo Scrum de 4 personas; integré las APIs de Google Drive y Docs sobre miles de registros académicos y moví la generación a un pipeline de workers con Bull + Redis y notificaciones por Socket.io, reduciendo el tiempo de procesamiento un 70 %.",
+        tech: ["NestJS", "Next.js", "Bull", "Redis", "PostgreSQL", "Google APIs"],
         symbol: "GDOC",
         status: "ship",
         viz: "down",
@@ -426,10 +420,10 @@ export const es: Translations = {
     more: [
       {
         title: "FoppyAI",
-        context: "EQUIPO DE 2 · PROYECTO POST-HACKATHON",
+        context: "EQUIPO DE 2 · 3ER LUGAR, HACKATHON FINTECH",
         description:
-          "Agente de voz con IA para finanzas personales, construido sobre nuestro prototipo de hackathon Fopymes: Whisper STT + ruteo de intención con GPT sobre un backend multi-agente permiten registrar transacciones, metas y presupuestos por voz.",
-        tech: ["Next.js", "Hono", "Drizzle", "OpenAI Whisper"],
+          "Agente de finanzas personales por voz: Whisper transcribe notas de voz en español y un enrutamiento de intención con LLM las despacha a agentes especializados que registran transacciones, metas y presupuestos. Fui responsable de recordatorios y reportes: reportes determinísticos separados de los reportes con LLM, y PII anonimizada antes de que nada llegue al modelo.",
+        tech: ["Hono", "Next.js", "Drizzle / PostgreSQL", "OpenAI Whisper", "Enrutamiento multiagente"],
         highlight: "3er lugar — Hatary Shunko Fintech Innovation",
         symbol: "HTRY",
         status: "ship",
